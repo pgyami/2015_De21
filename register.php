@@ -1,4 +1,4 @@
-<?php
+
 /*
 
 UserFrosting Version: 0.2.2
@@ -28,6 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
+<?php
 require_once("admin/models/config.php");
 
 setReferralPage(getAbsoluteDocumentPath(__FILE__));
