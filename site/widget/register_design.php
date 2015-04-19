@@ -1,5 +1,141 @@
+<?php
+require_once("../../admin/models/config.php");
+?>
 <!doctype html>
 <html>
+<?php
+    $fields = [
+        'user_name' => [
+            'type' => 'text',
+            'label' => 'Username',
+            'icon' => 'fa fa-fw fa-edit',
+            'validator' => [
+                'minLength' => 1,
+                'maxLength' => 25,
+                'label' => 'Username'
+            ],
+            'placeholder' => 'User name'
+        ],
+        'display_name' => [
+            'type' => 'text',
+            'label' => 'Display Name',
+            'icon' => 'fa fa-fw fa-edit',
+            'validator' => [
+                'minLength' => 1,
+                'maxLength' => 50,
+                'label' => 'Display name'
+            ],
+            'placeholder' => 'Display name'
+        ],          
+        'email' => [
+            'type' => 'text',
+            'label' => 'Email',
+            'icon' => 'fa fa-fw fa-envelope',
+            'validator' => [
+                'minLength' => 1,
+                'maxLength' => 150,
+                'email' => true,
+                'label' => 'Email'
+            ],
+            'placeholder' => 'Email address'
+        ],
+        'password' => [
+            'type' => 'password',
+            'label' => 'Password',
+            'icon' => 'fa fa-fw fa-key',
+            'validator' => [
+                'minLength' => 8,
+                'maxLength' => 50,
+                'label' => 'Password',
+                'passwordMatch' => 'passwordc'
+            ],
+            'placeholder' => '8-50 characters'
+        ],
+        'passwordc' => [
+            'type' => 'password',
+            'label' => 'Confirm password',
+            'icon' => 'fa fa-fw fa-key',
+            'validator' => [
+                'minLength' => 8,
+                'maxLength' => 50,
+                'label' => 'Password'
+            ],
+            'placeholder' => 'Re-enter your password'
+            
+        ],
+        'captcha' => [
+            'type' => 'text',
+            'label' => 'Confirm Security Code',
+            'icon' => 'fa fa-fw fa-eye',
+            'validator' => [
+                'minLength' => 1,
+                'maxLength' => 50,
+                'label' => 'Security code'
+            ],
+            'placeholder' => "Enter the code below, human!"            
+        ]
+    ];
+    
+    $captcha = generateCaptcha();
+    
+    $template = "
+        <form name='newUser' class='form-horizontal' id='newUser' role='form' action='admin/api/create_user.php' method='post'>
+		  <div class='row'>
+			<div id='display-alerts' class='col-lg-12'>
+		  
+			</div>
+		  </div>		
+		  <div class='row'>
+			<div class='col-sm-12'>
+                {{user_name}}
+            </div>
+		  </div>
+		  <div class='row'>
+            <div class='col-sm-12'>
+                {{display_name}}
+            </div>
+		  </div>
+		  <div class='row'>
+			<div class='col-sm-12'>
+                {{email}}
+            </div>
+		  </div>		  
+		  <div class='row'>
+            <div class='col-sm-12'>
+                {{password}}
+            </div>
+		  </div>
+		  <div class='row'>
+            <div class='col-sm-12'>
+                {{passwordc}}
+            </div>
+		  </div>
+		  <div class='row'>
+            <div class='col-sm-12'>
+                {{captcha}}
+            </div>
+          </div>
+          <div class='form-group'>
+            <div class='col-sm-12'>
+                <img src='$captcha' id='captcha'>
+            </div>
+		  </div>
+		  <br>
+		  <div class='form-group'>
+			<div class='col-sm-12'>
+			  <button type='submit' class='btn btn-success submit' value='Register'>Register</button>
+			</div>
+		  </div>
+          <div class='collapse'>
+            <label>Spiderbro: Don't change me bro, I'm tryin'a catch some flies!</label>
+            <input name='spiderbro' id='spiderbro' value='http://'/>
+          </div>          
+		</form>";
+    
+    $fb = new FormBuilder($template, $fields, [], [], true);
+    
+  ?>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css" />
@@ -7,96 +143,65 @@
 <title>Registration Form</title>
 </head>
 <body>
-<div class="panel panel-default">
+
  <div class="panel-heading">
   <h3 class="panel-title">New Registration</h3>
  </div>
-  <div class="panel-body">
- <form class="form-horizontal" role="form">
-  <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">Name</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="name"
-       placeholder="Enter your user name here">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="display-name" class="col-sm-2 control-label">Display Name</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="display-name"
-       placeholder="Enter your display name here">
-    </div>
-  </div>
-   <div class="form-group">
-    <label for="email" class="col-sm-2 control-label">Email</label>
- <div class="col-sm-10">
-   <div class="input-group input-group-sm">
-   <input type="text" class="form-control" placeholder="">
-     <span class="input-group-addon">@</span>
-    <input type="text" class="form-control" placeholder="">
-  </div>
-  </div>
-  </div>
-    <div class="form-group">
-    <label for="password" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="pass">
-    </div>
-  </div>
-    <div class="form-group">
-    <label for="password" class="col-sm-2 control-label">Confirm your password
-    </label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="confirmpass">
-    </div>
-  </div>
-<div class="form-group">
-   <label class="col-sm-2 control-label">Gender</label>
-   <div class="col-sm-10">
-    <div class="radio-inline">
-     <label>
-      <input id="radiobutton1" name="sampleradiobutton" value="" type="radio">
-      Male</label>
-    </div>
-    <div class="radio-inline">
-     <label>
-      <input id="radiobutton2" name="sampleradiobutton" value="" type="radio">
-      Female</label>
-    </div>
-   </div>
-  </div>
-  <div class="form-group">
-	<label class="col-sm-2 control-label">Captcha</label>
-	<div class="col-sm-4">
-					<input type="text" placeholder="Enter Code" id="captcha" name="captcha" class="form-control" required="required">
-					
-				</div>
-				<div class="col-sm-4">
-				<img src="demo_captcha.php?_=1429434152350" class="form-control" alt="captcha">
-				
-				</div>
-				<div class="col-sm-2">
-				<img src="images/refresh.png" alt="reload" class="refresh">
-				</div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox">I accept terms and conditions
-        </label>
-      </div>
-    </div>
-  </div> 
-</form>
-  </div>
-  <div class="panel-footer" style="overflow:hidden;text-align:right;">
-    <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success btn-sm">Submit</button>
-      <button type="submit" class="btn btn-default btn-sm">Cancel</button>
-    </div>
-  </div>  
-  </div>
-</div>
+
+  <?php echo $fb->render(); ?>
+
+<script>
+	$(document).ready(function() {
+		// Load navigation bar
+		$(".navbar").load("header-loggedout.php", function() {
+            $(".navbar .navitem-register").addClass('active');
+        });
+		
+		// Process submission
+        $("form[name='newUser']").submit(function(e){
+			e.preventDefault();
+            var form = $(this);
+            var errorMessages = validateFormFields('newUser');
+			if (errorMessages.length > 0) {
+				$('#display-alerts').html("");
+				$.each(errorMessages, function (idx, msg) {
+					$('#display-alerts').append("<div class='alert alert-danger'>" + msg + "</div>");
+				});	
+			} else {
+                // Process form                    
+                // Serialize and post to the backend script in ajax mode
+                var serializedData = form.serialize();
+                serializedData += '&ajaxMode=true';     
+                //console.log(serializedData);
+            
+                var url = APIPATH + "create_user.php";
+                $.ajax({  
+                  type: "POST",  
+                  url: url,  
+                  data: serializedData
+                }).done(function(result) {
+                  var resultJSON = processJSONResult(result);
+                  if (resultJSON['errors'] && resultJSON['errors'] > 0){
+                        console.log("error");
+						// Reload captcha
+						var img_src = APIPATH + 'generate_captcha.php?' + new Date().getTime();
+                        $.ajax({  
+                          type: "GET",  
+                          url: img_src,  
+                          dataType: "text"
+                        }).done(function(result) { 
+                            $('#captcha').attr('src', result);
+                            form.find('input[name="captcha"]' ).val("");
+                            alertWidget('display-alerts');
+                            return;
+                        });
+                  } else {
+                    window.location.replace('login.php');
+                  }
+                });   
+            }
+		});
+	});
+</script>
 </body>
 </html>
