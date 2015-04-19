@@ -1,2 +1,2 @@
 
-<h1>about clgt</h1>
+<h1>contact form + thong tin nhom hien thi o day</h1>

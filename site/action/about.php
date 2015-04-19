@@ -6,3 +6,4 @@
     load_rsidebar();
     load_footer();
 ?>
+<h1>Load content_about vao day</h1>

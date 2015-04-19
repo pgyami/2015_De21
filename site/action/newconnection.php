@@ -1,0 +1,1 @@
+<h1>Add new connection page : Header + Footer + Connection form</h1>
