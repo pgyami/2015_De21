@@ -79,7 +79,7 @@ require_once("../../admin/models/config.php");
     $captcha = generateCaptcha();
     
     $template = "
-        <form name='newUser' class='form-horizontal' id='newUser' role='form' action='admin/api/create_user.php' method='post'>
+        <form name='newUser' class='form-horizontal' id='newUser' role='form' action='../../admin/api/create_user.php' method='post'>
 		  <div class='row'>
 			<div id='display-alerts' class='col-lg-12'>
 		  
