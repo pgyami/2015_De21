@@ -40,9 +40,14 @@
         else{
             ?>
             <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="#" target="_blank">Username: Locdinh Pro</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
+             <form class="navbar-form navbar-left" role="login">
+				<div class="form-group" id="login_form">
+                  <input type="text" class="form-control" placeholder="Username">
+				  <input type="text" class="form-control" placeholder="Password">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			  </form>
+      </ul>
         <?php
         }
         ?>
