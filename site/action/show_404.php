@@ -3,6 +3,6 @@
     load_header();
     load_lsidebar();
     load_widget('content-404');
-    load_rsidebar();
+   // load_rsidebar();
     load_footer();
 ?>
