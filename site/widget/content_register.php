@@ -1,6 +1,4 @@
-<?php
-require_once("../../admin/models/config.php");
-?>
+
 <!doctype html>
 <html>
 <?php
@@ -79,7 +77,7 @@ require_once("../../admin/models/config.php");
     $captcha = generateCaptcha();
     
     $template = "
-        <form name='newUser' class='form-horizontal' id='newUser' role='form' action='../../admin/api/create_user.php' method='post'>
+        <form name='newUser' class='form-horizontal' id='newUser' role='form' action='admin/api/create_user.php' method='post'>
 		  <div class='row'>
 			<div id='display-alerts' class='col-lg-12'>
 		  
@@ -126,10 +124,7 @@ require_once("../../admin/models/config.php");
 			  <button type='submit' class='btn btn-success submit' value='Register'>Register</button>
 			</div>
 		  </div>
-          <div class='collapse'>
-            <label>Spiderbro: Don't change me bro, I'm tryin'a catch some flies!</label>
-            <input name='spiderbro' id='spiderbro' value='http://'/>
-          </div>          
+                  
 		</form>";
     
     $fb = new FormBuilder($template, $fields, [], [], true);
@@ -138,8 +133,8 @@ require_once("../../admin/models/config.php");
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="../../public/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="public/css/bootstrap-theme.min.css" />
 <title>Registration Form</title>
 </head>
 <body>

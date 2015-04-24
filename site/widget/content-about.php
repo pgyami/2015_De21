@@ -44,8 +44,8 @@ if (!$errName && !$errEmail && !$errMessage && !$errHuman) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
 		<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="../../public/css/bootstrap.css">
-<script src ="../../public/js/bootstrap.js"></script>
+<link type="text/css" rel="stylesheet" href="public/css/bootstrap.css">
+<script src ="public/js/bootstrap.js"></script>
 </head>
 <body>       
     <h1>BSLK là ai?</h1>
