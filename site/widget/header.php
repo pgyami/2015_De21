@@ -36,6 +36,7 @@ if ($email_login == 1) {
 				<div class="form-group" id="login_form">
                   <input type="text" class="form-control" id="inputUserName" placeholder="<?php echo $user_email_placeholder; ?>" name = 'username' value=''>
 				  <input type="password" class="form-control" id="inputPassword" placeholder="Password" name='password'>
+
 				</div>
 				<button type="submit" class="btn btn-default" value='Login'>Submit</button>
 			  </form>

@@ -10,7 +10,7 @@
 </head>
 <body> 
 <div class="panel-group">
-      <div class="panel panel-default">
+      <div class="panel panel-info">
         <div class="panel-heading hover-link" data-toggle="collapse" data-parent="false" data-target="#collapseTableOne">
           <h4 class="panel-title">
             Your Connection List
@@ -145,7 +145,7 @@
         </div>
       </div>
       
-      <div class="panel panel-default">
+      <div class="panel panel-success">
         <div class="panel-heading hover-link" data-toggle="collapse" data-parent="false" data-target="#collapseTableTwo">
           <h4 class="panel-title">
             Create New Connection

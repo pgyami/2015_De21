@@ -114,15 +114,19 @@
             </div>
           </div>
           <div class='form-group'>
-            <div class='col-sm-12'>
-                <img src='$captcha' id='captcha'>
+            <div class='col-sm-4'>      
+            </div>
+            <div class='col-sm-8'>
+            <img src='$captcha' id='captcha'>
             </div>
 		  </div>
 		  <br>
 		  <div class='form-group'>
-			<div class='col-sm-12'>
-			  <button type='submit' class='btn btn-success submit' value='Register'>Register</button>
-			</div>
+            <div class='col-sm-4'>      
+            </div>
+            <div class='col-sm-8'>
+                <button type='submit' class='btn btn-success submit' value='Register'>Register</button>
+            </div>
 		  </div>
                   
 		</form>";
@@ -139,11 +143,12 @@
 </head>
 <body>
 
- <div class="panel-heading">
-  <h3 class="panel-title">New Registration</h3>
- </div>
 
-  <?php echo $fb->render(); ?>
+    <div class="panel panel-success">
+      <div class="panel-heading">New Registration</div>
+      <div class="panel-body"> <?php echo $fb->render(); ?></div>
+    </div>
+ 
 
 <script>
 	$(document).ready(function() {
