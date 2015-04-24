@@ -46,8 +46,10 @@ if ($email_login == 1) {
         else{
             ?>
             <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="#" target="_blank">Username: Locdinh Pro</a></li>
-                <li><a href="#">Logout</a></li>
+                <li class=""><a href="#" target="_blank">Username:               <?php global $loggedInUser;
+              echo $loggedInUser->username; 
+              ?></a></li>
+                <li><a href="admin/account/logout.php">Logout</a></li>
             </ul>
         <?php
         }
@@ -58,11 +60,11 @@ if ($email_login == 1) {
 <script>
         $(document).ready(function() {          
 		  // Load navigation bar
-		  $(".navbar").load("header-loggedout.php", function() {
+		 /* $(".navbar").load("header-loggedout.php", function() {
 			  $(".navbar .navitem-login").addClass('active');
-		  });
+		  });*/
 		  // Load jumbotron links
-		  $(".jumbotron-links").load("jumbotron_links.php");
+		  //$(".jumbotron-links").load("jumbotron_links.php");
 	  
 		  alertWidget('display-alerts');
 			  
@@ -77,14 +79,15 @@ if ($email_login == 1) {
 				password:	form.find('input[name="password"]').val(),
 				ajaxMode:	"true"
 			  },		  
-			  success: function(result) {
+			 /* success: function(result) {
+			     
 				var resultJSON = processJSONResult(result);
 				if (resultJSON['errors'] && resultJSON['errors'] > 0){
 				  alertWidget('display-alerts');
 				} else {
-				  window.location.replace("admin/account");
+				  window.location.replace("admin/account/");
 				}
-			  }
+			  }*/
 			});
 			// Prevent form from submitting twice
 			e.preventDefault();

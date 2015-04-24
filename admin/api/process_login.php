@@ -153,7 +153,7 @@ if(count($errors) == 0)
                 $_SESSION["userCakeUser"] = $loggedInUser;
                 
                 $successes = array();
-                $successes[] = "Welcome back, " . $loggedInUser->displayname;
+                $successes[] = "Welcome 1back, " . $loggedInUser->displayname;
             }
         }
     }
@@ -171,7 +171,7 @@ foreach ($successes as $success){
 if (count($errors) > 0){
     apiReturnError($ajax, SITE_ROOT . "login.php");
 } else {
-    apiReturnSuccess($ajax, ACCOUNT_ROOT);
+    apiReturnSuccess($ajax, "../../index.php?action=homepage");
 }
 
 ?>
