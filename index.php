@@ -1,5 +1,5 @@
 <?php
-    
+    require_once("admin/models/config.php");
     define('SYSPATH', 'system/');
     require SYSPATH."client.php";
     require SYSPATH."site.php";
