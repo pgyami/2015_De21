@@ -47,7 +47,9 @@ if(isUserLoggedIn())
 }
 
 // Forward to index root page
-header("Location: " . SITE_ROOT);
+
+
+header("Location: " . SITE_ROOT."../index.php?action=home");
 die();
 
 ?>
