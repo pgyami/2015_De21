@@ -45,7 +45,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 <!DOCTYPE html>
 <html lang="en">
   <?php
-  	echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Dashboard"));
+  	echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => "BSLK Production", "#PAGE_TITLE#" => "Account Information"));
   ?>
 
   <body>
@@ -54,7 +54,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 
       <!-- Sidebar -->
         <?php
-          echo renderMenu("dashboard");
+        echo renderMenu("dashboard");
         ?>  
 
       <div id="page-wrapper">

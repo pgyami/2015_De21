@@ -47,7 +47,7 @@ if ($email_login == 1) {
         else{
             ?>
             <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="#" target="_blank">Username:               <?php global $loggedInUser;
+                <li class=""><a href="index.php?action=account_info" target="_blank">Username:               <?php global $loggedInUser;
               echo $loggedInUser->username; 
               ?></a></li>
                 <li><a href="admin/account/logout.php">Logout</a></li>

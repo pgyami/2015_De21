@@ -198,9 +198,9 @@ if ($primary_group_id && $userdetails['primary_group_id'] != $primary_group_id){
 restore_error_handler();
 
 if ($error_count > 0){
-    apiReturnError($ajax, getReferralPage());
+    apiReturnError($ajax, "../../index.php?action=account_info");
 } else {
-    apiReturnSuccess($ajax, getReferralPage());
+    apiReturnSuccess($ajax, "../../index.php?action=homepage");
 }
 
 ?>

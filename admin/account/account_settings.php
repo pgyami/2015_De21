@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 */
 
-require_once("../models/config.php");
+//require_once("../models/config.php");
 
 // Request method: GET
 $ajax = checkRequestMode("get");
@@ -46,6 +46,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 <html lang="en">
   <?php
   	echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Account Settings"));
+    
   ?>
 
   <body>
@@ -53,7 +54,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 
       <!-- Sidebar -->
         <?php
-          echo renderMenu("settings");
+        //  echo renderMenu("settings");
         ?>  
 
       <div id="page-wrapper">
@@ -62,7 +63,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 
           </div>
         </div>
-		<h1>Account Settings</h1>
+		
 		<div class="row">
 		  <div class="col-lg-6">
 		  <form class="form-horizontal" role="form" name="updateAccount" action="update_user.php" method="post">
