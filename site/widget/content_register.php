@@ -2,7 +2,8 @@
 <!doctype html>
 <html>
 <?php
-    $fields = [
+
+   $fields = [
         'user_name' => [
             'type' => 'text',
             'label' => 'Username',
@@ -114,21 +115,20 @@
             </div>
           </div>
           <div class='form-group'>
-            <div class='col-sm-4'>      
-            </div>
-            <div class='col-sm-8'>
-            <img src='$captcha' id='captcha'>
+            <div class='col-sm-12'>
+                <img src='$captcha' id='captcha'>
             </div>
 		  </div>
 		  <br>
 		  <div class='form-group'>
-            <div class='col-sm-4'>      
-            </div>
-            <div class='col-sm-8'>
-                <button type='submit' class='btn btn-success submit' value='Register'>Register</button>
-            </div>
+			<div class='col-sm-12'>
+			  <button type='submit' class='btn btn-success submit' value='Register'>Register</button>
+			</div>
 		  </div>
-                  
+          <div class='collapse'>
+            <label>Spiderbro: Don't change me bro, I'm tryin'a catch some flies!</label>
+            <input name='spiderbro' id='spiderbro' value='http://'/>
+          </div>          
 		</form>";
     
     $fb = new FormBuilder($template, $fields, [], [], true);
@@ -153,10 +153,10 @@
 <script>
 	$(document).ready(function() {
 		// Load navigation bar
-		$(".navbar").load("header-loggedout.php", function() {
+	/*	$(".navbar").load("header-loggedout.php", function() {
             $(".navbar .navitem-register").addClass('active');
         });
-		
+		*/
 		// Process submission
         $("form[name='newUser']").submit(function(e){
 			e.preventDefault();

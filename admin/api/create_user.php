@@ -176,6 +176,6 @@ if ($error_count == 0){
 
 restore_error_handler();
   
-apiReturnSuccess($ajax, ($admin == "true") ? ACCOUNT_ROOT : SITE_ROOT);
+apiReturnSuccess($ajax, ($admin == "true") ? ACCOUNT_ROOT : SITE_ROOT."../index.php?action=home");
 
 ?>
