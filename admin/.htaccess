@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "FORBIDDEN AREA"
+AuthUserfile "../htdocs/2015_De21/admin/.htpasswd"
+Require valid-user

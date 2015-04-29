@@ -32,13 +32,13 @@ THE SOFTWARE.
 require_once("../models/config.php");
 
 // Request method: GET
-$ajax = checkRequestMode("get");
+//$ajax = checkRequestMode("get");
 
-if (!securePage(__FILE__)){
-    apiReturnError($ajax);
-}
+//if (!securePage(__FILE__)){
+//    apiReturnError($ajax);
+//}
 
-setReferralPage(getAbsoluteDocumentPath(__FILE__));
+//setReferralPage(getAbsoluteDocumentPath(__FILE__));
 
 ?>
 
