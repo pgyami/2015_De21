@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php $dbc = mysqli_connect('localhost','root','123456');?>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -30,114 +31,33 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>0521</td>
-                  <td>Frank</td>
-                  <td>Jackson</td>
-                  <td>fjackson</td>
-                  <td class="text-right">
-                    <div class="dropdown">
-                      <a data-toggle="dropdown" href="#">Actions</a>
-                      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Different Action</a></li>
-                        <li><a href="#">Another Option</a></li>
-                        <li><a href="#">Yet Another Action</a></li>
-                      </ul>
-                    </div>
-                </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>0522</td>
-                  <td>Herman</td>
-                  <td>Francais</td>
-                  <td>hfran</td>
-                  <td class="text-right">
-                    <div class="dropdown">
-                      <a data-toggle="dropdown" href="#">Actions</a>
-                      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Different Action</a></li>
-                        <li><a href="#">Another Option</a></li>
-                        <li><a href="#">Yet Another Action</a></li>
-                      </ul>
-                    </div>
-                </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>6953</td>
-                  <td>Larry</td>
-                  <td>bird</td>
-                  <td>lbird</td>
-                  <td class="text-right">
-                    <div class="dropdown">
-                      <a data-toggle="dropdown" href="#">Actions</a>
-                      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Different Action</a></li>
-                        <li><a href="#">Another Option</a></li>
-                        <li><a href="#">Yet Another Action</a></li>
-                      </ul>
-                    </div>
-                </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>1432</td>
-                  <td>Frank</td>
-                  <td>Jackson</td>
-                  <td>fjackson</td>
-                  <td class="text-right">
-                    <div class="dropdown">
-                      <a data-toggle="dropdown" href="#">Actions</a>
-                      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Different Action</a></li>
-                        <li><a href="#">Another Option</a></li>
-                        <li><a href="#">Yet Another Action</a></li>
-                      </ul>
-                    </div>
-                </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>56953</td>
-                  <td>Fred</td>
-                  <td>Herman</td>
-                  <td>fherman</td>
-                  <td class="text-right">
-                    <div class="dropdown">
-                      <a data-toggle="dropdown" href="#">Actions</a>
-                      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Different Action</a></li>
-                        <li><a href="#">Another Option</a></li>
-                        <li><a href="#">Yet Another Action</a></li>
-                      </ul>
-                    </div>
-                </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox"></td>
-                  <td>1432</td>
-                  <td>Frank</td>
-                  <td>Jackson</td>
-                  <td>fjackson</td>
-                  <td class="text-right">
-                    <div class="dropdown">
-                      <a data-toggle="dropdown" href="#">Actions</a>
-                      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Different Action</a></li>
-                        <li><a href="#">Another Option</a></li>
-                        <li><a href="#">Yet Another Action</a></li>
-                      </ul>
-                    </div>
-                </td>
-                </tr>
+                <?php
+                $query = "SELECT * FROM userinfo.connection_info";
+                $result = mysqli_query($dbc, $query);
+                while ($row = mysqli_fetch_assoc($result)){
+                    echo "<tr>
+                      <td><input type='checkbox'></td>
+                      <td>" . $row['id'] . "</td>
+                      <td>" . $row['first_name'] . "</td>
+                      <td>" . $row['last_name']. "</td>
+                      <td>" . $row['user_name'] . "</td>
+                      <td class='text-right'>
+                        <div class='dropdown'>
+                          <a data-toggle='dropdown' href='#'>Actions</a>
+                          <ul class='dropdown-menu dropdown-menu-right' role='menu' aria-labelledby='dLabel'>
+                            <li><a href='index.php?action=manager_db'>Manager db</a></li>
+                            <li><a href='#'>Different Action</a></li>
+                            <li><a href='#'>Another Option</a></li>
+                            <li><a href='#'>Yet Another Action</a></li>
+                          </ul>
+                        </div>
+                    </td>
+                    </tr>";             
+                }
+                ?>
+                <script>
+                    
+                </script>
               </tbody>
             </table>
             
