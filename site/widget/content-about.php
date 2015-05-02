@@ -4,7 +4,9 @@
 
 <body>
     
-      
+    <div class="panel panel-info">
+      <div class="panel-heading">About BSLK Team</div>
+      <div class="panel-body">
     <center><h1>BSLK là ai?</h1></center>
     <p>BSLK team hiện đang là các sinh viên năm cuối thuộc trường đại học Bách Khoa thành phố Hồ Chí Minh.
     BLSK là viết tắt của tên các thành viên trong nhóm bao gồm:</p>
@@ -20,7 +22,8 @@
         <h4>BSLK website nằm trong khuôn khổ bài tập lớn môn "Lập trình web" thuộc khoa Khoa học và Kỹ thuật máy tính.</h4>
         <p> Trong quá trình tạo lập không tránh khỏi gặp nhiều sai sót, mọi chi tiết xin liên hệ với chúng tôi thông qua bảng thông tin liên hệ sau, chúng tôi sẽ trả lời sớm nhất có thể.</p>   
     </center> 
-  
+  </div>
+    </div> 
 
 </body>
 </html>

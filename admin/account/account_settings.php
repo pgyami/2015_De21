@@ -45,7 +45,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 <!DOCTYPE html>
 <html lang="en">
   <?php
-  	echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Account Settings"));
+  	echo renderAccountPageHeader(array(/*"#SITE_ROOT#" => SITE_ROOT,*/ "#SITE_TITLE#" => "Account Settings", "#PAGE_TITLE#" => "View"));
     
   ?>
 
@@ -56,16 +56,22 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
         <?php
         //  echo renderMenu("settings");
         ?>  
-
+   
       <div id="page-wrapper">
+       <?php
+    /* Pika edit
 	  	<div class="row">
           <div id='display-alerts' class="col-lg-12">
 
           </div>
         </div>
-		
-		<div class="row">
-		  <div class="col-lg-6">
+        */
+	?>	
+
+          <div class="panel panel-danger">
+            <div class="panel-heading ">Change Your Password</div>
+            <div class="panel-body ">
+          <center>
 		  <form class="form-horizontal" role="form" name="updateAccount" action="update_user.php" method="post">
 		  <div class="form-group">
 			<label class="col-sm-4 control-label">Email</label>
@@ -93,16 +99,17 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 		  </div>
 		  
 		  <div class="form-group">
-			<div class="col-sm-offset-4 col-sm-8">
+			<div class="col-sm-offset-4 col-sm-4">
 			  <button type="submit" class="btn btn-success submit" value='Update'>Update</button>
 			</div>
 		  </div>
 		  <input type="hidden" name="csrf_token" value="<?php echo $loggedInUser->csrf_token; ?>" />
 		  <input type="hidden" name="user_id" value="0" />
 		  </form>
+          </center>
 		  </div>
+        </div>
 		</div>
-	  </div>
 	</div>
 	
 	<script>

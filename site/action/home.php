@@ -35,6 +35,11 @@ require_once("admin/models/config.php");
         load_widget('content_register');
          ?>
     </div>
+    <div class="col-sm-12">
+        <?php
+        load_widget('content-about');
+        ?>
+    </div>
 	
     <div class="clearer"></div>
   </div>

@@ -8,17 +8,30 @@
 <body>
 <?php
 global $loggedInUser;
-echo "Username ";
-echo $loggedInUser->username;
-echo "</br>";
-//global $loggedInUser;
-echo "Display name ";
-echo $loggedInUser->displayname;
-echo "</br>";
-echo "Group ";
-echo $loggedInUser->title;
-echo "</br>";
 ?>
+<div class="panel panel-primary">
+      <div class="panel-heading">Your Account Settings</div>
+      <div class="panel-body">
+        <div class="form-group">
+			<label class="col-sm-4 control-label">User name</label>
+			<div class="col-sm-8">
+			  <pre><?php echo $loggedInUser->username; ?></pre>
+			</div>
+		  </div>
+		  <div class="form-group">
+			<label class="col-sm-4 control-label">Display name</label>
+			<div class="col-sm-8">
+			  <pre><?php echo $loggedInUser->displayname; ?></a></pre>
+			</div>
+		  </div>
+		  <div class="form-group">
+			<label class="col-sm-4 control-label">Email</label>
+			<div class="col-sm-8">
+			  <pre><?php echo $loggedInUser->email; ?></a></pre>
+			</div>
+		  </div>
+</div>
+    </div>
 
 </body>
 </html>
