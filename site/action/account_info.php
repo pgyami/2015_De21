@@ -15,7 +15,7 @@ body{
 <body>
 <div class="container">
 <?php
-require_once("admin/models/config.php");
+//require_once("admin/models/config.php");
  load_header();
  ?>
 
@@ -29,6 +29,8 @@ require_once("admin/models/config.php");
     <div class="col-sm-6">
         <?php
         load_widget('../../admin/account/account_settings');
+       #load_widget('content-acc-setting');
+         
          ?>
     </div>
 

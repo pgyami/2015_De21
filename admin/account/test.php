@@ -1,6 +1,3 @@
-
-
-
 <?php
 /*
 
@@ -32,23 +29,23 @@ THE SOFTWARE.
 
 */
 
-#require_once("../models/config.php");
+require_once("../models/config.php");
 
 // Request method: GET
 $ajax = checkRequestMode("get");
 
-#if (!securePage(__FILE__)){
-#    apiReturnError($ajax);
-#}
+if (!securePage(__FILE__)){
+    apiReturnError($ajax);
+}
 
-#setReferralPage(getAbsoluteDocumentPath(__FILE__));
+setReferralPage(getAbsoluteDocumentPath(__FILE__));
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <?php
-  #	echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Account Settings"));
+  	echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Account Settings"));
   ?>
 
   <body>
@@ -56,7 +53,7 @@ $ajax = checkRequestMode("get");
 
       <!-- Sidebar -->
         <?php
-          //echo renderMenu("settings");
+          echo renderMenu("settings");
         ?>  
 
       <div id="page-wrapper">
@@ -65,10 +62,10 @@ $ajax = checkRequestMode("get");
 
           </div>
         </div>
-
+		<h1>Account Settings</h1>
 		<div class="row">
 		  <div class="col-lg-6">
-		  <form class="form-horizontal" role="form" name="updateAccount" action="admin/api/update_user.php" method="post">
+		  <form class="form-horizontal" role="form" name="updateAccount" action="update_us1er.php" method="post">
 		  <div class="form-group">
 			<label class="col-sm-4 control-label">Email</label>
 			<div class="col-sm-8">
@@ -99,9 +96,7 @@ $ajax = checkRequestMode("get");
 			  <button type="submit" class="btn btn-success submit" value='Update'>Update</button>
 			</div>
 		  </div>
-		  <input type="hidden" name="csrf_token" value="<?php 
-            global $loggedInUser;
-            echo $loggedInUser->csrf_token; ?>" />
+		  <input type="hidden" name="csrf_token" value="<?php echo $loggedInUser->csrf_token; ?>" />
 		  <input type="hidden" name="user_id" value="0" />
 		  </form>
 		  </div>
@@ -122,7 +117,8 @@ $ajax = checkRequestMode("get");
 
 		  var request;
 		  $("form[name='updateAccount']").submit(function(event){
-			var url = APIPATH + 'update_user.php';
+			var url = 'http://localhost:8765/2015_De21/admin/api/update_user.php';
+            
 			// abort any pending request
 			if (request) {
 				request.abort();
