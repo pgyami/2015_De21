@@ -18,7 +18,7 @@ body{
 //require_once("admin/models/config.php");
  load_header();
  ?>
-
+    
 
     <div class="row"> 
     <div class="col-sm-6">
@@ -27,11 +27,14 @@ body{
         ?>
     </div>
     <div class="col-sm-6">
-        <?php
-        load_widget('../../admin/account/account_settings');
-       #load_widget('content-acc-setting');
-         
-         ?>
+        <div class="panel panel-danger">
+                <div class="panel-heading">Change Your Password/Email</div>
+                <div class="panel-body">
+                     <?php
+                    load_widget('../../admin/account/account_settings');
+                    ?>
+                </div>
+        </div>     
     </div>
 
 	

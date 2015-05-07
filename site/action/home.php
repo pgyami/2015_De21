@@ -23,7 +23,11 @@ require_once("admin/models/config.php");
  load_header();
  ?>
 
+    <div class="row">
+          <div id='display-alerts' class="col-lg-12">
 
+          </div>
+        </div>
     <div class="row"> 
     <div class="col-sm-6">
 		<?php

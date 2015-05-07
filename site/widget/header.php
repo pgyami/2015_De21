@@ -24,7 +24,7 @@ if ($email_login == 1) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">BSLK Production</a>
+      <a class="navbar-brand" href="index.php?action=homepage">BSLK Production</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,7 +38,7 @@ if ($email_login == 1) {
 				  <input type="password" class="form-control" id="inputPassword" placeholder="Password" name='password'>
 
 				</div>
-				<button type="submit" class="btn btn-default" value='Login'>Submit</button>
+				<button type="submit" id="submit_btn" class="btn btn-default" value='Login'>Submit</button>
 			  </form>
       </ul>
       
@@ -47,7 +47,7 @@ if ($email_login == 1) {
         else{
             ?>
             <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="index.php?action=account_info" target="_blank">Username:               <?php global $loggedInUser;
+                <li class=""><a href="index.php?action=account_info">Username:               <?php global $loggedInUser;
               echo $loggedInUser->username; 
               ?></a></li>
                 <li><a href="admin/account/logout.php">Logout</a></li>
