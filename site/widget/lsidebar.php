@@ -1,5 +1,4 @@
 <div class="col-xs-4 col-sm-2 sidebar-offcanvas">
-
 <?php 
     $item_name = "Contents";
     echo "<h3>List of ".$item_name."</h3>";
@@ -234,7 +233,20 @@
         $result = mysqli_query($dbc, $query);
         echo "<div class=\"col-xs-8 col-sm-10\">";
         echo "<div class=\"table-responsive\">";
-        echo "<table class=\"table table-striped\" data-height=\"299\" data-sort-name=\"name\" data-sort-order=\"desc\"><thead><tr>";
+        echo "<table class=\"table table-striped\" data-height=\"299\" data-sort-name=\"name\" data-sort-order=\"desc\"
+        data-toolbar=\"#toolbar\"
+           data-search=\"true\"
+           data-show-refresh=\"true\"
+           data-show-toggle=\"true\"
+           data-show-columns=\"true\"
+           data-show-export=\"true\"
+           data-show-pagination-switch=\"true\"
+           data-pagination=\"true\"
+           data-page-list=\"[10, 25, 50, 100, ALL]\"
+           data-show-footer=\"true\"
+           data-side-pagination=\"server\"
+           data-url=\"/examples/bootstrap_table/data\"
+           data-response-handler=\"responseHandler\"><thead><tr>";
         
         $delete_field;
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
