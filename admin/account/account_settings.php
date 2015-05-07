@@ -31,8 +31,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-
-#require_once("../models/config.php");
+//require_once("../models/config.php");
 
 // Request method: GET
 $ajax = checkRequestMode("get");
@@ -67,7 +66,7 @@ $ajax = checkRequestMode("get");
         </div>
 
 		<div class="row">
-		  <div class="col-lg-6">
+		  <div class="col-lg-12">
 		  <form class="form-horizontal" role="form" name="updateAccount" action="admin/api/update_user.php" method="post">
 		  <div class="form-group">
 			<label class="col-sm-4 control-label">Email</label>
@@ -160,6 +159,7 @@ $ajax = checkRequestMode("get");
 			}).always(function () {
 				// reenable the inputs
 				$inputs.prop("disabled", false);
+                window.location.replace("");
 			});
 		
 			// prevent default posting of form
