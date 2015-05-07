@@ -59,19 +59,19 @@ if ($admin == "true"){
   
   if (!userIdExists('1')){
 	  addAlert("danger", lang("MASTER_ACCOUNT_NOT_EXISTS"));
-	  apiReturnError($ajax, SITE_ROOT);
+	  apiReturnError($ajax, SITE_ROOT.'../');
   }
   
   // If registration is disabled, send them back to the home page with an error message
   if (!$can_register){
 	  addAlert("danger", lang("ACCOUNT_REGISTRATION_DISABLED"));
-	  apiReturnError($ajax, SITE_ROOT);
+	  apiReturnError($ajax, SITE_ROOT.'../');
   }
   
   //Prevent the user visiting the logged in page if he/she is already logged in
   if(isUserLoggedIn()) {
 	  addAlert("danger", "I'm sorry, you cannot register for an account while logged in.  Please log out first.");
-	  apiReturnError($ajax, ACCOUNT_ROOT);
+	  apiReturnError($ajax, ACCOUNT_ROOT.'../../');
   }
     
 }
@@ -133,7 +133,7 @@ if ($error_count == 0){
 	if ($new_user_id = createUser($user_name, $display_name, $email, $title, $password, $passwordc, $require_activation, $admin)){
 
 	} else {
-		apiReturnError($ajax, ($admin == "true") ? ACCOUNT_ROOT : SITE_ROOT);
+		apiReturnError($ajax, ($admin == "true") ? ACCOUNT_ROOT.'../../' : SITE_ROOT.'../');
 	}
 	
 	// If creation succeeds, try to add groups
@@ -167,11 +167,11 @@ if ($error_count == 0){
 		  // No activation required
 		  addAlert("success", lang("ACCOUNT_REGISTRATION_COMPLETE_TYPE1"));
 	  } else {
-		apiReturnError($ajax, ($admin == "true") ? ACCOUNT_ROOT : SITE_ROOT);
+		apiReturnError($ajax, ($admin == "true") ? ACCOUNT_ROOT.'../../' : SITE_ROOT."../");
 	  }
 	}
 } else {
-	apiReturnError($ajax, ($admin == "true") ? ACCOUNT_ROOT : SITE_ROOT);
+	apiReturnError($ajax, ($admin == "true") ? ACCOUNT_ROOT.'../../' : SITE_ROOT."../");
 }
 
 restore_error_handler();

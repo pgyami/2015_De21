@@ -12,6 +12,11 @@
 <body> 
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!empty($_POST['delete_submit'])) {
+            $id = $_POST['id'];
+            $query = "DELETE FROM userinfo.connection_info WHERE id='$id'";
+            $result = mysqli_query($dbc, $query);
+        }
         if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host']) && !empty($_POST['password'])) {
             $first_name = $_POST['first_name']; 
             $last_name = $_POST['last_name'];
@@ -54,21 +59,26 @@
                 $result = mysqli_query($dbc, $query);
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
-                    echo "<form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=manager_db'><tr>
-                        <input type='hidden' name='id' value='$id'/>
+                    echo "<tr>
                       <td><input type='checkbox'></td>
                       <td>" . $row['id'] . "</td>
                       <td>" . $row['first_name'] . "</td>
                       <td>" . $row['last_name']. "</td>
                       <td>" . $row['user_name'] . "</td>
-                      
                       <td class='text-right'>
-                        <div>
-                          <button type='submit' name='submit' class='btn btn-info submit' value=\"Manage\">Manage</button>
-                          <button type='button' name='submit' class='btn btn-danger submit' value=\"Delete\">Delete</button>
-                        </div>
-                    </td>
-                    </tr></form>";             
+                        <form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=homepage'>
+                            <input type='hidden' name='id' value='$id'/>
+                            <button type='submit' name='delete_submit' class='btn btn-danger submit' value=\"Delete\">Delete</button>
+                        </form> 
+                      </td>
+                      <td class='text-left'>
+                        <form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=manager_db'>
+                            <input type='hidden' name='id' value='$id'/>
+                            <button type='submit' name='submit' class='btn btn-info submit' value=\"Manage\">Manage</button>
+                        </form> 
+                      </td>
+                    </tr>";             
+
                 }
                 ?>
                 <script>
