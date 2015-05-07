@@ -1,9 +1,11 @@
 
-<?php
+<?php  
+
 $dbc = mysqli_connect('localhost','root','123456');
-if (empty($_SESSION['hostname'])){
-    
+//if (empty($_SESSION['hostname'])){
+   
     if (!empty($_POST['id'])){
+
         $id = $_POST['id'];
         $query = "SELECT * FROM userinfo.connection_info WHERE id=$id";
         $result = mysqli_query($dbc, $query);
@@ -12,10 +14,11 @@ if (empty($_SESSION['hostname'])){
         $_SESSION['username'] = $row['user_name'];
         $_SESSION['password'] = $row['password'];
     } 
-}
+//}
 
 ?> 
-<?php $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);
+<?php 
+$dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);
 if (!$dbc){
     echo "Connection lost";
     exit(0);

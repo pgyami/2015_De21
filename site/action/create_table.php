@@ -32,13 +32,11 @@ require_once("admin/models/config.php");
     <div class="clearer"></div>
   </div>
   <hr>
-  <div class="row">
-            <?php 
-                load_footer();
-            ?>
-        </div>
+
  
   </div>
-</div>
+<?php 
+    load_footer();
+?>
 </body>
 </html>

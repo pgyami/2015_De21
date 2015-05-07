@@ -1,4 +1,5 @@
 <?php $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
+
 <form>
     <input type="hidden" name="action" value="create_database" />
     <input type="text" name="newdb"/>

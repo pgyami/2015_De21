@@ -123,7 +123,7 @@
 		  <div class='form-group'>
 			<div class='col-sm-12'>
 			  <button type='submit' class='btn btn-success submit' value='Register'>Register</button>
-			</div>
+			</div>   
 		  </div>
           <div class='collapse'>
             <label>Spiderbro: Don't change me bro, I'm tryin'a catch some flies!</label>

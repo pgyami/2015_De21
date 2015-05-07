@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php $dbc = mysqli_connect('localhost','root','');?>
+<?php $dbc = mysqli_connect('localhost','root','123456');?>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
@@ -18,7 +18,7 @@
             $user = $_POST['user'];
             $host = $_POST['host'];
             $password = $_POST['password'];
-            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password) VALUES ('$first_name','$last_name','user','host','password') ";
+            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password) VALUES ('$first_name','$last_name','$user','$host','$password') ";
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1){
                 echo "Add user successfully";
@@ -96,14 +96,118 @@
         </div>
         <div id="collapseTableTwo" class="panel-collapse collapse">
           <div class="panel-body">
-            <form method="POST">
-                First name: <input type="input" name="first_name"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("first_name",$errors)) echo "Required" ?><br />
-                Last name: <input type="input" name="last_name"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("last_name",$errors)) echo "Required" ?><br />
-                Username: <input type="input" name="user"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("user",$errors)) echo "Required" ?><br />
-                Host: <input type="input" name="host"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("host",$errors)) echo "Required" ?><br />
-                Password: <input type="input" name="password"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?><br />
-                <input type="submit" value="Add connection"/>
-            </form>
+            <div class="col-sm-6">
+              <form method="POST">
+                  <!-- First name: <input type="input" name="first_name"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("first_name",$errors)) echo "Required" ?><br />
+                  Last name: <input type="input" name="last_name"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("last_name",$errors)) echo "Required" ?><br />
+                  Username: <input type="input" name="user"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("user",$errors)) echo "Required" ?><br />
+                  Host: <input type="input" name="host"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("host",$errors)) echo "Required" ?><br />
+                  Password: <input type="input" name="password"/><?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?><br /> -->
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <label class="col-sm-4 control-label">First Name</label>
+                      <div class="col-sm-8">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                          <input type="text" class="form-control" placeholder="First Name" aria-describedby="basic-addon1" name="first_name">
+                          <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("first_name",$errors)) echo "Required" ?>
+                        </div>
+                      </div>                    
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <label class="col-sm-4 control-label">Last Name</label>
+                      <div class="col-sm-8">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                          <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" name="last_name">
+                          <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("last_name",$errors)) echo "Required" ?>
+                        </div>
+                      </div>                    
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <label class="col-sm-4 control-label">User Name</label>
+                      <div class="col-sm-8">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                          <input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1" name="user">
+                          <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("user",$errors)) echo "Required" ?>
+                        </div>
+                      </div>                    
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <label class="col-sm-4 control-label">Host</label>
+                      <div class="col-sm-8">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                          <input type="text" class="form-control" placeholder="Host" aria-describedby="basic-addon1" name="host">
+                          <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("host",$errors)) echo "Required" ?>
+                        </div>
+                      </div>                    
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class='row'>
+                    <div class='col-sm-12'>
+                      <label class="col-sm-4 control-label">Password</label>
+                      <div class="col-sm-8">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                          <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
+                          <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
+                        </div>
+                      </div>                    
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class='form-group'>
+                    <div class='col-sm-12'>
+                      <button type='submit' class='btn btn-success submit' value="Add connection">Add connection</button>
+                    </div>   
+                  </div>
+
+                  <!-- <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Last Name</span>
+                    <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" name="last_name">
+                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("last_name",$errors)) echo "Required" ?>
+                  </div>
+                  <br />
+
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">User Name</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="user">
+                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("user",$errors)) echo "Required" ?>
+                  </div>
+                  <br />
+
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Host</span>
+                    <input type="text" class="form-control" placeholder="Host" aria-describedby="basic-addon1" name="host">
+                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("host",$errors)) echo "Required" ?>
+                  </div>
+                  <br />
+
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Password</span>
+                    <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
+                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
+                  </div>
+                  <br /> -->
+              </form>
+            </div>
           </div>
         </div>
       </div>
