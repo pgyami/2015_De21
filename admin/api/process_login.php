@@ -153,7 +153,7 @@ if(count($errors) == 0)
                 $_SESSION["userCakeUser"] = $loggedInUser;
                 
                 $successes = array();
-                $successes[] = "Welcome 1back, " . $loggedInUser->displayname;
+                $successes[] = "Welcome back, " . $loggedInUser->displayname;
             }
         }
     }

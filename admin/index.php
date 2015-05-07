@@ -33,7 +33,7 @@ require_once("models/config.php");
 
 // Public page
 
-setReferralPage(getAbsoluteDocumentPath(__FILE__));
+//setReferralPage(getAbsoluteDocumentPath(__FILE__));
 
 //Forward the user to their default page if he/she is already logged in
 if(isUserLoggedIn()) {
@@ -65,7 +65,7 @@ if(isUserLoggedIn()) {
 			  <a href="login.php" class="btn btn-success" role="button" value='Login'>Login</a>
 			</div>
         </div>
-        <div class="jumbotron-links">
+       <div class="jumbotron-links">
         </div>
       </div>	
       <?php echo renderTemplate("footer.html"); ?>

@@ -38,6 +38,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 //Forward the user to their default page if he/she is already logged in
 if(isUserLoggedIn()) {
 	addAlert("warning", "You're already logged in!");
+    //addAlert("warning","wtf is going on here");
 	header("Location: account");
 	exit();
 }
@@ -57,6 +58,11 @@ if ($email_login == 1) {
   ?>
 
   <body>
+  <div class="row">
+			<div id='display-alerts' class="col-lg-12">
+  
+			</div>
+		  </div>
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills navbar pull-right">

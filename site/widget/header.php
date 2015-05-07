@@ -4,16 +4,18 @@
 <head>
 <?php
 global $email_login;
-
+echo renderTemplate("head-ass.html", array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Login"));
 if ($email_login == 1) {
     $user_email_placeholder = 'Username or Email';
 }else{
     $user_email_placeholder = 'Username';
 }
+//addAlert("warning","wtf is going on here");
 ?>
 
 </head>
 <body>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,6 +61,11 @@ if ($email_login == 1) {
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<div class="row">
+			<div id='display-alerts' class="col-lg-12">
+  
+			</div>
+		  </div>
 <script>
         $(document).ready(function() {          
 		  // Load navigation bar
@@ -81,15 +88,15 @@ if ($email_login == 1) {
 				password:	form.find('input[name="password"]').val(),
 				ajaxMode:	"true"
 			  },		  
-			 /* success: function(result) {
+			  success: function(result) {
 			     
 				var resultJSON = processJSONResult(result);
 				if (resultJSON['errors'] && resultJSON['errors'] > 0){
 				  alertWidget('display-alerts');
 				} else {
-				  window.location.replace("admin/account/");
+				  window.location.replace("");
 				}
-			  }*/
+			  }
 			});
 			// Prevent form from submitting twice
 			e.preventDefault();
