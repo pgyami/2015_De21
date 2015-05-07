@@ -12,6 +12,11 @@
 <body> 
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!empty($_POST['delete_submit'])) {
+            $id = $_POST['id'];
+            $query = "DELETE FROM userinfo.connection_info WHERE id='$id'";
+            $result = mysqli_query($dbc, $query);
+        }
         if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host']) && !empty($_POST['password'])) {
             $first_name = $_POST['first_name']; 
             $last_name = $_POST['last_name'];
@@ -54,23 +59,25 @@
                 $result = mysqli_query($dbc, $query);
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
-                    echo "<form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=manager_db'><tr>
-                        <input type='hidden' name='id' value='$id'/>
+                    echo "<tr>
                       <td><input type='checkbox'></td>
                       <td>" . $row['id'] . "</td>
                       <td>" . $row['first_name'] . "</td>
                       <td>" . $row['last_name']. "</td>
                       <td>" . $row['user_name'] . "</td>
-                      
                       <td class='text-right'>
-                        <div class='dropdown'>
-                          <a data-toggle='dropdown' href='#'>Actions</a>
-                          <ul class='dropdown-menu dropdown-menu-right' role='menu' aria-labelledby='dLabel'>
-                            <li><input type='submit' name='submit' value='Manager this db'></li>
-                          </ul>
-                        </div>
-                    </td>
-                    </tr></form>";             
+                        <form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=homepage'>
+                            <input type='hidden' name='id' value='$id'/>
+                            <input type='submit' name='delete_submit' value='Delete this connection'>
+                        </form> 
+                      </td>
+                      <td class='text-right'>
+                        <form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=manager_db'>
+                            <input type='hidden' name='id' value='$id'/>
+                            <input type='submit' name='submit' value='Manager this db'>
+                        </form> 
+                      </td>
+                    </tr>";             
                 }
                 ?>
                 <script>
