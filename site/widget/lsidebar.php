@@ -236,10 +236,11 @@
         echo "<div class=\"table-responsive\">";
         echo "<table class=\"table table-striped\" data-height=\"299\" data-sort-name=\"name\" data-sort-order=\"desc\"><thead><tr>";
         
-        $delete_field;
+        $delete_field = "dcmm";
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             echo "<th data-sortable=\"true\">" . $row['Field'] . "</th>";
-            $delete_field = $row['Field'];
+            if ($delete_field == "dcmm")
+                $delete_field = $row['Field'];
         }
         echo "</tr></thead>";
         echo "<tbody>";
@@ -252,7 +253,7 @@
                 echo "<td>" . $row["$i"] . "</td>";
             }
             $num1 = $num - 1;
-            $delete_value = $row["$num1"];
+            $delete_value = $row["0"];
             echo "<form method='POST'>";
             echo "<td><button type='submit' name='delete_button' class='btn btn-success submit' value=\"Delete\">Delete</button></td>";
             echo "<td><input type='hidden' name='delete_field' value='$delete_field'></td>";

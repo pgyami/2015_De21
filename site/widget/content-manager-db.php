@@ -25,7 +25,7 @@ if (!$dbc){
 }
 ?>
 <?php
-    
+    echo "abcdef";
     if (isset($_GET['selecteddatabase']))
         $selecteddatabase = mysqli_escape_string($dbc, $_GET['selecteddatabase']);
     if (isset($_GET['selectedtable']))
@@ -226,11 +226,11 @@ if (!$dbc){
         $result = mysqli_query($dbc, $query);
         echo "<table><thead><tr>";
         
-        $delete_field;
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             echo "<th>" . $row['Field'] . "</th>";
-            $delete_field = $row['Field'];
+            
         }
+                
         echo "</tr></thead>";
         echo "<tbody>";
         $query = "SELECT * FROM $selecteddatabase.$selectedtable";
@@ -241,12 +241,12 @@ if (!$dbc){
             for ($i = 0; $i < $num; $i++){
                 echo "<td>" . $row["$i"] . "</td>";
             }
-            $num1 = $num - 1;
+            $num1 = $num - 1; 
             $delete_value = $row["$num1"];
             echo "<form method='POST'>";
             echo "<td><input type='submit' name='delete_button' value='Delete'></td>";
-            echo "<td><input type='hidden' name='delete_field' value='$delete_field'></td>";
-            echo "<td><input type='hidden' name='delete_value' value='$delete_value'></td>";
+            echo "<td><input type='input' name='delete_field' value='$delete_field'></td>";
+            echo "<td><input type='input' name='delete_value' value='$delete_value'></td>";
             echo "</form>";
             echo "</tr>";
         }
