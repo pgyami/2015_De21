@@ -104,6 +104,7 @@ if ($email && $userdetails['email'] != $email){
 	if (!updateUserEmail($user_id, $email)){
 		$error_count++;
 	} else {
+	   $loggedInUser->email=$email;
 		$success_count++;
 	}
 }
