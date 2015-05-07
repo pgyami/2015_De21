@@ -71,37 +71,7 @@ $(document).ready(function() {
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class=\'row\'>
-        <div class=\'col-sm-9\'>
-          <label class="col-sm-2 control-label">Column name</label>
-          <div class="col-sm-3">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-              <input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]">
-            </div>
-          </div> 
-
-          <label class="col-sm-1 control-label">Type</label> 
-          <div class="col-sm-2">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-              <select class="form-control" name="data_type[]">
-                <option value="int">INT</option>
-                <option value="varchar">VARCHAR</option>
-              </select>
-            </div>
-          </div>
-
-          <label class="col-sm-1 control-label">Length</label>
-          <div class="col-sm-2">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-              <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]">
-            </div>
-          </div>                    
-        </div>
-        <br />
-    </div>'); //add input box
+            $(wrapper).append('<div class=\'row\'><div class=\'col-sm-9\'><label class="col-sm-2 control-label">Column name</label><div class="col-sm-3"><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]"></div></div> <label class="col-sm-1 control-label">Type</label> <div class="col-sm-2"><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="data_type[]"><option value="int">INT</option><option value="varchar">VARCHAR</option></select></div></div><label class="col-sm-1 control-label">Length</label><div class="col-sm-2"><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"></div></div></div><br /></div>'); //add input box
         }
     });
     
