@@ -20,8 +20,13 @@ body{
 <div class="container">
 <?php
 require_once("admin/models/config.php");
- load_header();
- ?>
+if(isUserLoggedIn()) {
+    ?>
+        <script type="text/javascript">location.href = 'index.php?action=homepage';</script>       
+    <?php                
+    }
+load_header();
+?>
 
     <div class="row">
           <div id='display-alerts' class="col-lg-12">
