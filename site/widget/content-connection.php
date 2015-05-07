@@ -63,11 +63,9 @@
                       <td>" . $row['user_name'] . "</td>
                       
                       <td class='text-right'>
-                        <div class='dropdown'>
-                          <a data-toggle='dropdown' href='#'>Actions</a>
-                          <ul class='dropdown-menu dropdown-menu-right' role='menu' aria-labelledby='dLabel'>
-                            <li><input type='submit' name='submit' value='Manager this db'></li>
-                          </ul>
+                        <div>
+                          <button type='submit' name='submit' class='btn btn-info submit' value=\"Manage\">Manage</button>
+                          <button type='button' name='submit' class='btn btn-danger submit' value=\"Delete\">Delete</button>
                         </div>
                     </td>
                     </tr></form>";             
