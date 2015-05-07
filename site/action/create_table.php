@@ -17,26 +17,28 @@ body{
 </style>
 </head>
 <body>
-<div class="container">
-<?php
-require_once("admin/models/config.php");
- load_header();
- 
- ?>
-
-  <div class="row"> 
-    <div class="col-sm-12">
-	   <?php load_widget('content-create-table'); ?>
+<div id="wrapper" class="container">
+    <div id="header">
+    <?php
+    require_once("admin/models/config.php");
+     load_header();
+     
+     ?>
     </div>
-	
-    <div class="clearer"></div>
-  </div>
+    <div id="content" class="row"> 
+        <div class="col-sm-12">
+    	   <?php load_widget('content-create-table'); ?>
+        </div>
+    	
+        <div class="clearer"></div>
+    </div>
   <hr>
 
- 
+  <div id="footer">
+    <?php 
+        load_footer();
+    ?>
   </div>
-<?php 
-    load_footer();
-?>
+</div>
 </body>
 </html>

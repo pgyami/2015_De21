@@ -17,49 +17,50 @@ body{
 </style>
 </head>
 <body>
-<div class="container">
-<?php
-require_once("admin/models/config.php");
-if(isUserLoggedIn()) {
-    ?>
-        <script type="text/javascript">location.href = 'index.php?action=homepage';</script>       
-    <?php                
-    }
-load_header();
-?>
-
-    <div class="row">
-          <div id='display-alerts' class="col-lg-12">
-
-          </div>
+<div id="wrapper">
+    <div id="header">
+        <?php
+        require_once("admin/models/config.php");
+        if(isUserLoggedIn()) {
+            ?>
+                <script type="text/javascript">location.href = 'index.php?action=homepage';</script>       
+            <?php                
+            }
+        load_header();
+        ?>
+    
+        <div class="row">
+                  <div id='display-alerts' class="col-lg-12">
+        
+                  </div>
         </div>
-    <div class="row"> 
-    <div class="col-sm-6">
-		<?php
-            load_widget('content-introduction');
-        ?>
     </div>
-    <div class="col-sm-6">
-        <?php
-        load_widget('content_register');
-         ?>
-    </div>
-    <div class="col-sm-12">
-        <?php
-        load_widget('content-about');
-        ?>
-    </div>
-	
-    <div class="clearer"></div>
-  </div>
-  <hr>
-  <div class="row">
-            <?php 
-                load_footer();
+    <div id="content" class="row"> 
+        <div class="col-sm-6">
+    		<?php
+                load_widget('content-introduction');
             ?>
         </div>
+        <div class="col-sm-6">
+            <?php
+            load_widget('content_register');
+             ?>
+        </div>
+        <div class="col-sm-12">
+            <?php
+            load_widget('content-about');
+            ?>
+        </div>
+    	
+        <div class="clearer"></div>
+     </div>
+      <hr>
+     <div id="footer" class="row">
+                <?php 
+                    load_footer();
+                ?>
+     </div>
  
-  </div>
 </div>
 </body>
 </html>

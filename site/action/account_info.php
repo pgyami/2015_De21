@@ -13,41 +13,39 @@ body{
 </style>
 </head>
 <body>
-<div class="container">
-<?php
-//require_once("admin/models/config.php");
- load_header();
- ?>
-    
-
-    <div class="row"> 
-    <div class="col-sm-6">
-		<?php
-            load_widget('content-acc-info');
-        ?>
-    </div>
-    <div class="col-sm-6">
-        <div class="panel panel-danger">
-                <div class="panel-heading">Change Your Password/Email</div>
-                <div class="panel-body">
-                     <?php
-                    load_widget('../../admin/account/account_settings');
+<div id="wrapper">
+    <div id="header">
+        <?php
+        //require_once("admin/models/config.php");
+         load_header();
+         ?>
+     </div>     
+     <div id="content" class="row"> 
+            <div class="col-sm-6">
+        		<?php
+                    load_widget('content-acc-info');
+                ?>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-danger">
+                        <div class="panel-heading">Change Your Password/Email</div>
+                        <div class="panel-body">
+                             <?php
+                            load_widget('../../admin/account/account_settings');
+                            ?>
+                        </div>
+                </div>     
+            </div>
+         
+        	
+            <div class="clearer"></div>
+     </div>
+      <hr>
+      <div id="footer" class="row">
+                    <?php 
+                        load_footer();
                     ?>
-                </div>
-        </div>     
-    </div>
-
-	
-    <div class="clearer"></div>
-  </div>
-  <hr>
-  <div class="row">
-            <?php 
-                load_footer();
-            ?>
-        </div>
- 
-  </div>
+      </div>
 </div>
 </body>
 </html>

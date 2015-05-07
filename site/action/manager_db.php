@@ -17,14 +17,15 @@
  </style>
 </head>
 <body>
-  <div class="container">
-    <?php
-    require_once("admin/models/config.php");
-    load_header();
-
-    ?>
-
-    <div class="row"> 
+  <div id="wrapper" class="container">
+    <div id="header">
+        <?php
+        require_once("admin/models/config.php");
+        load_header();
+    
+        ?>
+    </div>
+    <div id="content" class="row"> 
 
       <div class="col-sm-12">
         <?php
@@ -35,13 +36,11 @@
       <div class="clearer"></div>
     </div>
     <hr>
-    <div class="row">
+    <div id="footer" class="row">
       <?php 
       load_footer();
       ?>
     </div>
-
   </div>
-
 </body>
 </html>
