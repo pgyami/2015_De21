@@ -197,7 +197,7 @@
                             return;
                         });
                   } else {
-                    window.location.replace('login.php');
+                    window.location.replace('');
                   }
                 });   
             }
