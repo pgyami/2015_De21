@@ -1,8 +1,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <?php $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
 <form method="POST">
-
-    <input type="submit" name="add_table" value="Add table"/><br />
+    <button type='submit' name='add_table' class='btn btn-info submit' value="Add table">Add table</button><br />
+<!--     <input type="submit" name="add_table" value="Add table"/><br /> -->
     <!--     Table name: <input type="input" name="table_name"/><br /> -->
 
     <div class='row'>
@@ -20,7 +20,8 @@
 <br />
 
 <div class="input_fields_wrap">
-    <button class="add_field_button">Add More Fields</button><br />
+   <!--  <button class="add_field_button">Add More Fields</button><br /> -->
+   <button id='add_field_button' class='btn btn-info submit' value="Add more fields">Add more fields</button><br />
     <!-- Ten cot<input type="text" name="column_name[]"/> -->
 
     <div class='row'>
@@ -64,7 +65,7 @@
 $(document).ready(function() {
     var max_fields      = 10; //maximum input boxes allowed
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_button"); //Add button ID
+    var add_button      = $("#add_field_button"); //Add button ID
     
     var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click

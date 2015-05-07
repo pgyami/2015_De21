@@ -127,7 +127,7 @@
             echo "</tbody></table></div></div>";
         }
         else{
-            echo "<ul><a href='index.php?action=create_table'>Create table</a></ul>";
+            echo "<ul><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></ul>";
         }
     } 
     //Neu chon table thi show noi dung bang len
@@ -156,7 +156,7 @@
                             echo "<a href='index.php?action=manager_db&selecteddatabase=$dbname&selectedtable=$tablename'>".$tablename."</a>";
                             echo "</li>";
                         }
-                        echo "<li><a href='index.php?action=create_table'>Create table</a></li>";
+                        echo "<li><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></li>";
                         echo "</ul></div>";
                     }
                 }
