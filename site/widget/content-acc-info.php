@@ -13,6 +13,18 @@ global $loggedInUser;
       <div class="panel-heading">Your Account Settings</div>
       <div class="panel-body">
         <div class="form-group">
+			<label class="col-sm-4 control-label">Title</label>
+			<div class="col-sm-8">
+			  <pre><?php echo $loggedInUser->title; ?></a></pre>
+			</div>
+		  </div>
+        <div class="form-group">
+			<label class="col-sm-4 control-label">ID</label>
+			<div class="col-sm-8">
+			  <pre><?php echo $loggedInUser->user_id; ?></a></pre>
+			</div>
+		  </div>
+        <div class="form-group">
 			<label class="col-sm-4 control-label">User name</label>
 			<div class="col-sm-8">
 			  <pre><?php echo $loggedInUser->username; ?></pre>
@@ -22,12 +34,6 @@ global $loggedInUser;
 			<label class="col-sm-4 control-label">Display name</label>
 			<div class="col-sm-8">
 			  <pre><?php echo $loggedInUser->displayname; ?></a></pre>
-			</div>
-		  </div>
-		  <div class="form-group">
-			<label class="col-sm-4 control-label">Email</label>
-			<div class="col-sm-8">
-			  <pre><?php echo $loggedInUser->email; ?></a></pre>
 			</div>
 		  </div>
 </div>
