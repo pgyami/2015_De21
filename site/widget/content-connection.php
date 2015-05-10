@@ -97,7 +97,7 @@
       </div>
       
       <div class="panel panel-success">
-        <div class="panel-heading hover-link" data-toggle="collapse" data-parent="false" data-target="#collapseTableTwo">
+        <div class="panel-heading hover-link" data-toggle="collapse" data-parent="false" data-target="#collapseTableTwo" >
           <h4 class="panel-title">
             Create connection
           </h4>
@@ -221,6 +221,5 @@
       </div>
 
       </div>
-    </div>
 </body>
 </html>
