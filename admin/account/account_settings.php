@@ -118,7 +118,7 @@ $ajax = checkRequestMode("get");
 
 		  // Set default form field values
 		  $('form[name="updateAccount"] input[name="email"]').val(user['email']);
-
+         
 		  var request;
 		  $("form[name='updateAccount']").submit(function(event){
 			var url = APIPATH + 'update_user.php';
@@ -149,6 +149,7 @@ $ajax = checkRequestMode("get");
 				  $form.find("input[name='password']").val("");
 				  $form.find("input[name='passwordc']").val("");
 				  $form.find("input[name='passwordcheck']").val("");
+                  //window.location.replace("");
 				}
 			}).fail(function (jqXHR, textStatus, errorThrown){
 				// log the error to the console
@@ -158,8 +159,10 @@ $ajax = checkRequestMode("get");
 				);
 			}).always(function () {
 				// reenable the inputs
+                //window.location.replace("");
+                //alertWidget('display-alerts');
 				$inputs.prop("disabled", false);
-                window.location.replace("");
+                
 			});
 		
 			// prevent default posting of form
