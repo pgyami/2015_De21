@@ -96,8 +96,8 @@ if (!$dbc){
                             echo "</li>";
                         }
                     }
-                    echo "<li><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></li>";
-                    echo "</ul>";
+                    /*echo "<li><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></li>";
+                    echo "</ul>";*/
                 }
                 echo "</li>";
             }
@@ -147,8 +147,8 @@ if (!$dbc){
                             echo "<a href='index.php?action=manager_db&selecteddatabase=$dbname&selectedtable=$tablename'>".$tablename."</a>";
                             echo "</li>";
                         }
-                        echo "<li><a href='index.php?action=create_table'>Create table</a></li>";
-                        echo "</ul>";
+                        /*echo "<li><a href='index.php?action=create_table'>Create table</a></li>";
+                        echo "</ul>";*/
                     }
                 }
                 echo "</li>";

@@ -127,7 +127,7 @@
             echo "</tbody></table></div></div>";
         }
         else{
-            echo "<ul><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></ul>";
+            echo "<ul><a href='index.php?action=create_table&selecteddatabase=$selecteddatabase'>Create table</a></ul>";
         }
     } 
     //Neu chon table thi show noi dung bang len
