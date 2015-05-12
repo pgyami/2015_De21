@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php $dbc = mysqli_connect('localhost','root','123456');?>
+<?php $dbc = mysqli_connect('localhost','root','');?>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
@@ -29,7 +29,9 @@
             $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host','$password','$user_userforst') ";
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1){
-                echo "Add user successfully";
+                echo "<script>
+                addAlert(\"danger\",\"cai gi vay\");
+                </script>";
             } else {
                 echo "Error when insert";
             }
