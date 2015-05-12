@@ -60,6 +60,9 @@
             
         } else { 
             echo "<div class=\"col-xs-8 col-sm-8\">";
+            echo '<div class="panel panel-info">';
+            echo  '<div class="panel-heading">List of Databases</div>';
+            echo  '<div class="panel-body">';
             echo "<div class=\"table-responsive\">";
             echo "<table class=\"table table-striped\"><thead><tr><td>DB name</td><td>Action</td></tr></thead>";
             
@@ -70,7 +73,7 @@
                 echo "<td><a href='index.php?action=delete_database&deletedatabase=$dbname'>Delete</a><td>";
                 echo "</tr>";
             }
-            echo "</tbody></table></div></div>";
+            echo "</tbody></table></div></div></div>";
         }
     }
     //Neu da chon database thi show cac table
@@ -114,6 +117,9 @@
         $result1 = mysqli_query($dbc, $query1);
         if (mysqli_num_rows($result1) != 0){
             echo "<div class=\"col-xs-8 col-sm-8\">";
+            echo '<div class="panel panel-info">';
+            echo  '<div class="panel-heading">List of Tables</div>';
+            echo  '<div class="panel-body">';
             echo "<div class=\"table-responsive\">";
             echo "<table class=\"table table-striped\"><thead><tr><th>Table name</th><th>Action</th></tr></thead>";
             echo "<tbody>";
@@ -124,7 +130,7 @@
                 echo "<td><a href='index.php?action=delete_table&selecteddatabase=$selecteddatabase&deletetable=$tablename'>Delete table</a></td>";
                 echo "</tr>";
             }
-            echo "</tbody></table></div></div>";
+            echo "</tbody></table></div></div></div>";
         }
         else{
             echo "<ul><a href='index.php?action=create_table&selecteddatabase=$selecteddatabase'>Create table</a></ul>";
@@ -233,6 +239,9 @@
         $query = "DESC $selecteddatabase.$selectedtable";                
         $result = mysqli_query($dbc, $query);
         echo "<div class=\"col-xs-8 col-sm-10\">";
+        echo '<div class="panel panel-info">';
+        echo '<div class="panel-heading">Table Detail</div>';
+        echo '<div class="panel-body">';
         echo "<div class=\"table-responsive\">";
         echo "<table class=\"table table-striped\" data-height=\"299\" data-sort-name=\"name\" data-sort-order=\"desc\"><thead><tr>";
         
@@ -279,7 +288,8 @@
         echo "</form>";
         
         echo "</tbody>";
-        echo "</table>";  
+        echo "</table>";
+        echo '</div>';  
         
     }
 ?>
