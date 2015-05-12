@@ -11,6 +11,7 @@
 </head>
 <body> 
 <?php
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['delete_submit'])) {
             $id = $_POST['id'];
@@ -23,7 +24,9 @@
             $user = $_POST['user'];
             $host = $_POST['host'];
             $password = $_POST['password'];
-            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password) VALUES ('$first_name','$last_name','$user','$host','$password') ";
+            global $loggedInUser;
+            $user_userforst = $loggedInUser->username;
+            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host','$password','$user_userforst') ";
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1){
                 echo "Add user successfully";
@@ -55,7 +58,9 @@
               </thead>
               <tbody>
                 <?php
-                $query = "SELECT * FROM userinfo.connection_info";
+                global $loggedInUser;
+                $user_userforst = $loggedInUser->username;
+                $query = "SELECT * FROM userinfo.connection_info WHERE user_userforst='$user_userforst'";
                 $result = mysqli_query($dbc, $query);
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
