@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Account Settings</title>
+<title>Users Management</title>
 <style>
 body{
 	  background: url(background.jpg) no-repeat center center fixed; 
@@ -17,8 +17,7 @@ body{
                              <?php
 							 load_header();
                             load_widget('../../admin/account/users');
-							//load_footer();
-                            ?>
-             
+							load_footer();
+                            ?>            
 </body>
 </html>

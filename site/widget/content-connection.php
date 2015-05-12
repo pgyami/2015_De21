@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php $dbc = mysqli_connect('localhost','root','');?>
+<?php $dbc = mysqli_connect('localhost','root','123456');?>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
@@ -50,7 +50,6 @@
            <table class="table table-striped table-condensed table-hover">
               <thead>
                 <tr>
-                  <th><input type="checkbox"></th>
                   <th>ID</th>
                   <th>First Name</th>
                   <th>Last Name</th>
@@ -67,7 +66,6 @@
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     echo "<tr>
-                      <td><input type='checkbox'></td>
                       <td>" . $row['id'] . "</td>
                       <td>" . $row['first_name'] . "</td>
                       <td>" . $row['last_name']. "</td>
@@ -190,7 +188,11 @@
 
                   <div class='form-group'>
                     <div class='col-sm-12'>
-                      <button type='submit' class='btn btn-success submit' value="Add connection">Add connection</button>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8">
+                            <button type='submit' class='btn btn-success submit' value="Add connection">Add connection</button>
+                        </div>
+                      
                     </div>   
                   </div>
 
