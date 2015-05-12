@@ -94,7 +94,7 @@ if ($email_login == 1) {
 				if (resultJSON['errors'] && resultJSON['errors'] > 0){
 				  alertWidget('display-alerts');
 				} else {
-				  window.location.replace("");
+				  window.location.replace("index.php?action=homepage");
 				}
 			  }
 			});
