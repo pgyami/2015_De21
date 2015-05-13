@@ -32,7 +32,7 @@
       </thead>
       <tbody  class="input_fields_wrap">
         <?php
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 1; $i++) { 
           echo '<tr>
           <td>
             <div class="input-group">
@@ -44,6 +44,7 @@
             <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
             <select class="form-control" name="data_type[]">
+              <option value="null"></option>
               <option value="int">INT</option>
               <option value="varchar">VARCHAR</option>
               <option value="text">TEXT</option>
@@ -60,7 +61,7 @@
           <td>
              <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-              <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]" value="10">
+              <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]">
             </div>
           </td>
           <td><input type="checkbox" name="null"></td>
@@ -68,6 +69,7 @@
             <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
             <select class="form-control" name="index[]">
+              <option value="null"></option>
               <option value="unique">UNIQUE</option>
               <option value="primary">PRIMARY</option>
             </select>
@@ -97,12 +99,12 @@ $(document).ready(function() {
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
     var add_button      = $("#add_field_button"); //Add button ID
     
-    var x = 2; //initlal text box count
+    var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
       e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<tr><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]"></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="data_type[]"><option value="int">INT</option><option value="varchar">VARCHAR</option><option value="text">TEXT</option><option value="date">DATE</option><option value="char">CHAR</option><option value="float">FLOAT</option><option value="double">DOUBLE</option><option value="real">REAL</option><option value="boolean">BOOLEAN</option><option value="blob">BLOB</option></select></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"value="10"></div></td><td><input type="checkbox" name="null"></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="index[]"><option value="unique">UNIQUE</option><option value="primary">PRIMARY</option></select></div></td><td><input type="checkbox" name="ai"></td></tr>'); //add input box
+            $(wrapper).append('<tr><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]"></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="data_type[]"><option value="null"></option><option value="int">INT</option><option value="varchar">VARCHAR</option><option value="text">TEXT</option><option value="date">DATE</option><option value="char">CHAR</option><option value="float">FLOAT</option><option value="double">DOUBLE</option><option value="real">REAL</option><option value="boolean">BOOLEAN</option><option value="blob">BLOB</option></select></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"></div></td><td><input type="checkbox" name="null"></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="index[]"><option value="null"></option><option value="unique">UNIQUE</option><option value="primary">PRIMARY</option></select></div></td><td><input type="checkbox" name="ai"></td></tr>'); //add input box
           }
         });
 
@@ -135,6 +137,6 @@ echo $query;
 $result = mysqli_query($dbc, $query);
 }
 ?>
-<a href="index.php?action=manager_db">Quay ve trang quan ly</a>
+<a href="index.php?action=manager_db">Back to manager page</a>
 </div>
 </div>

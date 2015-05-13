@@ -1,14 +1,36 @@
 <?php $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
 
-<form>
-    <input type="hidden" name="action" value="create_database" />
-    <input type="text" name="newdb"/>
-    <input type="submit" value="Create db"/>
-</form>
+<div class="panel panel-success">
+	<div class="panel-heading">Create Database</div>
+	<div class="panel-body">
+		<form>
+			<div class='row'>
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">Database name</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<input type="hidden" name="action" value="create_database" />
+							<span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+							<input type="text" class="form-control" placeholder="Database name" aria-describedby="basic-addon1" name="newdb">
+						</div>
+					</div>
+				</div>
+				<!-- 	          <input type="submit" value="Create db"/> -->
+				<button type='submit' name='delete_button' class='btn btn-success submit' value="Create database">Create database</button>
+			</div>
+
+		</form>
+	</div>
+</div>
 <?php
-    if (!empty($_GET['newdb'])){
-        $query = "CREATE DATABASE " . $_GET['newdb'];
-        $result = mysqli_query($dbc, $query);
-    }
+if (!empty($_GET['newdb'])){
+	$query = "CREATE DATABASE " . $_GET['newdb'];
+	$result = mysqli_query($dbc, $query);
+	if ($result) {		
+		# code...
+		echo "successfully";
+	}
+	else echo "failed";
+}
 ?>
-<a href="index.php?action=manager_db">Quay ve trang quan ly</a>
+<a href="index.php?action=manager_db">Back to manager page</a>

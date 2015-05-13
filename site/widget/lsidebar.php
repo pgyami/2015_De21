@@ -1,10 +1,39 @@
+<div id="content" class="row">  
+    <?php
+     $dbc = mysqli_connect('localhost:3306','root','123456');
+        if (isset($_GET['selecteddatabase']))
+            $selecteddatabase = mysqli_escape_string($dbc, $_GET['selecteddatabase']);
+        if (isset($_GET['selectedtable']))
+            $selectedtable = mysqli_escape_string($dbc, $_GET['selectedtable']);
+    if (!empty($selecteddatabase) && empty($selectedtable)){
+        $item_name = "Databases";
+        ?>
+        
+        <ol class="breadcrumb">
+          <li><a href="index.php?action=manager_db">Home</a></li>
+          <li class="active"><?php echo $selecteddatabase ?></li>
+        </ol>
+        <?php }
+    else if (!empty($selecteddatabase) && !empty($selectedtable)) { 
+        $item_name = "Tables";?>
+        <ol class="breadcrumb">
+          <li><a href="index.php?action=manager_db">Home</a></li>
+          <li><a href="index.php?action=manager_db&selecteddatabase=<?php echo $selecteddatabase ?>"><?php echo $selecteddatabase ?></a></li>
+          <li class="active"><?php echo $selectedtable ?></li>
+        </ol>
+        <?php }
+    else if (empty($selecteddatabase) && empty($selectedtable)) { 
+        $item_name = "Databases";?>
+        <ol class="breadcrumb">
+          <li class="active">Home</li>
+        </ol>
+        <?php } ?>
+</div>
 <div class="col-xs-4 col-sm-2 sidebar-offcanvas">
-
 <?php 
-    $item_name = "Contents";
     echo "<h3>List of ".$item_name."</h3>";
 
-    $dbc = mysqli_connect('localhost','root','123456');
+   
 //if (empty($_SESSION['hostname'])){
     
     if (!empty($_POST['id'])){
@@ -29,10 +58,6 @@
     ?>
 <?php
     
-    if (isset($_GET['selecteddatabase']))
-        $selecteddatabase = mysqli_escape_string($dbc, $_GET['selecteddatabase']);
-    if (isset($_GET['selectedtable']))
-        $selectedtable = mysqli_escape_string($dbc, $_GET['selectedtable']);
     
 
     //Khong chon gi thi show chi db

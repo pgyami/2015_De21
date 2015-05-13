@@ -29,7 +29,9 @@
             $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host','$password','$user_userforst') ";
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1){
-                echo "Add user successfully";
+                echo "<script>
+                addAlert(\"success\",\"Create connection successfully\");
+                </script>";
             } else {
                 echo "Error when insert";
             }
