@@ -74,7 +74,7 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
     <script>
         $(document).ready(function() {
                               
-          alertWidget('display-alerts');
+          //alertWidget('display-alerts');
           
           userTable('widget-users');
         });

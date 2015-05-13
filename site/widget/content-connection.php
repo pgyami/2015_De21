@@ -18,22 +18,31 @@
             $query = "DELETE FROM userinfo.connection_info WHERE id='$id'";
             $result = mysqli_query($dbc, $query);
         }
-        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host']) && !empty($_POST['password'])) {
+        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host'])) {
             $first_name = $_POST['first_name']; 
             $last_name = $_POST['last_name'];
             $user = $_POST['user'];
             $host = $_POST['host'];
-            $password = $_POST['password'];
+            //$password = $_POST['password'];
             global $loggedInUser;
             $user_userforst = $loggedInUser->username;
+            if (!empty($_POST['password'])) {
+                $password = $_POST['password'];
+            //echo "here ";
             $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host','$password','$user_userforst') ";
+            }
+            else
+            {
+               // echo "here come";
+            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host','','$user_userforst') ";    
+            }
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1){
                 echo "<script>
                 addAlert(\"danger\",\"cai gi vay\");
                 </script>";
             } else {
-                echo "Error when insert";
+                //echo $result;
             }
         }
     }

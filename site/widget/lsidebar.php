@@ -4,7 +4,7 @@
     $item_name = "Contents";
     echo "<h3>List of ".$item_name."</h3>";
 
-    $dbc = mysqli_connect('localhost','root','123456');
+    $dbc = mysqli_connect('localhost','root','');
 //if (empty($_SESSION['hostname'])){
     
     if (!empty($_POST['id'])){
