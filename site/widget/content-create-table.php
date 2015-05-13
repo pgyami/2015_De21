@@ -1,8 +1,10 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <?php $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
 
+
 <div class="panel panel-success">
-  <div class="panel-heading">Create Table</div>
+  <?php echo '<div class="panel-heading">Create Table in database '.$_GET['selecteddatabase'].'</div>';?>
+  
   <div class="panel-body">
     <form method="POST">
       <div class='row'>
@@ -19,78 +21,78 @@
         <button type='submit' name='add_table' class='btn btn-info submit' value="Add table">Add table</button><br />
       </div>
 
-     <table class="table table-striped table-condensed table-hover">
-      <thead>
-        <tr>
-          <th>Column name</th>
-          <th>Type</th>
-          <th>Length</th>
-          <th>NULL</th>
-          <th>Index</th>
-          <th>A_I</th>
-        </tr>
-      </thead>
-      <tbody  class="input_fields_wrap">
-        <?php
-        for ($i=0; $i < 1; $i++) { 
-          echo '<tr>
-          <td>
+      <table class="table table-striped table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Column name</th>
+            <th>Type</th>
+            <th>Length</th>
+            <th>NULL</th>
+            <th>Index</th>
+            <th>A_I</th>
+          </tr>
+        </thead>
+        <tbody  class="input_fields_wrap">
+          <?php
+          for ($i=0; $i < 1; $i++) { 
+            echo '<tr>
+            <td>
             <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-          <input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]">
-        </div>
-          </td>
-          <td>
+            <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+            <input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]">
+            </div>
+            </td>
+            <td>
             <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
             <select class="form-control" name="data_type[]">
-              <option value="null"></option>
-              <option value="int">INT</option>
-              <option value="varchar">VARCHAR</option>
-              <option value="text">TEXT</option>
-              <option value="date">DATE</option>
-              <option value="char">CHAR</option>
-              <option value="float">FLOAT</option>
-              <option value="double">DOUBLE</option>
-              <option value="real">REAL</option>
-              <option value="boolean">BOOLEAN</option>
-              <option value="blob">BLOB</option>
+            <option value="null"></option>
+            <option value="int">INT</option>
+            <option value="varchar">VARCHAR</option>
+            <option value="text">TEXT</option>
+            <option value="date">DATE</option>
+            <option value="char">CHAR</option>
+            <option value="float">FLOAT</option>
+            <option value="double">DOUBLE</option>
+            <option value="real">REAL</option>
+            <option value="boolean">BOOLEAN</option>
+            <option value="blob">BLOB</option>
             </select>
             </div>
-          </td>
-          <td>
-             <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-              <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]">
+            </td>
+            <td>
+            <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+            <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]">
             </div>
-          </td>
-          <td><input type="checkbox" name="null"></td>
-          <td>
+            </td>
+            <td><input type="checkbox" name="null"></td>
+            <td>
             <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
             <select class="form-control" name="index[]">
-              <option value="null"></option>
-              <option value="unique">UNIQUE</option>
-              <option value="primary">PRIMARY</option>
+            <option value="null"></option>
+            <option value="unique">UNIQUE</option>
+            <option value="primary">PRIMARY</option>
             </select>
             </div>
-          </td>
-          <td><input type="checkbox" name="ai"></td>
-        </tr>';
-        }
-        
-        ?>
+            </td>
+            <td><input type="checkbox" name="ai"></td>
+            </tr>';
+          }
 
-        
-    </tbody>
-  </table>
+          ?>
 
-  <br />
+
+        </tbody>
+      </table>
+
+      <br />
 
 <!-- <div class="input_fields_wrap">
-        </div> -->
+</div> -->
 <button id='add_field_button' class='btn btn-info submit' value="Add more fields">Add more fields</button>
-<button id='remove_field_button' class='btn btn-info submit' value="Add more fields">Remove field</button><br />
+<button id='remove_field_button' class='btn btn-danger submit' value="Add more fields">Remove field</button><br />
 <br />
 </form>
 <script>
@@ -133,10 +135,13 @@ if(!empty($_POST["add_table"]) && !empty($_POST["table_name"])){
       $query = $query . $column_name[$i] . " " . $data_type[$i] . "(" . $data_size[$i] .")"; 
     }
     $query = $query . ")";
-echo $query;
 $result = mysqli_query($dbc, $query);
+if ($result)
+  echo "<script>addAlert(\"success\",\"Create table successfully\");</script>";
+else echo "<script>addAlert(\"success\",\"Create table failed\");</script>";
 }
+echo '<a href="index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'">Back to manager page</a>';
 ?>
-<a href="index.php?action=manager_db">Back to manager page</a>
+
 </div>
 </div>

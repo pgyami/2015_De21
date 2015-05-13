@@ -28,9 +28,15 @@ if (!empty($_GET['newdb'])){
 	$result = mysqli_query($dbc, $query);
 	if ($result) {		
 		# code...
-		echo "successfully";
+		echo "<script>
+                addAlert(\"success\",\"Create database successfully\");
+                </script>";
 	}
-	else echo "failed";
+	else {echo $result;
+	 echo "<script>
+                addAlert(\"success\",\"Error when create database\");
+                </script>";
+            }
 }
 ?>
 <a href="index.php?action=manager_db">Back to manager page</a>

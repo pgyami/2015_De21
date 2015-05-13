@@ -17,6 +17,15 @@
             $id = $_POST['id'];
             $query = "DELETE FROM userinfo.connection_info WHERE id='$id'";
             $result = mysqli_query($dbc, $query);
+            if ($result) {
+              # code...
+              echo "<script>
+                addAlert(\"success\",\"Delete connection successfully\");
+                </script>";
+            }
+            else echo "<script>
+                addAlert(\"success\",\"Delete connection failed\");
+                </script>";
         }
         if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host']) && !empty($_POST['password'])) {
             $first_name = $_POST['first_name']; 
@@ -34,7 +43,7 @@
                 </script>";
             } else {
                 echo "<script>
-                addAlert(\"error\",\"Error when create connection\");
+                addAlert(\"success\",\"Error when create connection\");
                 </script>";
             }
         }

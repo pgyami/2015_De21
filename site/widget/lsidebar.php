@@ -76,7 +76,7 @@
                 $dbname = $row['SCHEMA_NAME'];
                 echo "<li><a href='index.php?action=manager_db&selecteddatabase=$dbname'>".$dbname."</a></li>";
             }
-            echo "<li><a href='index.php?action=create_database'>Create database</a></li>";
+           /* echo "<li><a href='index.php?action=create_database'>Create database</a></li>";*/
             echo "</ul></div>";
         }
         
@@ -86,17 +86,20 @@
             
         } else { 
             echo "<div class=\"col-xs-8 col-sm-8\">";
+            echo '<button type="button" class="btn btn-info submit" value="Create Databases" onclick="location.href=\'index.php?action=create_database\';return false;">Create Databases</button><br/><br/>';
             echo '<div class="panel panel-info">';
             echo  '<div class="panel-heading">List of Databases</div>';
             echo  '<div class="panel-body">';
             echo "<div class=\"table-responsive\">";
-            echo "<table class=\"table table-striped\"><thead><tr><td>DB name</td><td>Action</td></tr></thead>";
+            echo "<table class=\"table table-striped\"><thead><tr><th>DB name</th><td></td></tr></thead>";
             
             echo "<tbody>";
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                 $dbname = $row['SCHEMA_NAME'];
                 echo "<tr><td><a href='index.php?action=manager_db&selecteddatabase=$dbname'>".$dbname."</a></td>";
-                echo "<td><a href='index.php?action=delete_database&deletedatabase=$dbname'>Delete</a><td>";
+                /*echo "<td><a href='index.php?action=delete_database&deletedatabase=$dbname'>Delete</a><td>";*/
+                echo '<td class=\'text-left\'><button type="button" class="btn btn-danger submit" value="Delete Table" onclick="location.href=\'index.php?action=delete_database&deletedatabase='.$dbname.'\';return false;">Delete</button></td>';
+
                 echo "</tr>";
             }
             echo "</tbody></table></div></div></div>";
@@ -135,32 +138,37 @@
                 }*/
                 echo "</li>";
             }
-            echo "<li><a href='index.php?action=create_database'>Create database</a></li>";
+            /*echo "<li><a href='index.php?action=create_database'>Create database</a></li>";*/
             echo "</ul></div>";
         }
         
         $query1 = "SHOW TABLES FROM $selecteddatabase";
         $result1 = mysqli_query($dbc, $query1);
-        if (mysqli_num_rows($result1) != 0){
-            echo "<div class=\"col-xs-8 col-sm-8\">";
-            echo '<div class="panel panel-info">';
-            echo  '<div class="panel-heading">List of Tables</div>';
-            echo  '<div class="panel-body">';
+
+        echo "<div class=\"col-xs-8 col-sm-8\">";
+        echo '<button type="button" class="btn btn-info submit" value="Create Table" onclick="location.href=\'index.php?action=create_table&selecteddatabase='.$selecteddatabase.'\';return false;">Create Table</button><br/><br/>';
+        echo '<div class="panel panel-info">';
+        echo '<div class="panel-heading">List of Tables</div>';
+        echo '<div class="panel-body">';
+        if (mysqli_num_rows($result1) != 0){           
             echo "<div class=\"table-responsive\">";
-            echo "<table class=\"table table-striped\"><thead><tr><th>Table name</th><th>Action</th></tr></thead>";
+            echo "<table class=\"table table-striped\"><thead><tr><th>Table name</th><th></th></tr></thead>";
             echo "<tbody>";
             while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)){
                 $tablename = $row["Tables_in_$selecteddatabase"];
                 echo "<tr>";
                 echo "<td><a href='index.php?action=manager_db&selecteddatabase=$selecteddatabase&selectedtable=$tablename'>".$tablename."</a></td>";
-                echo "<td><a href='index.php?action=delete_table&selecteddatabase=$selecteddatabase&deletetable=$tablename'>Delete table</a></td>";
+               /* echo "<td><a href='index.php?action=delete_table&selecteddatabase=$selecteddatabase&deletetable=$tablename'>Delete table</a></td>";*/
+               echo '<td class="text-left"><button type="button" class="btn btn-danger submit" value="Delete Table" onclick="location.href=\'index.php?action=delete_table&selecteddatabase='.$selecteddatabase.'&deletetable='.$tablename.'\';return false;">Delete</button></td>';
+
                 echo "</tr>";
             }
-            echo "</tbody></table></div></div></div>";
+            echo "</tbody></table></div>";
         }
         else{
-            echo "<ul><a href='index.php?action=create_table&selecteddatabase=$selecteddatabase'>Create table</a></ul>";
+            echo "This database have no table";
         }
+        echo '</div></div>';
     } 
     //Neu chon table thi show noi dung bang len
     elseif (isset($selecteddatabase) && isset($selectedtable)) {
@@ -188,7 +196,7 @@
                             echo "<a href='index.php?action=manager_db&selecteddatabase=$dbname&selectedtable=$tablename'>".$tablename."</a>";
                             echo "</li>";
                         }
-                        echo "<li><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></li>";
+                       /* echo "<li><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></li>";*/
                         echo "</ul></div>";
                     }
                 }
@@ -240,12 +248,12 @@
                 $query1 = str_replace(",)",")",$query1);
                 $result = mysqli_query($dbc, $query1);
                 if (mysqli_affected_rows($dbc) == 1){
-                    echo "Them dong thanh cong";
+                   echo "<script>addAlert(\"success\",\"Create record successfully\");</script>";
                 } else {
-                    echo "Them dong that bai";
+                    echo "<script>addAlert(\"success\",\"Create record failed\");</script>";
                 }
             } else {
-                echo "Nhap day du thong tin";
+                echo "<script>addAlert(\"success\",\"Please fill necessary infomation\");</script>";
             }
         }
         
@@ -255,9 +263,9 @@
             $query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_field='$delete_value'";
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1) {
-                echo "Xoa dong thanh cong";
+                echo "<script>addAlert(\"success\",\"Delete record successfully\");</script>";
             } else {
-                echo "Xoa dong that bai";
+                echo "<script>addAlert(\"success\",\"Delete record failed\");</script>";
             }
         }
         
@@ -290,7 +298,7 @@
             $num1 = $num - 1;
             $delete_value = $row["0"];
             echo "<form method='POST'>";
-            echo "<td><button type='submit' name='delete_button' class='btn btn-success submit' value=\"Delete\">Delete</button></td>";
+            echo "<td class='text-left'><button type='submit' name='delete_button' class='btn btn-danger submit' value=\"Delete\">Delete</button></td>";
             echo "<td><input type='hidden' name='delete_field' value='$delete_field'></td>";
             echo "<td><input type='hidden' name='delete_value' value='$delete_value'></td>";
             echo "</form>";
@@ -308,7 +316,7 @@
             echo "<td>" . "<input type=\"input\" class=\"form-control\" placeholder=\"$row\"  name='$row'>" . "</td>";
 
         }
-        echo "<td><button type='submit' class='btn btn-primary submit' name='add_row' value=\"Add\">Add</button></td>";
+        echo "<td class='text-left'><button type='submit' class='btn btn-primary submit' name='add_row' value=\"Add\">Add</button></td>";
         echo "</tr>";
         
         echo "</form>";
