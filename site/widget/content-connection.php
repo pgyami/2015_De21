@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php $dbc = mysqli_connect('localhost','root','');?>
+<?php $dbc = mysqli_connect('localhost','root','123456');?>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
@@ -17,6 +17,15 @@
             $id = $_POST['id'];
             $query = "DELETE FROM userinfo.connection_info WHERE id='$id'";
             $result = mysqli_query($dbc, $query);
+            if ($result) {
+              # code...
+              echo "<script>
+                addAlert(\"success\",\"Delete connection successfully\");
+                </script>";
+            }
+            else echo "<script>
+                addAlert(\"success\",\"Delete connection failed\");
+                </script>";
         }
         if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host'])) {
             $first_name = $_POST['first_name']; 
@@ -39,10 +48,14 @@
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1){
                 echo "<script>
-                addAlert(\"danger\",\"cai gi vay\");
+                addAlert(\"success\",\"Create connection successfully\");
                 </script>";
             } else {
-                //echo $result;
+
+                echo "<script>
+                addAlert(\"success\",\"Error when create connection\");
+                </script>";
+
             }
         }
     }
@@ -59,7 +72,6 @@
            <table class="table table-striped table-condensed table-hover">
               <thead>
                 <tr>
-                  <th><input type="checkbox"></th>
                   <th>ID</th>
                   <th>First Name</th>
                   <th>Last Name</th>
@@ -76,7 +88,6 @@
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     echo "<tr>
-                      <td><input type='checkbox'></td>
                       <td>" . $row['id'] . "</td>
                       <td>" . $row['first_name'] . "</td>
                       <td>" . $row['last_name']. "</td>
@@ -199,7 +210,11 @@
 
                   <div class='form-group'>
                     <div class='col-sm-12'>
-                      <button type='submit' class='btn btn-success submit' value="Add connection">Add connection</button>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8">
+                            <button type='submit' class='btn btn-success submit' value="Add connection">Add connection</button>
+                        </div>
+                      
                     </div>   
                   </div>
 

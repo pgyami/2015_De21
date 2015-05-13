@@ -25,6 +25,7 @@
     
         ?>
     </div>
+
     <div id="content" class="row"> 
 
       <div class="col-sm-12">

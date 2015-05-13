@@ -51,14 +51,12 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 
   <body>
 
-    <div id="wrapper">
 
       <!-- Sidebar -->
         <?php
           //echo renderMenu("users");
         ?>
         
-      <div id="page-wrapper">
 	  	
         <div class="row">
           <div id='widget-users' class="col-lg-12">          
@@ -66,9 +64,6 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
           </div>
         </div><!-- /.row -->
         
-      </div><!-- /#page-wrapper -->
-
-    </div><!-- /#wrapper -->
     
     <script src="admin/js/widget-users.js"></script>    
     <script>
