@@ -8,8 +8,12 @@
     }
     else{
     $action = input_get('action');
-    if (file_exists('site/action/'.$action.'.php'))
-        require('site/action/'.$action.'.php');
+    if($action == false) require('site/action/homepage.php');
     else
-        require('site/action/show_404.php');}
+    {
+        if (file_exists('site/action/'.$action.'.php'))
+            require('site/action/'.$action.'.php');
+        else
+            require('site/action/show_404.php');}
+    }
 ?>

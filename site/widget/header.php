@@ -50,7 +50,14 @@ if ($email_login == 1) {
             ?>
             
             <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="index.php?action=account_info">Username:               <?php global $loggedInUser;
+                <?php
+                    global $loggedInUser, $master_account;
+                    if($loggedInUser->user_id == $master_account) {                    
+                ?> 
+                    <li class=""><a href="index.php?action=account_manager">Management Users</a> </li>
+                <?php }
+                ?>
+                <li class=""><a href="index.php?action=account_info">Username:               <?php 
               echo $loggedInUser->username; 
               ?></a></li>
                 <li><a href="admin/account/logout.php">Logout</a></li>
@@ -94,7 +101,7 @@ if ($email_login == 1) {
 				if (resultJSON['errors'] && resultJSON['errors'] > 0){
 				  alertWidget('display-alerts');
 				} else {
-				  window.location.replace("");
+				  window.location.replace("index.php?action=homepage");
 				}
 			  }
 			});

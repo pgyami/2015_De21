@@ -23,7 +23,7 @@ $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
 $v = new Valitron\DefaultValidator($get);
 
 // Add default values
-$v->setDefault('title', 'Users');
+$v->setDefault('title', 'Users Management');
 $v->setDefault('limit', null);
 $v->setDefault('columns',
     [
@@ -34,13 +34,13 @@ $v->setDefault('columns',
         'sort_field' => 'user_name',
         'template' => "
             <div class='h4'>
-                <a href='user_details.php?id={{user_id}}'>{{display_name}} ({{user_name}})</a>
+                {{display_name}} ({{user_name}})
             </div>
             <div>
                 <i>{{title}}</i>
             </div>
             <div>
-                <i class='fa fa-envelope'></i> <a href='mailto:{{email}}'>{{email}}</a>
+                <i class='fa fa-envelope'></i> {{email}}
             </div>"
     ],
     'user_since' => [
@@ -181,9 +181,6 @@ $response .= "
                 <button type='button' class='btn btn-success btn-add-user' data-toggle='modal' data-target='#user-create-dialog'>
                     <i class='fa fa-plus-square'></i>  Create New User
                 </button>
-            </div>
-            <div class='col-md-6 text-right {$buttons_render['view_all']['hidden']}'>
-                <a href='users.php'>View All Users <i class='fa fa-arrow-circle-right'></i></a>
             </div>
         </div>
     </div> <!-- end panel body -->

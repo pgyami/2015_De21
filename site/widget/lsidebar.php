@@ -29,6 +29,7 @@
         </ol>
         <?php } ?>
 </div>
+
 <div class="col-xs-4 col-sm-2 sidebar-offcanvas">
 <?php 
     echo "<h3>List of ".$item_name."</h3>";

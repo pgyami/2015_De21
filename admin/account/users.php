@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 */
 
-require_once("../models/config.php");
+//require_once("../models/config.php");
 
 // Request method: GET
 $ajax = checkRequestMode("get");
@@ -44,35 +44,28 @@ setReferralPage(getAbsoluteDocumentPath(__FILE__));
 <!DOCTYPE html>
 <html lang="en">
   <?php
+   // echo SITE_ROOT;
   	echo renderAccountPageHeader(array("#SITE_ROOT#" => SITE_ROOT, "#SITE_TITLE#" => SITE_TITLE, "#PAGE_TITLE#" => "Users"));
+  
   ?>  
 
   <body>
 
-    <div id="wrapper">
 
       <!-- Sidebar -->
         <?php
-          echo renderMenu("users");
+          //echo renderMenu("users");
         ?>
         
-      <div id="page-wrapper">
-	  	<div class="row">
-          <div id='display-alerts' class="col-lg-12">
-
-          </div>
-        </div>
+	  	
         <div class="row">
           <div id='widget-users' class="col-lg-12">          
 
           </div>
         </div><!-- /.row -->
         
-      </div><!-- /#page-wrapper -->
-
-    </div><!-- /#wrapper -->
     
-    <script src="../js/widget-users.js"></script>    
+    <script src="admin/js/widget-users.js"></script>    
     <script>
         $(document).ready(function() {
                               
