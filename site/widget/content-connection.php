@@ -207,33 +207,6 @@
                     </div>   
                   </div>
 
-                  <!-- <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Last Name</span>
-                    <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" name="last_name">
-                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("last_name",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">User Name</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="user">
-                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("user",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Host</span>
-                    <input type="text" class="form-control" placeholder="Host" aria-describedby="basic-addon1" name="host">
-                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("host",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Password</span>
-                    <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
-                    <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
-                  </div>
-                  <br /> -->
               </form>
             </div>
           </div>
