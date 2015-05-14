@@ -27,24 +27,30 @@
                 addAlert(\"success\",\"Delete connection failed\");
                 </script>";
         }
-        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host']) && !empty($_POST['port'])) {
+        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host'])) {
             $first_name = $_POST['first_name']; 
             $last_name = $_POST['last_name'];
             $user = $_POST['user'];
             $host = $_POST['host'];
-            $port = $_POST['port'];
+            
+             if(!empty($_POST['port']))
+             {$port = $_POST['port'];
+             $port=":$port";}
+             else
+             {$port='';
+             }
             //$password = $_POST['password'];
             global $loggedInUser;
             $user_userforst = $loggedInUser->username;
             if (!empty($_POST['password'])) {
                 $password = $_POST['password'];
             //echo "here ";
-            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host:$port','$password','$user_userforst') ";
+            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host$port','$password','$user_userforst') ";
             }
             else
             {
                // echo "here come";
-            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host:$port','','$user_userforst') ";    
+            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host$port','','$user_userforst') ";    
             }
             $result = mysqli_query($dbc, $query);
             if (mysqli_affected_rows($dbc) == 1){
