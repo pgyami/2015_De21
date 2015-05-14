@@ -1,11 +1,8 @@
-
-
-
 <?php 
     
 
 
-    $dbc = mysqli_connect('localhost','root','');
+    $dbc = mysqli_connect('localhost','root','123456');
 
 //if (empty($_SESSION['hostname'])){
     
@@ -53,11 +50,12 @@
         </ol>
         <?php } ?>
 </div>
-<div class="col-xs-4 col-sm-2 sidebar-offcanvas">
+<div class="col-xs-4 col-sm-2 sidebar-off canvas">
     <?php 
     $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);
     if (!$dbc){
-      echo "Connection lost";
+      echo "<script>addAlert(\"danger\",\"Error when connection\");</script>";
+
       exit(0);
     }
     ?>
@@ -80,7 +78,6 @@
                 $dbname = $row['SCHEMA_NAME'];
                 echo "<li><a href='index.php?action=manager_db&selecteddatabase=$dbname'>".$dbname."</a></li>";
             }
-           /* echo "<li><a href='index.php?action=create_database'>Create database</a></li>";*/
             echo "</ul></div>";
         }
         
@@ -127,22 +124,8 @@
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                 $dbname = $row['SCHEMA_NAME'];
                 echo "<li><a href='index.php?action=manager_db&selecteddatabase=$dbname'>".$dbname."</a>";
-                /*if ($dbname == $selecteddatabase){
-                    echo "<ul class=\"nav nav-sidebar\">";
-                        if (mysqli_num_rows($result1) != 0){
-                        while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)){
-                            echo "<li>";
-                            $tablename = $row["Tables_in_$selecteddatabase"];
-                            echo "<a href='index.php?action=manager_db&selecteddatabase=$dbname&selectedtable=$tablename'>".$tablename."</a>";
-                            echo "</li>";
-                        }
-                    }
-                    echo "<li><a href='index.php?action=create_table&selecteddatabase=$dbname'>Create table</a></li>";
-                    echo "</ul>";
-                }*/
                 echo "</li>";
             }
-            /*echo "<li><a href='index.php?action=create_database'>Create database</a></li>";*/
             echo "</ul></div>";
         }
         
@@ -276,11 +259,11 @@
         //hien bang len
         $query = "DESC $selecteddatabase.$selectedtable";                
         $result = mysqli_query($dbc, $query);
-        echo "<div class=\"col-xs-8 col-sm-10\">";
+        echo '<div class="col-xs-8 col-sm-10">';
         echo '<div class="panel panel-info">';
         echo '<div class="panel-heading">Table Detail</div>';
         echo '<div class="panel-body">';
-        echo "<div class=\"table-responsive\">";
+        echo '<div class="table-responsive">';
         echo "<table class=\"table table-striped\" data-height=\"299\" data-sort-name=\"name\" data-sort-order=\"desc\"><thead><tr>";
         
         $delete_field = "dcmm";
@@ -327,7 +310,7 @@
         
         echo "</tbody>";
         echo "</table>";
-        echo '</div>';  
+        echo '</div></div></div></div>';  
         
     }
 ?>

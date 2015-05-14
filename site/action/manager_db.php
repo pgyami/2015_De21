@@ -36,7 +36,7 @@
 
       <div class="clearer"></div>
     </div>
-    <hr>
+ <!--    <hr> -->
     <div id="footer" class="row">
       <?php 
       load_footer();

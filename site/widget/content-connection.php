@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php $dbc = mysqli_connect('localhost','root','');?>
+<?php $dbc = mysqli_connect('localhost','root','123456');?>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
@@ -24,7 +24,7 @@
                 </script>";
             }
             else echo "<script>
-                addAlert(\"success\",\"Delete connection failed\");
+                addAlert(\"danger\",\"Delete connection failed\");
                 </script>";
         }
         if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host'])) {
@@ -60,7 +60,7 @@
             } else {
 
                 echo "<script>
-                addAlert(\"success\",\"Error when create connection\");
+                addAlert(\"danger\",\"Error when create connection\");
                 </script>";
 
             }
@@ -79,10 +79,10 @@
            <table class="table table-striped table-condensed table-hover">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Username</th>
+                  <th>Host</th>
                   <th></th>
                 </tr>
               </thead>
@@ -95,10 +95,11 @@
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     echo "<tr>
-                      <td>" . $row['id'] . "</td>
+                    
                       <td>" . $row['first_name'] . "</td>
                       <td>" . $row['last_name']. "</td>
                       <td>" . $row['user_name'] . "</td>
+                      <td>" . $row['host'] . "</td>
                       <td class='text-right'>
                         <form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=homepage'>
                             <input type='hidden' name='id' value='$id'/>
@@ -215,8 +216,8 @@
                       <label class="col-sm-4 control-label">Password</label>
                       <div class="col-sm-8">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-                          <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
+                          <span class="input-group-addon"><i class="fa fa-fw fa-key"></i></span>
+                          <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
                           <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
                         </div>
                       </div>                    
@@ -233,37 +234,6 @@
                       
                     </div>   
                   </div>
-
-<<<<<<< HEAD
-=======
-                  <!-- <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Last Name</span>
-                    <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" name="last_name">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("last_name",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">User Name</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="user">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("user",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Host</span>
-                    <input type="text" class="form-control" placeholder="Host" aria-describedby="basic-addon1" name="host">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("host",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Password</span>
-                    <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
-                  </div>
-                  <br /> -->
->>>>>>> origin/master
               </form>
             </div>
           </div>
