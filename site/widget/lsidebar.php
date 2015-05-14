@@ -1,6 +1,30 @@
-<div id="content" class="row">  
+
+
+
+<?php 
+    
+
+
+    $dbc = mysqli_connect('localhost','root','');
+
+//if (empty($_SESSION['hostname'])){
+    
+    if (!empty($_POST['id'])){
+
+      $id = $_POST['id'];
+      $query = "SELECT * FROM userinfo.connection_info WHERE id=$id";
+      $result = mysqli_query($dbc, $query);
+      $row = mysqli_fetch_array($result);
+      $_SESSION['hostname'] = $row['host'];
+      $_SESSION['username'] = $row['user_name'];
+      $_SESSION['password'] = $row['password'];
+    } 
+//}
+
+    ?> 
+    <div id="content" class="row">  
     <?php
-     $dbc = mysqli_connect('localhost:3306','root','123456');
+     //$dbc = mysqli_connect('localhost:3306','root','');
         if (isset($_GET['selecteddatabase']))
             $selecteddatabase = mysqli_escape_string($dbc, $_GET['selecteddatabase']);
         if (isset($_GET['selectedtable']))
@@ -29,27 +53,7 @@
         </ol>
         <?php } ?>
 </div>
-
 <div class="col-xs-4 col-sm-2 sidebar-offcanvas">
-<?php 
-    echo "<h3>List of ".$item_name."</h3>";
-
-   
-//if (empty($_SESSION['hostname'])){
-    
-    if (!empty($_POST['id'])){
-
-      $id = $_POST['id'];
-      $query = "SELECT * FROM userinfo.connection_info WHERE id=$id";
-      $result = mysqli_query($dbc, $query);
-      $row = mysqli_fetch_array($result);
-      $_SESSION['hostname'] = $row['host'];
-      $_SESSION['username'] = $row['user_name'];
-      $_SESSION['password'] = $row['password'];
-    } 
-//}
-
-    ?> 
     <?php 
     $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);
     if (!$dbc){
@@ -58,7 +62,7 @@
     }
     ?>
 <?php
-    
+    echo "<h3>List of ".$item_name."</h3>";
     
 
     //Khong chon gi thi show chi db
