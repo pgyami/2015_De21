@@ -217,14 +217,21 @@
                             echo "</form>";
                             echo "</tr>";
                             //END - Filter
-                            
+                            $count5 = 0;
+                           
                             while ($row = @mysqli_fetch_array($result_content, MYSQLI_NUM)){
-                                echo "<tr>";
+                                
+                                $count5++;
+                                 mysqli_data_seek($result_filter,0);
+                                echo "<tr name = \"tr_delete_$count5\">";
                                 for ($i = 0; $i < $num_of_fields; $i++){
-                                    echo "<td>" . $row["$i"] . "</td>";
+                                    $rows_filter = @mysqli_fetch_array($result_filter, MYSQLI_ASSOC);
+                                    echo "<td headers=\"".$rows_filter['Field']."\">" . $row["$i"] . "</td>";
                                 }
                                /* $num1 = $num_of_fields - 1;*/
-                               echo "<td class='text-left'><button type='submit' name='delete_button' class='btn btn-danger submit' value=\"Delete\">Delete</button></td>";
+                               echo "<form method='POST'>";
+                               echo "<td name = \"td_delete_$count5\" class='text-left'><button type='submit' id=\"delete_button_$count5\" name='delete_button'  class='btn btn-danger submit' value=\"Delete\" onclick=\"deleteQuery(this.id)\">Delete</button></td>";
+                               echo "</form>";
                             }
                             echo '</tr>';
                             echo '<form method="POST">';
@@ -301,5 +308,29 @@ function getfilterQuery() {
     }
 
     document.getElementById("query_filter2").value = filter_query;
+}
+
+function deleteQuery(clicked_id) {
+   
+    var deleterow = document.getElementById(clicked_id);
+    
+    var c = deleterow.parentNode.parentNode;
+
+    
+    
+    var content = c.childNodes;
+    
+    var name_ = "";
+    
+    for(i = 0; i < content.length - 2; i++)
+    {   
+        var content_i = content[i];
+        if(i == content.length - 3)
+        name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'";
+        else
+         name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'" + " AND ";
+    }
+   alert(name_);
+    document.getElementById("query_filter2").value = name_;
 }
 </script>
