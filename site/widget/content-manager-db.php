@@ -6,9 +6,12 @@
   global $selecteddatabase;
   global $selectedtable;
   global $dbc_user;
+  global $showstructure;
 
   $create_database_button = '<button type="button" class="btn btn-info submit" value="Create Databases" onclick="location.href=\'index.php?action=create_database\';return false;">Create Databases</button><br/><br/>';
   $create_table_button = '<button type="button" class="btn btn-info submit" value="Create Table" onclick="location.href=\'index.php?action=create_table&selecteddatabase='.$selecteddatabase.'\';return false;">Create Table</button><br/><br/>';
+  $show_table_structure_button = '<button type="button" class="btn btn-info submit" value="Show Structure" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'&showstructure=yes\';return false;">Show Structure</button><br/><br/>';
+  $show_table_data_button = '<button type="button" class="btn btn-info submit" value="Show Data" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'\';return false;">Show Data</button><br/><br/>';
 ?>
 <div class="col-sm-10">
 
@@ -25,11 +28,20 @@
             }
             elseif ($type == 3) {
               # code...
+              if (!$showstructure) {
+                # code...
+                echo $show_table_structure_button;
+              }
+              else
+                echo $show_table_data_button;
+              
             }
         ?>
         <div class="panel panel-info">
             <div class="panel-heading">
               <?php 
+
+              //hien ten cua panel
                 if ($type == 1) {
                 # code...
                   echo 'List of databases';
@@ -49,15 +61,30 @@
                     <table class="table table-striped">
                      <thead>
                       <?php 
+
+                      //hien ten cot cua bang
                       if ($type == 3) {
                         # code...
-                        echo '<tr>';
                         $result_des = @mysqli_query($dbc_user, $query_des);
-                        while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC))
-                          echo '<th>' . $row['Field'] . '</th>';
+                        if (!$showstructure){
+                          echo '<tr>';
+                          
+                          while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC))
+                            echo '<th>' . $row['Field'] . '</th>';
 
-                          echo '<th></th>';
-                          echo '</tr>';
+                            echo '<th></th>';
+                            echo '</tr>';
+                        }
+                        else {
+                          echo '<tr>';                       
+                            echo '<th>Field</th>';
+                            echo '<th>Type</th>';
+                            echo '<th>Null</th>';
+                            echo '<th>Key</th>';
+                            echo '<th>Default</th>';
+                            echo '<th>Extra</th>';
+                            echo '</tr>';
+                        }
                       }
                       elseif ($type == 1) {
                         # code...
@@ -70,6 +97,8 @@
                      </thead>          
                      <tbody>
                         <?php
+
+                        //them du lieu vao bang
 
                         $result_des = @mysqli_query($dbc_user, $query_des);
                         $check = false;
@@ -121,6 +150,8 @@
                             }
                         }
 
+                        //hien noi dung bang
+
                         if ($type == 1) {
                             # code...
                           $result_content = @mysqli_query($dbc_user, $query_content);
@@ -150,29 +181,43 @@
                         }
                         elseif ($type == 3) {
                           # code...
-                          $result_content = @mysqli_query($dbc_user, $query_content);
-                          $num_of_fields = @mysqli_num_fields($result_content);
-                          while ($row = @mysqli_fetch_array($result_content, MYSQLI_NUM)){
-                              echo "<tr>";
-                              for ($i = 0; $i < $num_of_fields; $i++){
-                                  echo "<td>" . $row["$i"] . "</td>";
-                              }
-                             /* $num1 = $num_of_fields - 1;*/
-                             echo "<td class='text-left'><button type='submit' name='delete_button' class='btn btn-danger submit' value=\"Delete\">Delete</button></td>";
-                          }
-                          echo '</tr>';
-                          echo '<form method="POST">';
-                          echo '<tr>';
-
-                          $result_des = @mysqli_query($dbc_user, $query_des);
-                          while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC)){
-                            echo '<td><input type="input" class="form-control" placeholder="'.$row['Field'].'"  name="'.$row['Field'].'"></td>';
-                          }
-
+                          if (!$showstructure) {
+                            # code...
                           
-                          echo "<td class='text-left'><button type='submit' class='btn btn-primary submit' name='add_row' value=\"Add\">Add</button></td>";
-                          echo '</tr>';
-                          echo "</form>";
+                            $result_content = @mysqli_query($dbc_user, $query_content);
+                            $num_of_fields = @mysqli_num_fields($result_content);
+                            while ($row = @mysqli_fetch_array($result_content, MYSQLI_NUM)){
+                                echo "<tr>";
+                                for ($i = 0; $i < $num_of_fields; $i++){
+                                    echo "<td>" . $row["$i"] . "</td>";
+                                }
+                               /* $num1 = $num_of_fields - 1;*/
+                               echo "<td class='text-left'><button type='submit' name='delete_button' class='btn btn-danger submit' value=\"Delete\">Delete</button></td>";
+                            }
+                            echo '</tr>';
+                            echo '<form method="POST">';
+                            echo '<tr>';
+
+                            $result_des = @mysqli_query($dbc_user, $query_des);
+                            while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC)){
+                              echo '<td><input type="input" class="form-control" placeholder="'.$row['Field'].'"  name="'.$row['Field'].'"></td>';
+                            }
+
+                            
+                            echo "<td class='text-left'><button type='submit' class='btn btn-primary submit' name='add_row' value=\"Add\">Add</button></td>";
+                            echo '</tr>';
+                            echo "</form>";
+                          }
+                          else {
+                            $result_content = @mysqli_query($dbc_user, $query_des);
+                            $num_of_fields = @mysqli_num_fields($result_content);
+                            while ($row = @mysqli_fetch_array($result_content, MYSQLI_NUM)){
+                                echo "<tr>";
+                                for ($i = 0; $i < $num_of_fields; $i++){
+                                    echo "<td>" . $row["$i"] . "</td>";
+                                }
+                              }
+                          }
                         }
 
 

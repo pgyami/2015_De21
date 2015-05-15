@@ -55,7 +55,7 @@
       $result_lsb = @mysqli_query($dbc_user, $query_lsb);    
 
       $query_content = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA";
-      $result_content = @mysqli_query($dbc_user, $query_content);
+      
     }
     elseif (isset($selecteddatabase) && empty($selectedtable)) {
       # code...
@@ -72,6 +72,9 @@
       # code...
       $item_name_lsb = 'Tables';
       $type = 3;
+      if (isset($_GET['showstructure']))
+        $showstructure = true;
+      else $showstructure = false;
       $query_lsb = "SHOW TABLES FROM $selecteddatabase";
       $result_lsb = @mysqli_query($dbc_user, $query_lsb);
 
