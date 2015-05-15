@@ -1,11 +1,10 @@
 
 
-
 <?php 
     
 
 
-    $dbc = mysqli_connect('localhost','root','');
+    $dbc = mysqli_connect('localhost','root','123456');
 
 //if (empty($_SESSION['hostname'])){
     
@@ -63,7 +62,13 @@
     ?>
 <?php
     echo "<h3>List of ".$item_name."</h3>";
-    
+    //Text choi thoi
+    if (!empty($_POST['filter_row'])){
+            $delete_field = $_POST['query_filter2'];
+            
+                echo "<script>addAlert(\"success\",\"$delete_field\");</script>";
+            
+        }
 
     //Khong chon gi thi show chi db
     
@@ -90,7 +95,7 @@
             
         } else { 
             echo "<div class=\"col-xs-8 col-sm-8\">";
-            echo '<button type="button" class="btn btn-info submit" value="Create Databases" onclick="location.href=\'index.php?action=create_database\';return false;">Create Databases</button><br/><br/>';
+            echo '<button type="button" class="btn btn-info submit" ="Create Databases" onclick="location.href=\'index.php?action=create_database\';return false;">Create Databases</button><br/><br/>';
             echo '<div class="panel panel-info">';
             echo  '<div class="panel-heading">List of Databases</div>';
             echo  '<div class="panel-body">';
@@ -272,6 +277,8 @@
                 echo "<script>addAlert(\"success\",\"Delete record failed\");</script>";
             }
         }
+
+        
         
         //hien bang len
         $query = "DESC $selecteddatabase.$selectedtable";                
@@ -291,9 +298,45 @@
         }
         echo "</tr></thead>";
         echo "<tbody>";
+        
+        
+        
+        
+        
+        
+        
+        
+        //Filter
+
+        $query_filter = "DESC $selecteddatabase.$selectedtable";                
+        $result_filter = mysqli_query($dbc, $query_filter);
+        echo "<tr id =\"filter_row\">";
+        $count5 = 0;
+        while ($rows_filter = mysqli_fetch_array($result_filter, MYSQLI_ASSOC)){
+            $count5++;
+            $row_filter = $rows_filter['Field'];
+            echo "<td>" . "<input type=\"input\"  class=\"form-control\" placeholder=\"$row_filter\" id=\"row_filter_$count5\"  name='$row_filter'>" . "</td>";
+
+        }
+
+        echo "<form method='POST'>";
+        echo "<td class='text-left'><button type='submit' class='btn btn-success submit' id='ccc' name='filter_row' value=\"Filter\" onclick=\"getfilterQuery()\">Filter</button></td>";
+        echo "<td><input type='hidden' id='query_filter2' name='query_filter2' value=''></td>";
+        
+        
+        echo "</form>";
+        echo "</tr>";
+        //END - Filter
+        
+        
+        
+        
+        
+        
         $query = "SELECT * FROM $selecteddatabase.$selectedtable";
         $result = mysqli_query($dbc, $query);
         $num = mysqli_num_fields($result);
+    
         while ($row = mysqli_fetch_array($result, MYSQLI_NUM)){
             echo "<tr>";
             for ($i = 0; $i < $num; $i++){
@@ -331,5 +374,45 @@
         
     }
 ?>
+<script>
+function getfilterQuery() {
+    var filterrow= document.getElementById("filter_row");
+    var c = filterrow.childNodes;
+    var filter_query = "";
+    for (i = 0; i < c.length-3; i++) {
+        var filterrow_child2 = c[i].childNodes;
+      //  txt = txt + filterrow_child2[0].value + "<br>";
+    
+    
+                if(i == c.length-4)
+            {
+                
+                if(filterrow_child2[0].value.length==0) 
+                {
+                   
+                    filter_query = filter_query + filterrow_child2[0].name + " = *";
+                }
+                else
+                {
+                    filter_query = filter_query + filterrow_child2[0].name + " = " + " '" + filterrow_child2[0].value + "'";
+                }
+            }
+            else
+            {
+                if(filterrow_child2[0].value.length==0) 
+                {
+                    filter_query = filter_query + filterrow_child2[0].name + " = * AND ";
+                }
+                else
+                {
+                    filter_query = filter_query + filterrow_child2[0].name + " = " + " '" + filterrow_child2[0].value + "'" + " AND ";
+                }
+            }
+    
+    }
+
+    document.getElementById("query_filter2").value = filter_query;
+}
+</script>
   </div><!--/.sidebar-offcanvas-->   
 
