@@ -17,13 +17,25 @@
 
 <!--   <div class="row placeholders"> -->
      <div class="col-xs-12 col-sm-12">
+        
+        
         <?php
+        //Text choi thoi
+    if (!empty($_POST['filter_row'])){
+            $delete_field = $_POST['query_filter2'];
+            
+                echo "<script>addAlert(\"success\",\"$delete_field\");</script>";
+            
+        }
+        
+        
+        
            if ($type == 1) {
             # code...
               echo $create_database_button;
             }
             elseif ($type == 2) {
-              # code...
+              # code... 
               echo $create_table_button;
             }
             elseif ($type == 3) {
@@ -186,6 +198,31 @@
                           
                             $result_content = @mysqli_query($dbc_user, $query_content);
                             $num_of_fields = @mysqli_num_fields($result_content);
+                            
+                            //Filter
+
+                            $query_filter = "DESC $selecteddatabase.$selectedtable";                
+                            $result_filter = @mysqli_query($dbc_user, $query_filter);
+                          //  echo mysqli_error($dbc);
+                            echo "<tr id =\"filter_row\">";
+                           // mysqli_data_seek($result_filter,0);
+                            while ($rows_filter = @mysqli_fetch_array($result_filter, MYSQLI_ASSOC)){
+                              //  $row_filter = $rows_filter['Field'];
+
+                               // echo "<td>" . "<input type=\"input\"  class=\"form-control\" placeholder=\"$row_filter\" id=\"row_filter_$count5\"  name='$row_filter'>" . "</td>";
+                                echo '<td><input type="input" class="form-control" placeholder="'.$rows_filter['Field'].'"  name="'.$rows_filter['Field'].'"></td>';
+                    
+                            }
+                    
+                            echo "<form method='POST'>";
+                            echo "<td class='text-left'><button type='submit' class='btn btn-success submit' id='ccc' name='filter_row' value=\"Filter\" onclick=\"getfilterQuery()\">Filter</button></td>";
+                            echo "<td><input type='hidden' id='query_filter2' name='query_filter2' value=''></td>";
+                            
+                            
+                            echo "</form>";
+                            echo "</tr>";
+                            //END - Filter
+                            
                             while ($row = @mysqli_fetch_array($result_content, MYSQLI_NUM)){
                                 echo "<tr>";
                                 for ($i = 0; $i < $num_of_fields; $i++){
@@ -231,3 +268,43 @@
      </div>
 <!--   </div> -->
 </div>
+<script>
+function getfilterQuery() {
+    var filterrow= document.getElementById("filter_row");
+    var c = filterrow.childNodes;
+    var filter_query = "";
+    for (i = 0; i < c.length-3; i++) {
+        var filterrow_child2 = c[i].childNodes;
+      //  txt = txt + filterrow_child2[0].value + "<br>";
+    
+    
+                if(i == c.length-4)
+            {
+                
+                if(filterrow_child2[0].value.length==0) 
+                {
+                   
+                    filter_query = filter_query + filterrow_child2[0].name + " = *";
+                }
+                else
+                {
+                    filter_query = filter_query + filterrow_child2[0].name + " = " + " '" + filterrow_child2[0].value + "'";
+                }
+            }
+            else
+            {
+                if(filterrow_child2[0].value.length==0) 
+                {
+                    filter_query = filter_query + filterrow_child2[0].name + " = * AND ";
+                }
+                else
+                {
+                    filter_query = filter_query + filterrow_child2[0].name + " = " + " '" + filterrow_child2[0].value + "'" + " AND ";
+                }
+            }
+    
+    }
+
+    document.getElementById("query_filter2").value = filter_query;
+}
+</script>
