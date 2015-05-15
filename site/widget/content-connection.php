@@ -5,7 +5,7 @@
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="public/css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="public/css/style.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
@@ -52,7 +52,13 @@
                // echo "here come";
             $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host$port','','$user_userforst') ";    
             }
-            $result = mysqli_query($dbc, $query);
+
+            try {
+                $result = mysqli_query($dbc, $query);
+            } catch (Exception $e) {
+                echo '<script>addAlert("danger","'.$e->getMessage().'");</script>';
+            }
+            
             if (mysqli_affected_rows($dbc) == 1){
                 echo "<script>
                 addAlert(\"success\",\"Create connection successfully\");
