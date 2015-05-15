@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <link type="text/css" rel="stylesheet" href="public/css/bootstrap.css">
+
 <!--   <link type="text/css" rel="stylesheet" href="public/css/bootstrap.min.css"> -->
   <link type="text/css" rel="stylesheet" href="public/css/style.css">
   <script src ="public/js/bootstrap.js"></script>
@@ -129,6 +130,7 @@
 
       <div class="clearer"></div>
     </div>
+
  <!--    <hr> -->
     <div id="footer" class="row">
       <?php 

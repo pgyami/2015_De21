@@ -1,4 +1,4 @@
-<div class="col-lg-12 footer-below">            
+          
               <div class="panel panel-default">
                 <div class="panel-heading">
                      <center>
@@ -7,4 +7,3 @@
                       </center> 
                 </div>
               </div>
-</div>
