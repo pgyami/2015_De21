@@ -5,7 +5,7 @@
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="public/css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="public/css/style.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
@@ -24,29 +24,41 @@
                 </script>";
             }
             else echo "<script>
-                addAlert(\"success\",\"Delete connection failed\");
+                addAlert(\"danger\",\"Delete connection failed\");
                 </script>";
         }
-        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host']) && !empty($_POST['port'])) {
+        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host'])) {
             $first_name = $_POST['first_name']; 
             $last_name = $_POST['last_name'];
             $user = $_POST['user'];
             $host = $_POST['host'];
-            $port = $_POST['port'];
+            
+             if(!empty($_POST['port']))
+             {$port = $_POST['port'];
+             $port=":$port";}
+             else
+             {$port='';
+             }
             //$password = $_POST['password'];
             global $loggedInUser;
             $user_userforst = $loggedInUser->username;
             if (!empty($_POST['password'])) {
                 $password = $_POST['password'];
             //echo "here ";
-            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host:$port','$password','$user_userforst') ";
+            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host$port','$password','$user_userforst') ";
             }
             else
             {
                // echo "here come";
-            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host:$port','','$user_userforst') ";    
+            $query = "INSERT INTO userinfo.connection_info(first_name, last_name,user_name, host, password, user_userforst) VALUES ('$first_name','$last_name','$user','$host$port','','$user_userforst') ";    
             }
-            $result = mysqli_query($dbc, $query);
+
+            try {
+                $result = mysqli_query($dbc, $query);
+            } catch (Exception $e) {
+                echo '<script>addAlert("danger","'.$e->getMessage().'");</script>';
+            }
+            
             if (mysqli_affected_rows($dbc) == 1){
                 echo "<script>
                 addAlert(\"success\",\"Create connection successfully\");
@@ -54,7 +66,7 @@
             } else {
 
                 echo "<script>
-                addAlert(\"success\",\"Error when create connection\");
+                addAlert(\"danger\",\"Error when create connection\");
                 </script>";
 
             }
@@ -73,10 +85,10 @@
            <table class="table table-striped table-condensed table-hover">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Username</th>
+                  <th>Host</th>
                   <th></th>
                 </tr>
               </thead>
@@ -89,10 +101,11 @@
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     echo "<tr>
-                      <td>" . $row['id'] . "</td>
+                    
                       <td>" . $row['first_name'] . "</td>
                       <td>" . $row['last_name']. "</td>
                       <td>" . $row['user_name'] . "</td>
+                      <td>" . $row['host'] . "</td>
                       <td class='text-right'>
                         <form method='POST' id='frmConnection' name='frmConnection' action='index.php?action=homepage'>
                             <input type='hidden' name='id' value='$id'/>
@@ -209,8 +222,8 @@
                       <label class="col-sm-4 control-label">Password</label>
                       <div class="col-sm-8">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-                          <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
+                          <span class="input-group-addon"><i class="fa fa-fw fa-key"></i></span>
+                          <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
                           <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
                         </div>
                       </div>                    
@@ -227,34 +240,6 @@
                       
                     </div>   
                   </div>
-
-                  <!-- <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Last Name</span>
-                    <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" name="last_name">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("last_name",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">User Name</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="user">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("user",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Host</span>
-                    <input type="text" class="form-control" placeholder="Host" aria-describedby="basic-addon1" name="host">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("host",$errors)) echo "Required" ?>
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Password</span>
-                    <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
-                    <?//if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
-                  </div>
-                  <br /> -->
               </form>
             </div>
           </div>
