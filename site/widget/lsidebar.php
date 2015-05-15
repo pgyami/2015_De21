@@ -19,6 +19,7 @@ while ($row = @mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dbname = $row['SCHEMA_NAME'];
         echo "<li><a href='index.php?action=manager_db&selecteddatabase=$dbname'>".$dbname."</a></li>";
       }
+
     }
     elseif ($type == 3) {
       # code...
