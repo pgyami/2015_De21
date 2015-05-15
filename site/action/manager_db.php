@@ -87,11 +87,8 @@
             $filter_criteria = $_POST['query_filter2'];
             $query_content = "$query_content WHERE $filter_criteria";
                 //echo $query_content;           
-            
-                
-            
         }
-      $result_content = @mysqli_query($dbc_user, $query_content);
+     // $result_content = @mysqli_query($dbc_user, $query_content);
     }
 
   ?>

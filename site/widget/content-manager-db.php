@@ -71,6 +71,21 @@
 
                       //hien ten cot cua bang
                       if ($type == 3) {
+                        //incase user want to delete a row
+                        if (!empty($_POST['query_delete'])){
+                            $delete_criteria = $_POST['query_delete'];
+                         
+                            $delete_query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_criteria";
+                            $result_des = @mysqli_query($dbc_user, $delete_query);
+                            // Thien Son xu ly exception cho nay
+                           // $error = mysqli_error($dbc_user);
+                          //  echo "<script>addAlert(\"danger\",\"".$delete_query."\");</script>";
+                           // echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
+                        //$query_content = "$query_content WHERE $filter_criteria";
+                //echo $query_content;           
+        }
+                        
+                        
                         # code...
                         $result_des = @mysqli_query($dbc_user, $query_des);
                         if (!$showstructure){
@@ -230,6 +245,7 @@
                                 }
                                /* $num1 = $num_of_fields - 1;*/
                                echo "<form method='POST'>";
+                               echo "<td><input type='hidden' id='query_delete' name='query_delete' value=''></td>";
                                echo "<td name = \"td_delete_$count5\" class='text-left'><button type='submit' id=\"delete_button_$count5\" name='delete_button'  class='btn btn-danger submit' value=\"Delete\" onclick=\"deleteQuery(this.id)\">Delete</button></td>";
                                echo "</form>";
                             }
@@ -306,7 +322,7 @@ function getfilterQuery() {
             }
     
     }
-
+   
     document.getElementById("query_filter2").value = filter_query;
 }
 
@@ -316,21 +332,23 @@ function deleteQuery(clicked_id) {
     
     var c = deleterow.parentNode.parentNode;
 
-    
+    alert(c.nodeName);
     
     var content = c.childNodes;
     
     var name_ = "";
     
-    for(i = 0; i < content.length - 2; i++)
+    for(i = 0; i < content.length - 3; i++)
     {   
         var content_i = content[i];
-        if(i == content.length - 3)
+        if(i == content.length - 4)
         name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'";
         else
          name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'" + " AND ";
+         
     }
-   alert(name_);
-    document.getElementById("query_filter2").value = name_;
+ //  alert(name_);
+    c.querySelector("#query_delete").value = name_;
+    alert(name_);
 }
 </script>
