@@ -7,8 +7,8 @@
   <link type="text/css" rel="stylesheet" href="public/css/bootstrap.css">
 <!--   <link type="text/css" rel="stylesheet" href="public/css/bootstrap.min.css"> -->
   <link type="text/css" rel="stylesheet" href="public/css/style.css">
-  <script src ="pulibc/js/bootstrap.js"></script>
-  <script src ="pulibc/js/bootstrap.min.js"></script>
+  <script src ="public/js/bootstrap.js"></script>
+  <script src ="public/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <style>
   body{
@@ -77,6 +77,7 @@
 
       $query_des = "DESC $selecteddatabase.$selectedtable";                
       $result_des = @mysqli_query($dbc_user, $query_des);
+
       $query_content = "SELECT * FROM $selecteddatabase.$selectedtable";
       $result_content = @mysqli_query($dbc_user, $query_content);
     }
