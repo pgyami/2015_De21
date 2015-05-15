@@ -30,58 +30,54 @@
             <th>NULL</th>
             <th>Index</th>
             <th>A_I</th>
+            <th></th>
           </tr>
         </thead>
         <tbody  class="input_fields_wrap">
-          <?php
-          for ($i=0; $i < 1; $i++) { 
-            echo '<tr>
+          <tr>
             <td>
-            <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-            <input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]">
-            </div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                <input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]">
+              </div>
             </td>
             <td>
-            <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-            <select class="form-control" name="data_type[]">
-            <option value="null"></option>
-            <option value="int">INT</option>
-            <option value="varchar">VARCHAR</option>
-            <option value="text">TEXT</option>
-            <option value="date">DATE</option>
-            <option value="char">CHAR</option>
-            <option value="float">FLOAT</option>
-            <option value="double">DOUBLE</option>
-            <option value="real">REAL</option>
-            <option value="boolean">BOOLEAN</option>
-            <option value="blob">BLOB</option>
-            </select>
-            </div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                <select class="form-control" name="data_type[]">
+                  <option value="null"></option>
+                  <option value="int">INT</option>
+                  <option value="varchar">VARCHAR</option>
+                  <option value="text">TEXT</option>
+                  <option value="date">DATE</option>
+                  <option value="char">CHAR</option>
+                  <option value="float">FLOAT</option>
+                  <option value="double">DOUBLE</option>
+                  <option value="real">REAL</option>
+                  <option value="boolean">BOOLEAN</option>
+                  <option value="blob">BLOB</option>
+                </select>
+              </div>
             </td>
             <td>
-            <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-            <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]">
-            </div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]">
+              </div>
             </td>
             <td><input type="checkbox" name="null"></td>
             <td>
-            <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-            <select class="form-control" name="index[]">
-            <option value="null"></option>
-            <option value="unique">UNIQUE</option>
-            <option value="primary">PRIMARY</option>
-            </select>
-            </div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
+                <select class="form-control" name="index[]">
+                  <option value="null"></option>
+                  <option value="unique">UNIQUE</option>
+                  <option value="primary">PRIMARY</option>
+                </select>
+              </div>
             </td>
-            <td><input type="checkbox" name="ai"></td>
-            </tr>';
-          }
-
-          ?>
+            <td><input type="checkbox" name="ai"></td>          
+          </tr>'
 
 
         </tbody>
@@ -89,10 +85,8 @@
 
       <br />
 
-<!-- <div class="input_fields_wrap">
-</div> -->
-<button id='add_field_button' class='btn btn-info submit' value="Add more fields">Add more fields</button>
-<button id='remove_field_button' class='btn btn-danger submit' value="Add more fields">Remove field</button><br />
+<button id='add_field_button' class='btn btn-info submit' value="Add more field">Add more field</button>
+<button class='btn btn-danger submit' >Removeeee field</button><br />
 <br />
 </form>
 <script>
@@ -106,12 +100,12 @@ $(document).ready(function() {
       e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<tr><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]"></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="data_type[]"><option value="null"></option><option value="int">INT</option><option value="varchar">VARCHAR</option><option value="text">TEXT</option><option value="date">DATE</option><option value="char">CHAR</option><option value="float">FLOAT</option><option value="double">DOUBLE</option><option value="real">REAL</option><option value="boolean">BOOLEAN</option><option value="blob">BLOB</option></select></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"></div></td><td><input type="checkbox" name="null"></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="index[]"><option value="null"></option><option value="unique">UNIQUE</option><option value="primary">PRIMARY</option></select></div></td><td><input type="checkbox" name="ai"></td></tr>'); //add input box
+            $(wrapper).append('<tr><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]"></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="data_type[]"><option value="null"></option><option value="int">INT</option><option value="varchar">VARCHAR</option><option value="text">TEXT</option><option value="date">DATE</option><option value="char">CHAR</option><option value="float">FLOAT</option><option value="double">DOUBLE</option><option value="real">REAL</option><option value="boolean">BOOLEAN</option><option value="blob">BLOB</option></select></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"></div></td><td><input type="checkbox" name="null"></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="index[]"><option value="null"></option><option value="unique">UNIQUE</option><option value="primary">PRIMARY</option></select></div></td><td><input type="checkbox" name="ai"></td><td><button id="remove_field_button" class="btn btn-danger submit" value="Add more fields">Remove field</button></td></tr>'); //add input box
           }
         });
 
     $(wrapper).on("click",".remove_field_button", function(e){ //user click on remove text
-      e.preventDefault(); $(this).parent('tr').remove(); x--;
+      e.preventDefault(); $(this).parent("tr").remove(); x--;
     })
   });
 </script>
@@ -137,8 +131,8 @@ if(!empty($_POST["add_table"]) && !empty($_POST["table_name"])){
     $query = $query . ")";
 $result = mysqli_query($dbc, $query);
 if ($result)
-  echo "<script>addAlert(\"success\",\"Create table successfully\");</script>";
-else echo "<script>addAlert(\"success\",\"Create table failed\");</script>";
+  echo '<script>addAlert("success","Create table successfully");</script>';
+else echo '<script>addAlert("success","Create table failed");</script>';
 }
 echo '<a href="index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'">Back to manager page</a>';
 ?>

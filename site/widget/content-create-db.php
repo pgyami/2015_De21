@@ -34,7 +34,7 @@ if (!empty($_GET['newdb'])){
 	}
 	else {echo $result;
 	 echo "<script>
-                addAlert(\"success\",\"Error when create database\");
+                addAlert(\"danger\",\"Error when create database\");
                 </script>";
             }
 }
