@@ -1,10 +1,12 @@
 <?php
   global $result_lsb;
   global $type;
-  global $result_content;
-  global $result_des;
+  global $query_content;
+  global $query_des;
   global $selecteddatabase;
   global $selectedtable;
+  global $dbc_user;
+
   $create_database_button = '<button type="button" class="btn btn-info submit" value="Create Databases" onclick="location.href=\'index.php?action=create_database\';return false;">Create Databases</button><br/><br/>';
   $create_table_button = '<button type="button" class="btn btn-info submit" value="Create Table" onclick="location.href=\'index.php?action=create_table&selecteddatabase='.$selecteddatabase.'\';return false;">Create Table</button><br/><br/>';
 ?>
@@ -50,32 +52,83 @@
                       if ($type == 3) {
                         # code...
                         echo '<tr>';
-
-                        while ($row = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC))
+                        $result_des = @mysqli_query($dbc_user, $query_des);
+                        while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC))
                           echo '<th>' . $row['Field'] . '</th>';
 
-                        echo '</tr>';
+                          echo '<th></th>';
+                          echo '</tr>';
                       }
                       elseif ($type == 1) {
                         # code...
-                        echo '<tr><th>Database name</th><td></td></tr>';
+                        echo '<tr>';
+                        echo '<th>Database name</th><th></th>';
+                        echo '</tr>';
                       }
-                      else echo '<tr><th>Table name</th><td></td></tr>';
+                      else echo '<tr><th>Table name</th><th></th></tr>';
                       ?>                                             
                      </thead>          
                      <tbody>
                         <?php
-                        global $result_content;
-                        global $type;
-                        global $selecteddatabase;
-                        global $selectedtable;
+
+                        $result_des = @mysqli_query($dbc_user, $query_des);
+                        $check = false;
+                        while ($rows = @mysqli_fetch_assoc($result_des)){
+                            $row = $rows['Field'];
+                            if (!empty($_POST[$row])){
+                                $check = true;
+                                break;
+                            }            
+                        }
+                        if ($check == true) {
+                            $result_des = @mysqli_query($dbc_user, $query_des);
+                            $add = true;
+                            while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
+                                $row = $rows['Field'];
+                                if (empty($_POST[$row])){
+                                    $add = false;
+                                    break;
+                                }
+                            }
+                            $add = true;
+                            if ($add == true){
+                                $result_des = @mysqli_query($dbc_user, $query_des);
+                                $add = true;
+                                while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
+                                    $row = $rows['Field'];
+                                    if (empty($_POST[$row])){
+                                        $add = false;
+                                        break;
+                                    }
+                                }
+                                $query_insert = "INSERT INTO $selecteddatabase.$selectedtable VALUES (";
+                                $result_des = @mysqli_query($dbc_user, $query_des);
+                                while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
+                                    $row = $rows['Field'];
+                                    $query_insert = $query_insert . "'" . $_POST[$row] . "',";
+                                }
+                                $query_insert = $query_insert . ")";
+                                $query_insert = str_replace(",)",")",$query_insert);
+                                $result = @mysqli_query($dbc_user, $query_insert);
+                                $error =  mysqli_error($dbc_user);
+                                if (@mysqli_affected_rows($dbc_user) == 1){
+                                   echo "<script>addAlert(\"success\",\"Create record successfully\");</script>";
+                                } else {
+                                    echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
+                                }
+                            } else {
+                                echo "<script>addAlert(\"danger\",\"Please fill necessary infomation\");</script>";
+                            }
+                        }
+
                         if ($type == 1) {
                             # code...
+                          $result_content = @mysqli_query($dbc_user, $query_content);
                           if (@mysqli_num_rows($result_content) != 0){ 
-                            while ($row = @mysqli_fetch_array($result_content, @MYSQLI_ASSOC)){
+                            while ($row = @mysqli_fetch_array($result_content, MYSQLI_ASSOC)){
                               $dbname = $row['SCHEMA_NAME'];
                               echo "<tr><td><a href='index.php?action=manager_db&selecteddatabase=$dbname'>".$dbname."</a></td>";
-                              echo '<td class="text-left"><button type="button" class="btn btn-danger submit" value="Delete Database" onclick="location.href="index.php?action=delete_database&deletedatabase='.$dbname.'";return false;">Delete</button></td>';
+                              echo '<td class="text-left"><button type="button" class="btn btn-danger submit" value="Delete Database" onclick="location.href=\'index.php?action=delete_database&deletedatabase='.$dbname.'\';return false;">Delete</button></td>';
                               echo "</tr>";
                             }
                           }
@@ -83,12 +136,13 @@
                         }
                         elseif ($type == 2) {
                             # code...
+                          $result_content = @mysqli_query($dbc_user, $query_content);
                           if (@mysqli_num_rows($result_content) != 0){ 
-                             while ($row = @mysqli_fetch_array($result_content, @MYSQLI_ASSOC)){
+                             while ($row = @mysqli_fetch_array($result_content, MYSQLI_ASSOC)){
                                 $tablename = $row["Tables_in_$selecteddatabase"];
                                 echo "<tr>";
                                 echo "<td><a href='index.php?action=manager_db&selecteddatabase=$selecteddatabase&selectedtable=$tablename'>".$tablename."</a></td>";
-                                echo '<td class="text-left"><button type="button" class="btn btn-danger submit" value="Delete Table" onclick="location.href="index.php?action=delete_table&selecteddatabase='.$selecteddatabase.'&deletetable='.$tablename.'";return false;">Delete</button></td>';
+                                echo '<td class="text-left"><button type="button" class="btn btn-danger submit" value="Delete Table" onclick="location.href=\'index.php?action=delete_table&selecteddatabase='.$selecteddatabase.'&deletetable='.$tablename.'\';return false;">Delete</button></td>';
                                 echo "</tr>";
                               }
                             }
@@ -96,8 +150,9 @@
                         }
                         elseif ($type == 3) {
                           # code...
+                          $result_content = @mysqli_query($dbc_user, $query_content);
                           $num_of_fields = @mysqli_num_fields($result_content);
-                          while ($row = @mysqli_fetch_array($result_content, @MYSQLI_NUM)){
+                          while ($row = @mysqli_fetch_array($result_content, MYSQLI_NUM)){
                               echo "<tr>";
                               for ($i = 0; $i < $num_of_fields; $i++){
                                   echo "<td>" . $row["$i"] . "</td>";
@@ -105,7 +160,22 @@
                              /* $num1 = $num_of_fields - 1;*/
                              echo "<td class='text-left'><button type='submit' name='delete_button' class='btn btn-danger submit' value=\"Delete\">Delete</button></td>";
                           }
+                          echo '</tr>';
+                          echo '<form method="POST">';
+                          echo '<tr>';
+
+                          $result_des = @mysqli_query($dbc_user, $query_des);
+                          while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC)){
+                            echo '<td><input type="input" class="form-control" placeholder="'.$row['Field'].'"  name="'.$row['Field'].'"></td>';
+                          }
+
+                          
+                          echo "<td class='text-left'><button type='submit' class='btn btn-primary submit' name='add_row' value=\"Add\">Add</button></td>";
+                          echo '</tr>';
+                          echo "</form>";
                         }
+
+
                          
                         ?>
                      </tbody>
