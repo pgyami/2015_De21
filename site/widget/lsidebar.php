@@ -2,7 +2,7 @@
     
 
 
-    $dbc = mysqli_connect('localhost','root','123456');
+    $dbc = mysqli_connect('localhost','root','');
 
 //if (empty($_SESSION['hostname'])){
     
