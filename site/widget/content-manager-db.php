@@ -20,13 +20,8 @@
         
         
         <?php
-        //Text choi thoi
-    if (!empty($_POST['filter_row'])){
-            $delete_field = $_POST['query_filter2'];
-            
-                echo "<script>addAlert(\"success\",\"$delete_field\");</script>";
-            
-        }
+        //
+   
         
         
         
@@ -284,22 +279,22 @@ function getfilterQuery() {
                 if(filterrow_child2[0].value.length==0) 
                 {
                    
-                    filter_query = filter_query + filterrow_child2[0].name + " = *";
+                    filter_query = filter_query + filterrow_child2[0].name + " like \"%\"";
                 }
                 else
                 {
-                    filter_query = filter_query + filterrow_child2[0].name + " = " + " '" + filterrow_child2[0].value + "'";
+                    filter_query = filter_query + filterrow_child2[0].name + " like " + " '" + filterrow_child2[0].value + "%'";
                 }
             }
             else
             {
                 if(filterrow_child2[0].value.length==0) 
                 {
-                    filter_query = filter_query + filterrow_child2[0].name + " = * AND ";
+                    filter_query = filter_query + filterrow_child2[0].name + " like \"%\" AND ";
                 }
                 else
                 {
-                    filter_query = filter_query + filterrow_child2[0].name + " = " + " '" + filterrow_child2[0].value + "'" + " AND ";
+                    filter_query = filter_query + filterrow_child2[0].name + " like " + " '" + filterrow_child2[0].value + "%'" + " AND ";
                 }
             }
     
