@@ -78,14 +78,39 @@
                          
                             $delete_query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_criteria";
                             $result_des = @mysqli_query($dbc_user, $delete_query);
-                            // Thien Son xu ly exception cho nay
+                            
+                            
+/////////////////////////THIEN SON XU LY EXCEPTION CHO NAY NHA ////////////////////////////////////////////////
+
+
+
+
                            // $error = mysqli_error($dbc_user);
                           //  echo "<script>addAlert(\"danger\",\"".$delete_query."\");</script>";
                            // echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
                         //$query_content = "$query_content WHERE $filter_criteria";
                 //echo $query_content;           
         }
-                        
+                        if (!empty($_POST['query_new'])){
+                                $update_criteria = $_POST['query_old'];
+                                $update_data = $_POST['query_new'];
+                                 $update_query = "UPDATE $selecteddatabase.$selectedtable SET $update_data WHERE $update_criteria";
+                        // echo "<script>addAlert(\"danger\",\"".$update_query."\");</script>";
+                            //$delete_query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_criteria";
+                            $result_des = @mysqli_query($dbc_user, $update_query);
+                            
+                            
+/////////////////////////THIEN SON XU LY EXCEPTION CHO NAY NHA ////////////////////////////////////////////////
+
+
+
+
+                          //  $error = mysqli_error($dbc_user);
+                          //  echo "<script>addAlert(\"danger\",\"".$delete_query."\");</script>";
+                           // echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
+                        //$query_content = "$query_content WHERE $filter_criteria";
+                //echo $query_content;           
+        }
                         
                         # code...
                         $result_des = @mysqli_query($dbc_user, $query_des);
@@ -294,14 +319,17 @@
                        } 
                     ?>
                     <input type='hidden' id='number_of_info' name='number_of_info' value=''>
-                    <input type='hidden' id='query_old' name='query_old' value=''>
-                    <input type='hidden' id='query_new' name='query_new' value=''>
+
                     <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
                 </div>
                 <div class="modal-footer">
+                     <form method='POST'>               
+                    <input type='hidden' id='query_old' name='query_old' value=''>
+                    <input type='hidden' id='query_new' name='query_new' value=''>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="save_edit_button" type="button" class="btn btn-primary" onclick="getQuery()">Save changes</button>
-
+                
+                    <button id="save_edit_button" type='submit' type="button" class="btn btn-primary" onclick="getQuery()">Save changes</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -427,6 +455,7 @@ function editQuery(clicked_id){
          name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'" + " AND ";
     }
         document.getElementById("query_old").value = name_;
+       // alert(name_);
         document.getElementById("number_of_info").value = content.length-4;
         $("#myModal").modal('show');
         
@@ -449,6 +478,6 @@ function getQuery(){
          name_ = name_ + titles + " = " + "'" + values +"'" + " , ";
     }
     document.getElementById("query_new").value = name_;
-    alert(name_);
+  //  alert(name_);
 }
 </script>
