@@ -65,19 +65,19 @@
                 <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]">
               </div>
             </td>
-            <td><input type="checkbox" name="null"></td>
+            <td><input type="checkbox" name="not_null[]" value="NOT NULL"/></td>
             <td>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
                 <select class="form-control" name="index[]">
                   <option value="null"></option>
-                  <option value="unique">UNIQUE</option>
-                  <option value="primary">PRIMARY</option>
+                  <option value="UNIQUE">UNIQUE</option>
+                  <option value="PRIMARY">PRIMARY</option>
                 </select>
               </div>
             </td>
-            <td><input type="checkbox" name="ai"></td>          
-          </tr>'
+            <td><input type="checkbox" name="ai[]" value="AUTO_INCREMENT"/></td>          
+          </tr>
 
 
         </tbody>
@@ -101,7 +101,7 @@
       e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<tr><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]"></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="data_type[]"><option value="null"></option><option value="int">INT</option><option value="varchar">VARCHAR</option><option value="text">TEXT</option><option value="date">DATE</option><option value="char">CHAR</option><option value="float">FLOAT</option><option value="double">DOUBLE</option><option value="real">REAL</option><option value="boolean">BOOLEAN</option><option value="blob">BLOB</option></select></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"></div></td><td><input type="checkbox" name="null"></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="index[]"><option value="null"></option><option value="unique">UNIQUE</option><option value="primary">PRIMARY</option></select></div></td><td><input type="checkbox" name="ai"></td><td><button id="remove_field_button" class="btn btn-danger submit" >Remove field</button></td></tr>'); //add input box
+            $(wrapper).append('<tr><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Column name" aria-describedby="basic-addon1" name="column_name[]"></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="data_type[]"><option value="null"></option><option value="int">INT</option><option value="varchar">VARCHAR</option><option value="text">TEXT</option><option value="date">DATE</option><option value="char">CHAR</option><option value="float">FLOAT</option><option value="double">DOUBLE</option><option value="real">REAL</option><option value="boolean">BOOLEAN</option><option value="blob">BLOB</option></select></div></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"></div></td><td><input type="checkbox" name="not_null[]" value="NOT NULL"/></td><td><div class="input-group"><span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span><select class="form-control" name="index[]"><option value="null"></option><option value="UNIQUE">UNIQUE</option><option value="PRIMARY">PRIMARY</option></select></div></td><td><input type="checkbox" name="ai[]" value="AUTO_INCREMENT"/></td></tr>'); //add input box
           }
         });
 
@@ -118,20 +118,25 @@ if(!empty($_POST["add_table"]) && !empty($_POST["table_name"])){
   $column_name = $_POST['column_name'];
   $data_type = $_POST['data_type'];
   $data_size = $_POST["data_size"];
+  $ai = $_POST['ai'];
+  $not_null = $_POST['not_null'];
+  $index = $_POST['index'];
   $count1 = count($_POST["column_name"]);
   $count2 = count($_POST["data_type"]);
   $count3 = count($_POST["data_size"]);
   $query = "CREATE TABLE $table_name (";
-    if ($count1 == $count2 && $count2 == $count3){
-      $i = 0;
-      $count = $count1 - 1;
-      for (; $i < $count; $i++){
-        $query = $query . $column_name[$i] . " " . $data_type[$i] . "(" . $data_size[$i] ."),"; 
+    if (true){
+      #$count = $count1 - 1;
+      for ($i = 0; $i < $count1; $i++){
+        $query = $query . $column_name[$i] . " " . $data_type[$i] . "(" . $data_size[$i] .") ". $ai[$i] . " " . $not_null[$i] . " " . $index[$i] . ","; 
       }
-      $query = $query . $column_name[$i] . " " . $data_type[$i] . "(" . $data_size[$i] .")"; 
+      #$query = $query . $column_name[$i] . " " . $data_type[$i] . "(" . $data_size[$i] .")"; 
     }
     $query = $query . ")";
-$result = mysqli_query($dbc, $query);
+    $query = str_replace(",)",")",$query);
+    $query = str_replace("null","",$query);
+  echo $query;
+  #$result = mysqli_query($dbc, $query);
 if ($result)
   echo '<script>addAlert("success","Create table successfully");</script>';
 else echo '<script>addAlert("success","Create table failed");</script>';
