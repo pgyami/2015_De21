@@ -247,13 +247,67 @@
                                /* $num1 = $num_of_fields - 1;*/
                                echo "<form method='POST'>";
                                echo "<td><input type='hidden' id='query_delete' name='query_delete' value=''></td>";
+                               echo "<td name = \"td_edit_$count5\" class='text-left'><button type='submit' data-toggle=\"modal\" id=\"edit_button_$count5\" name='edit_button'  class='btn btn-info submit' value=\"Edit\" onclick=\"editQuery(this.id)\">Edit</button></td>";
                                echo "<td name = \"td_delete_$count5\" class='text-left'><button type='submit' id=\"delete_button_$count5\" name='delete_button'  class='btn btn-danger submit' value=\"Delete\" onclick=\"deleteQuery(this.id)\">Delete</button></td>";
                                echo "</form>";
                             }
                             echo '</tr>';
                             echo '<form method="POST">';
                             echo '<tr>';
+   ?>
+  
+    <div id="myModal" class="modal fade" onload="getValue();">
+   
+        <div class="modal-dialog">
+            
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Update</h4>
+                </div>
+                <div class="modal-body" id="model-body-content">
+                    <p>Do you want to save changes you made to document before closing?</p>
+                    <?php
+                        $test = 1;
+                        
+                        mysqli_data_seek($result_filter,0);
 
+                        while ($test <= $num_of_fields)
+                        {
+                            $i = $test - 1;
+                            $rows_filter = @mysqli_fetch_array($result_filter, MYSQLI_ASSOC);
+
+                    ?>
+                            <div class="row">
+                            <div class="col-sm-8" class="label_content">
+                                <label class="col-sm-4 control-label" id="label_content_<?php echo $test; ?>"><?php echo $rows_filter['Field']; ?></label>
+                            </div>
+                            <div class="col-sm-4" class="input_content">
+                                <input type="text" class="form-control" id="input_content_<?php echo $test; ?>" >
+                            </div>
+                            
+                        </div>
+                        </br>
+                    <?php
+                        
+                            $test++;
+                       } 
+                    ?>
+                    <input type='hidden' id='number_of_info' name='number_of_info' value=''>
+                    <input type='hidden' id='query_old' name='query_old' value=''>
+                    <input type='hidden' id='query_new' name='query_new' value=''>
+                    <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="save_edit_button" type="button" class="btn btn-primary" onclick="getQuery()">Save changes</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    <?php
                             $result_des = @mysqli_query($dbc_user, $query_des);
                             while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC)){
                               echo '<td><input type="input" class="form-control" placeholder="'.$row['Field'].'"  name="'.$row['Field'].'"></td>';
@@ -339,10 +393,10 @@ function deleteQuery(clicked_id) {
     
     var name_ = "";
     
-    for(i = 0; i < content.length - 3; i++)
+    for(i = 0; i < content.length - 4; i++)
     {   
         var content_i = content[i];
-        if(i == content.length - 4)
+        if(i == content.length - 5)
         name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'";
         else
          name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'" + " AND ";
@@ -350,6 +404,51 @@ function deleteQuery(clicked_id) {
     }
  //  alert(name_);
     c.querySelector("#query_delete").value = name_;
+    alert(name_);
+}
+
+function editQuery(clicked_id){
+    $(document).ready(function(){
+
+		var editrow = document.getElementById(clicked_id);
+        var c = editrow.parentNode.parentNode;
+        
+        var content = c.childNodes;
+        var name_ = "";
+        for(i = 0; i < content.length - 4; i++)
+    {   
+        var content_i = content[i];
+        var number = i + 1;
+        document.getElementById("input_content_"+number).value = content_i.innerHTML;
+        
+        if(i == content.length - 5)
+        name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'";
+        else
+         name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'" + " AND ";
+    }
+        document.getElementById("query_old").value = name_;
+        document.getElementById("number_of_info").value = content.length-4;
+        $("#myModal").modal('show');
+        
+         
+});
+}
+
+function getQuery(){
+    var numbers = document.getElementById("number_of_info").value;
+    var content_length = parseInt(numbers);
+    var name_ = "";
+    for(i = 0; i < content_length; i++)
+    {
+        var j = i + 1;
+        var titles = document.getElementById("label_content_"+j).innerHTML;
+        var values = document.getElementById("input_content_"+j).value;
+        if(i == content_length - 1)
+        name_ = name_ + titles + " = " + "'" + values +"'";
+        else
+         name_ = name_ + titles + " = " + "'" + values +"'" + " , ";
+    }
+    document.getElementById("query_new").value = name_;
     alert(name_);
 }
 </script>
