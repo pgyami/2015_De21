@@ -387,7 +387,7 @@ function deleteQuery(clicked_id) {
     
     var c = deleterow.parentNode.parentNode;
 
-    alert(c.nodeName);
+    //alert(c.nodeName);
     
     var content = c.childNodes;
     
@@ -404,7 +404,7 @@ function deleteQuery(clicked_id) {
     }
  //  alert(name_);
     c.querySelector("#query_delete").value = name_;
-    alert(name_);
+  //  alert(name_);
 }
 
 function editQuery(clicked_id){
