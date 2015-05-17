@@ -1,3 +1,6 @@
+<div class="col-sm-3">
+</div>
+<div class="col-sm-6">
 <div class="panel panel-success">
     <div class="panel-heading">Confirm delete table</div>
     <div class="panel-body">
@@ -11,24 +14,25 @@
             }
             else echo'
                 <form>
-                    <div class="row">
-                        <div class="col-sm-3">
+                    <div class="row"><center>
                             <input type="hidden" name="action" value="delete_table" />
                             <input type="hidden" name="deletetable" value="'.$_GET["deletetable"].'" />
                             <input type="hidden" name="selecteddatabase" value="'.$_GET["selecteddatabase"].'" />
-                            Do you want to delete table '.$_GET["deletetable"].'
-                        </div>
-                    </div>
+                            <h3>Do you want to delete table '.$_GET["deletetable"].'</h3>
+                    </center></div>
                     <br />
                     <div class="row">
-                        <div class="col-sm-3">
+                    <center>
                             <!-- <input type="submit" name="cfmdelete" value="Yes"/> -->
                             <button type="submit" class="btn btn-info submit" name="cfmdelete" value="Yes">Yes</button>
                             <button type="button" class="btn btn-danger submit" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'\'">No</button>
-                        </div>
+                    </center>
                     </div>
                 </form>';
             
         ?>        
     </div>
+</div>
+</div>
+<div class="col-sm-3">
 </div>

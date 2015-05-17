@@ -1,3 +1,6 @@
+<div class="col-sm-3">
+</div>
+<div class="col-sm-6">
 <div class="panel panel-success">
 	<div class="panel-heading">Confirm delete database</div>
 	<div class="panel-body">
@@ -12,16 +15,16 @@
 			}
 			else
 				echo '<div class="row">
-					<div class="col-sm-6">
-						Do you want to delete database <a href="index.php?action=manager_db&selecteddatabase='.$_GET['deletedatabase'].'">'.$_GET['deletedatabase'].'</a>
-					</div>
+				<center>
+						<h3>Do you want to delete database <a href="index.php?action=manager_db&selecteddatabase='.$_GET['deletedatabase'].'">'.$_GET['deletedatabase'].'</a></h3>
+				</center>
 				</div>
 				<br />
 				<div class="row">
-					<div class="col-sm-6">
+				<center>
 						<button type="button" class="btn btn-info submit" onclick="location.href=\'index.php?action=delete_database&deletedatabase='.$_GET['deletedatabase'].'&confirm=yes\';return false;">Yes</button>
 						<button type="button" class="btn btn-danger submit" onclick="location.href=\'index.php?action=manager_db\'">No</button>
-					</div>
+				</center>
 				</div>
 				<br />';
 
@@ -30,5 +33,9 @@
 		
 	</div>
 </div>
+</div>
+<div class="col-sm-3">
+</div>
+
 								<!-- <a href="index.php?action=manager_db">No</a> -->
 						<!-- <a href="index.php?action=delete_database&deletedatabase=<?php echo $_GET['deletedatabase'];?>&confirm=yes">Yes</a>  -->
