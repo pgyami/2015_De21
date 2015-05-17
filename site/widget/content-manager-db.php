@@ -104,7 +104,7 @@
                             $delete_criteria = $_POST['query_delete'];
                          
                             $delete_query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_criteria";
-                            $result_des = @mysqli_query($dbc_user, $delete_query);
+                            $result_delete = @mysqli_query($dbc_user, $delete_query);
                             
                             
 /////////////////////////THIEN SON XU LY EXCEPTION CHO NAY NHA ////////////////////////////////////////////////
@@ -124,7 +124,7 @@
                                  $update_query = "UPDATE $selecteddatabase.$selectedtable SET $update_data WHERE $update_criteria";
                         // echo "<script>addAlert(\"danger\",\"".$update_query."\");</script>";
                             //$delete_query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_criteria";
-                            $result_des = @mysqli_query($dbc_user, $update_query);
+                            $result_update = @mysqli_query($dbc_user, $update_query);
                             
                             
 /////////////////////////THIEN SON XU LY EXCEPTION CHO NAY NHA ////////////////////////////////////////////////
@@ -174,8 +174,9 @@
                         <?php
 
                         //them du lieu vao bang
-
+                        echo $type;
                         $result_des = @mysqli_query($dbc_user, $query_des);
+                        echo $query_des;
                         $check = false;
                         while ($rows = @mysqli_fetch_assoc($result_des)){
                             $row = $rows['Field'];
@@ -184,6 +185,7 @@
                                 break;
                             }            
                         }
+
                         if ($check == true) {
                             $result_des = @mysqli_query($dbc_user, $query_des);
                             $add = true;
@@ -194,23 +196,19 @@
                                     break;
                                 }
                             }
-                            $add = true;
+                            
+                            
                             if ($add == true){
                                 $result_des = @mysqli_query($dbc_user, $query_des);
                                 $add = true;
-                                while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
-                                    $row = $rows['Field'];
-                                    if (empty($_POST[$row])){
-                                        $add = false;
-                                        break;
-                                    }
-                                }
+                           
                                 $query_insert = "INSERT INTO $selecteddatabase.$selectedtable VALUES (";
                                 $result_des = @mysqli_query($dbc_user, $query_des);
                                 while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
                                     $row = $rows['Field'];
                                     $query_insert = $query_insert . "'" . $_POST[$row] . "',";
                                 }
+                                echo "<script>addAlert(\"success\",\"".$query_insert."\");</script>";
                                 $query_insert = $query_insert . ")";
                                 $query_insert = str_replace(",)",")",$query_insert);
                                 $result = @mysqli_query($dbc_user, $query_insert);
@@ -296,16 +294,16 @@
                                     echo "<td headers=\"".$rows_filter['Field']."\">" . $row["$i"] . "</td>";
                                 }
                                /* $num1 = $num_of_fields - 1;*/
-
+                                echo "<td name = \"td_edit_$count5\" class='text-left'><button type='submit' data-toggle=\"modal\" id=\"edit_button_$count5\" name='edit_button'  class='btn btn-info submit' value=\"Edit\" onclick=\"editQuery(this.id)\">Edit</button></td>";
+                           
                                echo "<form method='POST'>";
                                echo "<td><input type='hidden' id='query_delete' name='query_delete' value=''></td>";
-                               echo "<td name = \"td_edit_$count5\" class='text-left'><button type='submit' data-toggle=\"modal\" id=\"edit_button_$count5\" name='edit_button'  class='btn btn-info submit' value=\"Edit\" onclick=\"editQuery(this.id)\">Edit</button></td>";
-                               echo "<td name = \"td_delete_$count5\" class='text-left'><button type='submit' id=\"delete_button_$count5\" name='delete_button'  class='btn btn-danger submit' value=\"Delete\" onclick=\"deleteQuery(this.id)\">Delete</button></td>";
-
+                                  echo "<td name = \"td_delete_$count5\" class='text-left'><button type='submit' id=\"delete_button_$count5\" name='delete_button'  class='btn btn-danger submit' value=\"Delete\" onclick=\"deleteQuery(this.id)\">Delete</button></td>";
+                               echo "</form>";
+                               echo '</tr>';
                             }
-                            echo '</tr>';
-                            echo '<form method="POST">';
-                            echo '<tr>';
+                            
+                            
    ?>
   
     <div id="myModal" class="modal fade" onload="getValue();">
@@ -363,6 +361,9 @@
     </div>
 
                     <?php
+                           
+                            echo '<form method="POST">';
+                            echo '<tr>';
                             $result_des = @mysqli_query($dbc_user, $query_des);
                             while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC)){
                               echo '<td><input type="input" class="form-control" placeholder="'.$row['Field'].'"  name="'.$row['Field'].'"></td>';
@@ -484,6 +485,7 @@ function editQuery(clicked_id){
         document.getElementById("query_old").value = name_;
        // alert(name_);
         document.getElementById("number_of_info").value = content.length-4;
+        alert(content.length-4);
         $("#myModal").modal('show');
         
          
@@ -493,8 +495,9 @@ function editQuery(clicked_id){
 function getQuery(){
     var numbers = document.getElementById("number_of_info").value;
     var content_length = parseInt(numbers);
+    alert(content_length);
     var name_ = "";
-    for(i = 0; i < content_length; i++)
+    for(i = 0; i <= content_length; i++)
     {
         var j = i + 1;
         var titles = document.getElementById("label_content_"+j).innerHTML;
