@@ -189,13 +189,13 @@
                         if ($check == true) {
                             $result_des = @mysqli_query($dbc_user, $query_des);
                             $add = true;
-                            while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
+                            /*while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
                                 $row = $rows['Field'];
                                 if (empty($_POST[$row])){
                                     $add = false;
                                     break;
                                 }
-                            }
+                            }*/
                             
                             
                             if ($add == true){
@@ -208,7 +208,6 @@
                                     $row = $rows['Field'];
                                     $query_insert = $query_insert . "'" . $_POST[$row] . "',";
                                 }
-                                echo "<script>addAlert(\"success\",\"".$query_insert."\");</script>";
                                 $query_insert = $query_insert . ")";
                                 $query_insert = str_replace(",)",")",$query_insert);
                                 $result = @mysqli_query($dbc_user, $query_insert);
