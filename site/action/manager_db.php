@@ -39,7 +39,7 @@
 
     $dbc_user = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']); 
     if (!$dbc_user){
-      echo "<script>addAlert(\"danger\",\"Error when connection\");</script>";
+      echo '<script>addAlert("danger","Error when connection");</script>';
       }
 
     if (isset($_GET['selecteddatabase']))

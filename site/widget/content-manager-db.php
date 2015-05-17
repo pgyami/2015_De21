@@ -13,7 +13,34 @@
   $show_table_structure_button = '<button type="button" class="btn btn-info submit" value="Show Structure" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'&showstructure=yes\';return false;">Show Structure</button><br/><br/>';
   $show_table_data_button = '<button type="button" class="btn btn-info submit" value="Show Data" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'\';return false;">Show Data</button><br/><br/>';
 ?>
+<form id = "clgt">
+  </form>
 <div class="col-sm-10">
+  <script type="text/javascript">
+   $(document).ready(function () {
+      $('.editbtn').click(function (event) {
+          var currentTD = $(this).parents('tr').find('td');
+          if ($(this).html() == 'Edit') {                  
+              $.each(currentTD, function () {
+                  $(this).prop('contenteditable', true)
+              });
+          } else {
+             $.each(currentTD, function () {
+                  $(this).prop('contenteditable', false)
+              });
+          }
+
+          
+          if($(this).html() == 'Edit')
+          {$(this).html( 'Save')}
+        else
+        {$("#clgt").submit();
+      }
+
+      });
+
+  });
+  </script>
 
 <!--   <div class="row placeholders"> -->
      <div class="col-xs-12 col-sm-12">
@@ -72,7 +99,7 @@
                           while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC))
                             echo '<th>' . $row['Field'] . '</th>';
 
-                            echo '<th></th>';
+                            echo '<th></th><th></th>';
                             echo '</tr>';
                         }
                         else {
@@ -145,10 +172,9 @@
                                 } else {
                                     echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
                                 }
-                            } else {
-                                echo "<script>addAlert(\"danger\",\"Please fill necessary infomation\");</script>";
                             }
                         }
+                        /*else echo '<script>addAlert("danger","Please fill information");</script>';*/
 
                         //hien noi dung bang
 
@@ -192,6 +218,7 @@
                                     echo "<td>" . $row["$i"] . "</td>";
                                 }
                                /* $num1 = $num_of_fields - 1;*/
+                               echo '<td class="text-left"><button type="button" class="btn btn-info editbtn">Edit</button></td>';
                                echo "<td class='text-left'><button type='submit' name='delete_button' class='btn btn-danger submit' value=\"Delete\">Delete</button></td>";
                             }
                             echo '</tr>';
