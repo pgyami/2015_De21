@@ -42,16 +42,17 @@
         </div>
         <button type='submit' name='add_table' class='btn btn-info submit' value="Add table">Add table</button><br />
       </div>
-
+      <hr>
       <table class="table table-striped table-condensed table-hover">
         <thead>
           <tr>
-            <th>Column name</th>
-            <th>Type</th>
-            <th>Length</th>
-            <th>Not NULL</th>
-            <th>Index</th>
-            <th>A_I</th>
+            
+            <th><center>Column name</center></th>
+            <th><center>Type</center></th>
+            <th><center>Length</center></th>
+            <th style="width:100px;"><center>Not NULL</center></th>
+            <th><center>Index</center></th>
+            <th><center>A_I</center></th>
             <th></th>
           </tr>
         </thead>
@@ -87,7 +88,7 @@
                 <input type="text" class="form-control" placeholder="Length" aria-describedby="basic-addon1" name="data_size[]"/>
               </div>
             </td>
-            <td><input type="checkbox" name="not_null[0]" value="NOT NULL"/></td>
+            <td><center><input type="checkbox" name="not_null[0]" value="NOT NULL"/></center></td>
             <td>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
@@ -195,7 +196,8 @@
         echo '<script>addAlert("success","Create table successfully");</script>';
       else echo '<script>addAlert("danger","'.$error.'");</script>';
       }
-echo '<a href="index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'">Back to manager page</a>';
+echo "<hr>";
+echo '<a href="index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'"><button type="button" class="btn btn-default pull-right">Back to manager page</button></a>';
 ?>
 
 </div>

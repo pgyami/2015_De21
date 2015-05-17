@@ -38,5 +38,6 @@ if (!empty($_GET['newdb'])){
                 </script>";
             }
 }
+else '<script>addAlert(\"success\",\"Create database successfully\");</script>';
 ?>
-<a href="index.php?action=manager_db">Back to manager page</a>
+<a href="index.php?action=manager_db"><button type="button" class="btn btn-default pull-right">Back to manager page</button></a>
