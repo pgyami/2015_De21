@@ -484,7 +484,7 @@ function editQuery(clicked_id){
         document.getElementById("query_old").value = name_;
        // alert(name_);
         document.getElementById("number_of_info").value = content.length-4;
-        alert(content.length-4);
+  
         $("#myModal").modal('show');
         
          
@@ -494,9 +494,10 @@ function editQuery(clicked_id){
 function getQuery(){
     var numbers = document.getElementById("number_of_info").value;
     var content_length = parseInt(numbers);
-    alert(content_length);
+
     var name_ = "";
-    for(i = 0; i <= content_length; i++)
+    
+    for(i = 0; i < content_length; i++)
     {
         var j = i + 1;
         var titles = document.getElementById("label_content_"+j).innerHTML;
@@ -506,7 +507,9 @@ function getQuery(){
         else
          name_ = name_ + titles + " = " + "'" + values +"'" + " , ";
     }
+
     document.getElementById("query_new").value = name_;
+    
   //  alert(name_);
 }
 </script>
