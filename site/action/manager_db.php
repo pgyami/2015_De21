@@ -24,7 +24,7 @@
 <body>
   <?php 
     $dbc_local = @mysqli_connect('localhost','root','123456');
-    
+     
     if (!empty($_POST['id'])){
 
       $id = $_POST['id'];
@@ -83,7 +83,12 @@
       $result_des = @mysqli_query($dbc_user, $query_des);
 
       $query_content = "SELECT * FROM $selecteddatabase.$selectedtable";
-      $result_content = @mysqli_query($dbc_user, $query_content);
+      if (!empty($_POST['filter_row'])){
+            $filter_criteria = $_POST['query_filter2'];
+            $query_content = "$query_content WHERE $filter_criteria";
+                //echo $query_content;           
+        }
+     // $result_content = @mysqli_query($dbc_user, $query_content);
     }
 
   ?>
