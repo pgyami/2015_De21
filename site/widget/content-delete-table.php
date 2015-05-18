@@ -10,7 +10,8 @@
                 $query = "DROP TABLE " . $_GET['selecteddatabase'] . "." . $_GET['deletetable'];
                 $result = @mysqli_query($dbc, $query);
                 echo '<script>addAlert("success","Delete table successfully");</script>';
-                echo '<a href="index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'">Back to manager table page</a>';
+                /*echo '<a href="index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'">Back to manager table page</a>';*/
+                echo '<script type="text/javascript">location.href = "index.php?action=manager_db&selecteddatabase='.$_GET['selecteddatabase'].'";</script>';
             }
             else echo'
                 <form>

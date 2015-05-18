@@ -11,7 +11,8 @@
 				$query = "DROP DATABASE $deletedatabase";
 				$result = @mysqli_query($dbc, $query);
 				echo '<script>addAlert("success","Delete database successfully");</script>';
-				echo '<a href="index.php?action=manager_db">Back to manager page</a>';
+				echo '<script type="text/javascript">location.href = "index.php?action=manager_db";</script>';
+				/*echo '<a href="index.php?action=manager_db">Back to manager page</a>';*/
 			}
 			else
 				echo '<div class="row">
