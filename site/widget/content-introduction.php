@@ -5,11 +5,11 @@
       <div class="panel-heading">Introduction</div>
       <div class="panel-body">
         <center>
-            <h1>BSLK website cung cấp điều gì?</h1>
-            <p>BSLK cung cấp Rest API cho phép người dùng kết nối với mọi cơ sở dữ liệu được đăng tải một cách trực quan và nhanh chóng nhất</p>
+            <h1>What does BSLK Website provide? </h1>
+            <p>BSLK provided Rest API allows users to connect to any database, published intuitively and quickly</p>
             <img src="public/images/database-symbol.png" alt="Smiley face" height="150" width="150">
-            <h1>Kết nối tới mọi cơ sở dữ liệu</h1>
-            <p>Cung cấp các giao diện trực quan giúp người sử dụng dễ dàng truy vấn và quản lý hiệu quả với một cơ chế bảo mật an toàn, đáng tin cậy nhất nhằm mang đến cho người dùng sự ân tâm trong quá trình sử dụng.</p>
+            <h1>Connect to any data source</h1>
+            <p>Providing an intuitive interface helps users easily query and manage effective with a secure security mechanism, most reliable to give users peace of mind during use.</p>
         </center>
       </div>
     </div>       
