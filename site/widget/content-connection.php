@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php $dbc = @mysqli_connect('localhost','root','123456');?>
+<?php $dbc = mysqli_connect('localhost','root','123456');?>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css" />
@@ -16,7 +16,7 @@
         if (!empty($_POST['delete_submit'])) {
             $id = $_POST['id'];
             $query = "DELETE FROM userinfo.connection_info WHERE id='$id'";
-            $result = @mysqli_query($dbc, $query);
+            $result = mysqli_query($dbc, $query);
             if ($result) {
               # code...
               echo "<script>
@@ -54,12 +54,12 @@
             }
 
             try {
-                $result = @mysqli_query($dbc, $query);
+                $result = mysqli_query($dbc, $query);
             } catch (Exception $e) {
                 echo '<script>addAlert("danger","'.$e->getMessage().'");</script>';
             }
             
-            if (@mysqli_affected_rows($dbc) == 1){
+            if (mysqli_affected_rows($dbc) == 1){
                 echo "<script>
                 addAlert(\"success\",\"Create connection successfully\");
                 </script>";
@@ -97,9 +97,8 @@
                 global $loggedInUser;
                 $user_userforst = $loggedInUser->username;
                 $query = "SELECT * FROM userinfo.connection_info WHERE user_userforst='$user_userforst'";
-                $result = @mysqli_query($dbc, $query);
-                /*echo mysqli_error($dbc)*/;
-		while ($row = @mysqli_fetch_assoc($result)){
+                $result = mysqli_query($dbc, $query);
+                while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     echo "<tr>
                     
