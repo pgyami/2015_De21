@@ -6,12 +6,13 @@
   <!-- Bootstrap -->
   <link type="text/css" rel="stylesheet" href="public/css/bootstrap.css">
   <script src="code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src ="pulibc/js/bootstrap.js"></script>
-  <script src="public/js/post_form.js"></script>
+
+  <script src ="public/js/bootstrap.js"></script>
+
  
   <style>
   body{
-   background: url(background.jpg) no-repeat center center fixed; 
+   background: no-repeat center center fixed; 
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;

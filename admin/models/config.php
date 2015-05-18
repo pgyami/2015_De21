@@ -75,6 +75,7 @@ $settings = fetchConfigParameters();
 $plugin_settings = fetchConfigParametersPlugins();
 
 //Set Settings
+date_default_timezone_set('asia/ho_chi_minh');
 $emailDate = date('F j, Y');
 $emailActivation = $settings['activation'];
 $can_register = $settings['can_register'];

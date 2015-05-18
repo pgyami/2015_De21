@@ -14,7 +14,34 @@
   $show_table_structure_button = '<button type="button" class="btn btn-info submit" value="Show Structure" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'&showstructure=yes\';return false;">Show Structure</button><br/><br/>';
   $show_table_data_button = '<button type="button" class="btn btn-info submit" value="Show Data" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'\';return false;">Show Data</button><br/><br/>';
 ?>
+<form id = "clgt">
+  </form>
 <div class="col-sm-10">
+  <script type="text/javascript">
+   $(document).ready(function () {
+      $('.editbtn').click(function (event) {
+          var currentTD = $(this).parents('tr').find('td');
+          if ($(this).html() == 'Edit') {                  
+              $.each(currentTD, function () {
+                  $(this).prop('contenteditable', true)
+              });
+          } else {
+             $.each(currentTD, function () {
+                  $(this).prop('contenteditable', false)
+              });
+          }
+
+          
+          if($(this).html() == 'Edit')
+          {$(this).html( 'Save')}
+        else
+        {$("#clgt").submit();
+      }
+
+      });
+
+  });
+  </script>
 
 <!--   <div class="row placeholders"> -->
      <div class="col-xs-12 col-sm-12">
@@ -77,40 +104,45 @@
                             $delete_criteria = $_POST['query_delete'];
                          
                             $delete_query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_criteria";
-                            $result_des = @mysqli_query($dbc_user, $delete_query);
+                            $result_delete = @mysqli_query($dbc_user, $delete_query);
+                            $num_row_delete = @mysqli_affected_rows($dbc_user);
+                            if ($num_row_delete == 1) {
+                              echo '<script>addAlert("success","Delete '.$num_row_delete.' record successfully");</script>';
+                            } 
+                            elseif ($num_row_delete > 1)
+                            {
+                              echo '<script>addAlert("success","Delete '.$num_row_delete.' records successfully");</script>';}
+                            else{
+                              $error_delete =  mysqli_error($dbc_user);
+                              echo '<script>addAlert("danger","Delete record failed");</script>';
+                            }
                             
                             
 /////////////////////////THIEN SON XU LY EXCEPTION CHO NAY NHA ////////////////////////////////////////////////
-
-
-
-
-                           // $error = mysqli_error($dbc_user);
-                          //  echo "<script>addAlert(\"danger\",\"".$delete_query."\");</script>";
-                           // echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
-                        //$query_content = "$query_content WHERE $filter_criteria";
-                //echo $query_content;           
-        }
+           
+                        }
                         if (!empty($_POST['query_new'])){
-                                $update_criteria = $_POST['query_old'];
-                                $update_data = $_POST['query_new'];
-                                 $update_query = "UPDATE $selecteddatabase.$selectedtable SET $update_data WHERE $update_criteria";
-                        // echo "<script>addAlert(\"danger\",\"".$update_query."\");</script>";
-                            //$delete_query = "DELETE FROM $selecteddatabase.$selectedtable WHERE $delete_criteria";
-                            $result_des = @mysqli_query($dbc_user, $update_query);
-                            
+                          $update_criteria = $_POST['query_old'];
+                          $update_data = $_POST['query_new'];
+                          $update_query = "UPDATE $selecteddatabase.$selectedtable SET $update_data WHERE $update_criteria";
+                        
+                          $result_update = @mysqli_query($dbc_user, $update_query);
+                          
+                          $num_row_update = @mysqli_affected_rows($dbc_user);
+                            if ($num_row_update == 1) {
+                              echo '<script>addAlert("success","Update '.$num_row_update.' record successfully");</script>';
+                            } 
+                            elseif ($num_row_update > 1)
+                            {
+                              echo '<script>addAlert("success","Update '.$num_row_update.' records successfully");</script>';}
+                            else{
+                              $error_update =  mysqli_error($dbc_user);
+                              echo '<script>addAlert("danger","Update record failed");</script>';
+                            }  
                             
 /////////////////////////THIEN SON XU LY EXCEPTION CHO NAY NHA ////////////////////////////////////////////////
-
-
-
-
-                          //  $error = mysqli_error($dbc_user);
-                          //  echo "<script>addAlert(\"danger\",\"".$delete_query."\");</script>";
-                           // echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
-                        //$query_content = "$query_content WHERE $filter_criteria";
-                //echo $query_content;           
-        }
+          
+                        }
                         
                         # code...
                         $result_des = @mysqli_query($dbc_user, $query_des);
@@ -120,7 +152,7 @@
                           while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC))
                             echo '<th>' . $row['Field'] . '</th>';
 
-                            echo '<th></th>';
+                            echo '<th></th><th></th>';
                             echo '</tr>';
                         }
                         else {
@@ -147,7 +179,7 @@
                         <?php
 
                         //them du lieu vao bang
-
+                      
                         $result_des = @mysqli_query($dbc_user, $query_des);
                         $check = false;
                         while ($rows = @mysqli_fetch_assoc($result_des)){
@@ -157,27 +189,23 @@
                                 break;
                             }            
                         }
+
                         if ($check == true) {
                             $result_des = @mysqli_query($dbc_user, $query_des);
                             $add = true;
-                            while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
+                            /*while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
                                 $row = $rows['Field'];
                                 if (empty($_POST[$row])){
                                     $add = false;
                                     break;
                                 }
-                            }
-                            $add = true;
+                            }*/
+                            
+                            
                             if ($add == true){
                                 $result_des = @mysqli_query($dbc_user, $query_des);
                                 $add = true;
-                                while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
-                                    $row = $rows['Field'];
-                                    if (empty($_POST[$row])){
-                                        $add = false;
-                                        break;
-                                    }
-                                }
+                           
                                 $query_insert = "INSERT INTO $selecteddatabase.$selectedtable VALUES (";
                                 $result_des = @mysqli_query($dbc_user, $query_des);
                                 while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
@@ -193,10 +221,9 @@
                                 } else {
                                     echo "<script>addAlert(\"danger\",\"".$error."\");</script>";
                                 }
-                            } else {
-                                echo "<script>addAlert(\"danger\",\"Please fill necessary infomation\");</script>";
                             }
                         }
+                        /*else echo '<script>addAlert("danger","Please fill information");</script>';*/
 
                         //hien noi dung bang
 
@@ -243,9 +270,6 @@
                             echo "<tr id =\"filter_row\">";
                            // mysqli_data_seek($result_filter,0);
                             while ($rows_filter = @mysqli_fetch_array($result_filter, MYSQLI_ASSOC)){
-                              //  $row_filter = $rows_filter['Field'];
-
-                               // echo "<td>" . "<input type=\"input\"  class=\"form-control\" placeholder=\"$row_filter\" id=\"row_filter_$count5\"  name='$row_filter'>" . "</td>";
                                 echo '<td><input type="input" class="form-control" placeholder="'.$rows_filter['Field'].'"  name="'.$rows_filter['Field'].'"></td>';
                     
                             }
@@ -270,15 +294,16 @@
                                     echo "<td headers=\"".$rows_filter['Field']."\">" . $row["$i"] . "</td>";
                                 }
                                /* $num1 = $num_of_fields - 1;*/
+                                echo "<td name = \"td_edit_$count5\" class='text-left'><button type='submit' data-toggle=\"modal\" id=\"edit_button_$count5\" name='edit_button'  class='btn btn-info submit' value=\"Edit\" onclick=\"editQuery(this.id)\">Edit</button></td>";
+                           
                                echo "<form method='POST'>";
-                               echo "<td><input type='hidden' id='query_delete' name='query_delete' value=''></td>";
-                               echo "<td name = \"td_edit_$count5\" class='text-left'><button type='submit' data-toggle=\"modal\" id=\"edit_button_$count5\" name='edit_button'  class='btn btn-info submit' value=\"Edit\" onclick=\"editQuery(this.id)\">Edit</button></td>";
+                               echo "<td class='hidden'><input type='hidden' id='query_delete' name='query_delete' value=''></td>";
                                echo "<td name = \"td_delete_$count5\" class='text-left'><button type='submit' id=\"delete_button_$count5\" name='delete_button'  class='btn btn-danger submit' value=\"Delete\" onclick=\"deleteQuery(this.id)\">Delete</button></td>";
                                echo "</form>";
+                               echo '</tr>';
                             }
-                            echo '</tr>';
-                            echo '<form method="POST">';
-                            echo '<tr>';
+                            
+                            
    ?>
   
     <div id="myModal" class="modal fade" onload="getValue();">
@@ -336,6 +361,9 @@
     </div>
 
                     <?php
+                           
+                            echo '<form method="POST">';
+                            echo '<tr>';
                             $result_des = @mysqli_query($dbc_user, $query_des);
                             while ($row = @mysqli_fetch_array($result_des, MYSQLI_ASSOC)){
                               echo '<td><input type="input" class="form-control" placeholder="'.$row['Field'].'"  name="'.$row['Field'].'"></td>';
@@ -343,6 +371,7 @@
 
                             
                             echo "<td class='text-left'><button type='submit' class='btn btn-primary submit' name='add_row' value=\"Add\">Add</button></td>";
+                            echo "<td></td>";
                             echo '</tr>';
                             echo "</form>";
                           }
@@ -457,6 +486,7 @@ function editQuery(clicked_id){
         document.getElementById("query_old").value = name_;
        // alert(name_);
         document.getElementById("number_of_info").value = content.length-4;
+  
         $("#myModal").modal('show');
         
          
@@ -466,7 +496,9 @@ function editQuery(clicked_id){
 function getQuery(){
     var numbers = document.getElementById("number_of_info").value;
     var content_length = parseInt(numbers);
+
     var name_ = "";
+    
     for(i = 0; i < content_length; i++)
     {
         var j = i + 1;
@@ -477,7 +509,9 @@ function getQuery(){
         else
          name_ = name_ + titles + " = " + "'" + values +"'" + " , ";
     }
+
     document.getElementById("query_new").value = name_;
+    
   //  alert(name_);
 }
 </script>
