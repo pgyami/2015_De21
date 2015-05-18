@@ -1,4 +1,4 @@
-<?php $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
+<?php $dbc = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
 
 <div class="panel panel-success">
 	<div class="panel-heading">Create Database</div>
@@ -25,7 +25,7 @@
 <?php
 if (!empty($_GET['newdb'])){
 	$query = "CREATE DATABASE " . $_GET['newdb'];
-	$result = mysqli_query($dbc, $query);
+	$result = @mysqli_query($dbc, $query);
 	if ($result) {		
 		# code...
 		echo "<script>

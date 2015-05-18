@@ -5,11 +5,11 @@
 	<div class="panel-heading">Confirm delete database</div>
 	<div class="panel-body">
 		<?php
-			$dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);
+			$dbc = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);
 			if (isset($_GET['confirm']) && $_GET['confirm'] == "yes"){
 				$deletedatabase = $_GET['deletedatabase'];
 				$query = "DROP DATABASE $deletedatabase";
-				$result = mysqli_query($dbc, $query);
+				$result = @mysqli_query($dbc, $query);
 				echo '<script>addAlert("success","Delete database successfully");</script>';
 				echo '<a href="index.php?action=manager_db">Back to manager page</a>';
 			}
