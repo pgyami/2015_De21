@@ -208,12 +208,21 @@
                            
                                 $query_insert = "INSERT INTO $selecteddatabase.$selectedtable VALUES (";
                                 $result_des = @mysqli_query($dbc_user, $query_des);
+                                $field = '(';
+                                $value = '(';
                                 while ($rows = @mysqli_fetch_array($result_des, @MYSQLI_ASSOC)){
                                     $row = $rows['Field'];
-                                    $query_insert = $query_insert . "'" . $_POST[$row] . "',";
+                                    if(!empty($_POST[$row]))
+                                    {
+                                     $field=$field."".$row.",";
+                                     $value=$value."'".$_POST[$row]."',";   
+                                    }
+                                    
                                 }
-                                $query_insert = $query_insert . ")";
+                                 $query_insert = "INSERT INTO $selecteddatabase.$selectedtable".$field.") VALUES ".$value.")";
+                                
                                 $query_insert = str_replace(",)",")",$query_insert);
+                                //echo $query_insert;
                                 $result = @mysqli_query($dbc_user, $query_insert);
                                 $error =  mysqli_error($dbc_user);
                                 if (@mysqli_affected_rows($dbc_user) == 1){
