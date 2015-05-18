@@ -14,10 +14,10 @@ body{
 </head>
 <body>
 
-                             <?php
-							 load_header();
-                            load_widget('content-404');
-							load_footer();
-                            ?>            
+                 <?php
+	 load_header();
+                load_widget('content-404');
+	load_footer();
+                ?>            
 </body>
 </html>
