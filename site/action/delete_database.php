@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 <link type="text/css" rel="stylesheet" href="public/css/bootstrap.css">
-<script src ="pulibc/js/bootstrap.js"></script>
+<script src ="public/js/bootstrap.js"></script>
 <style>
 body{
-	  background: url(background.jpg) no-repeat center center fixed; 
+	  background: no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

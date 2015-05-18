@@ -7,20 +7,20 @@
     <div class="panel panel-info">
       <div class="panel-heading">About BSLK Team</div>
       <div class="panel-body">
-    <center><h1>BSLK là ai?</h1></center>
-    <p>BSLK team hiện đang là các sinh viên năm cuối thuộc trường đại học Bách Khoa thành phố Hồ Chí Minh.
-    BLSK là viết tắt của tên các thành viên trong nhóm bao gồm:</p>
+    <center><h1>What is BSLK Team?</h1></center>
+    <p>BSLK team is currently studying Computer Science at Ho Chi Minh City of Technology
+    BLSK is short for the names of team members include:</p>
     <ul>
-      <li>Nguyễn Đôn Bình</li>
-      <li>Hoàng Nguyễn Thiên Sơn</li>
-      <li>Đinh Hữu Lộc</li>
-      <li>Phạm Ngọc Khánh</li>
+      <li>Nguyen Don Binh - 51100296</li>
+      <li>Hoang Nguyen Thien Son - 51102917</li>
+      <li>Dinh Huu Loc - 51101934</li>
+      <li>Pham Ngoc Khanh - 51101597</li>
     </ul>
     </br>
     <center>
-        <img src="public/images/logo_hcmut.png" width="500" height="500" title="Đại học Bách Khoa Hồ Chí Minh"/>
-        <h4>BSLK website nằm trong khuôn khổ bài tập lớn môn "Lập trình web" thuộc khoa Khoa học và Kỹ thuật máy tính.</h4>
-        <p> Trong quá trình tạo lập không tránh khỏi gặp nhiều sai sót, mọi chi tiết xin liên hệ với chúng tôi thông qua bảng thông tin liên hệ sau, chúng tôi sẽ trả lời sớm nhất có thể.</p>   
+        <img src="public/images/logo_hcmut.png" width="500" height="500" title="Ho Chi Minh City of Technology"/>
+        <h4>BSLK website within the exercise of technical assignments "Web programming" of Computer Science and Computer Engineering.</h4>
+        <p>In the process of creation inevitably encounter many errors, all the details please contact us via the phone number 01662463882, we will reply as soon as possible.</p>   
     </center> 
   </div>
     </div> 
