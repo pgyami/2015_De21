@@ -2,6 +2,12 @@
 <html>
 <head>
 <title>Error</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link type="text/css" rel="stylesheet" href="public/css/bootstrap.css">
+  <script src="code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <script src ="public/js/bootstrap.js"></script>
 <style>
 body{
 	  background:  no-repeat center center fixed; 
@@ -14,10 +20,27 @@ body{
 </head>
 <body>
 
-                             <?php
-							 load_header();
-                            load_widget('content-404');
-							load_footer();
-                            ?>            
+ <div id="wrapper" class="container">
+    <div id="header">
+        <?php
+  //      require_once("admin/models/config.php");
+        load_header();
+        
+        ?>
+    </div>
+    <div id="content" class="row"> 
+      <div class="col-sm-12">
+        <?php load_widget('content-404'); ?>
+      </div>
+      
+      <div class="clearer"></div>
+    </div>
+    <hr>
+    <div id="footer" class="row">
+      <?php 
+      load_footer();
+      ?>
+    </div>
+           
 </body>
 </html>
