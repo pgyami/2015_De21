@@ -22,6 +22,14 @@
  </style>
 </head>
 <body>
+ <div id="wrapper" class="container">
+    <div id="header">
+      <?php
+      require_once("admin/models/config.php");
+      load_header();
+      
+      ?>
+    </div>
   <?php 
   $dbc_local = @mysqli_connect('localhost','root','');
   
@@ -40,8 +48,8 @@
   $dbc_user = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']); 
   if (mysqli_connect_errno())
   {
-  /*echo "Failed to connect to MySQL: " . mysqli_connect_error();*/
-  echo '<script>addAlert("danger","Failed to connect to MySQL");</script>';
+  //echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  echo "<script>addAlert(\"danger\",\"Failed to connect to MySQL: ".mysqli_connect_error()."\");</script>";
   }
 
   if (isset($_GET['selecteddatabase']))
@@ -147,14 +155,7 @@
   }
 
   ?>
-  <div id="wrapper" class="container">
-    <div id="header">
-      <?php
-      require_once("admin/models/config.php");
-      load_header();
-      
-      ?>
-    </div>
+ 
 
     <div id="content" class="row"> 
       <h1 class="page-header">Dashboard</h1>
