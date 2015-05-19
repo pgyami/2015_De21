@@ -23,7 +23,7 @@
 </head>
 <body>
   <?php 
-  $dbc_local = @mysqli_connect('localhost','root','123456');
+  $dbc_local = @mysqli_connect('localhost','root','');
   
   if (!empty($_POST['id'])){
 

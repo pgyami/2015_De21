@@ -212,6 +212,7 @@
                                     $row = $rows['Field'];
                                     $query_insert = $query_insert . "'" . $_POST[$row] . "',";
                                 }
+                                
                                 $query_insert = $query_insert . ")";
                                 $query_insert = str_replace(",)",")",$query_insert);
                                 $result = @mysqli_query($dbc_user, $query_insert);
