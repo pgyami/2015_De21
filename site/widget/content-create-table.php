@@ -1,5 +1,5 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<?php $dbc = mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
+<?php $dbc = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']);?>
 
 
 <div class="panel panel-success">
@@ -189,8 +189,8 @@
       $query = str_replace("null","",$query);
       $query = str_replace("()","",$query);
       /*echo $query;*/
-      $result = mysqli_query($dbc, $query);
-      $error =  mysqli_error($dbc);
+      $result = @mysqli_query($dbc, $query);
+      $error =  @mysqli_error($dbc);
       
       if ($result)
         echo '<script>addAlert("success","Create table successfully");</script>';

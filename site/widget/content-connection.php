@@ -98,8 +98,7 @@
                 $user_userforst = $loggedInUser->username;
                 $query = "SELECT * FROM userinfo.connection_info WHERE user_userforst='$user_userforst'";
                 $result = mysqli_query($dbc, $query);
-                echo mysqli_error($dbc);
-		while ($row = mysqli_fetch_assoc($result)){
+                while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     echo "<tr>
                     
