@@ -36,7 +36,9 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
               <input type="text" class="form-control" placeholder="Table name" aria-describedby="basic-addon1" name="table_name">
-              <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
+              <?
+              //if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required"
+               ?>
             </div>
           </div>                    
         </div>
@@ -153,14 +155,7 @@
     })
   });
 </script>
-<!-- =======
-        $(wrapper).on("click",".remove_field_button", function(e){ //user click on remove text
-          e.preventDefault(); 
-          $(this).parent("tr").remove(); x--;
-        })
-      });
-    </script>
-    >>>>>>> origin/master -->
+
     <?php
     if (!empty($_POST["add_table"]) && empty($_POST["table_name"])) {
       # code...
