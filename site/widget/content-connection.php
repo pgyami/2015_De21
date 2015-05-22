@@ -27,7 +27,7 @@
                 addAlert(\"danger\",\"Delete connection failed\");
                 </script>";
         }
-        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host'])) {
+        elseif (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['user']) && !empty($_POST['host'])) {
             $first_name = $_POST['first_name']; 
             $last_name = $_POST['last_name'];
             $user = $_POST['user'];
@@ -70,8 +70,14 @@
                 </script>";
 
             }
-        }
+        } else {
+
+                echo "<script>
+                addAlert(\"danger\",\"Please fill information\");
+                </script>";
+
     }
+  }
 ?>
 <div class="panel-group">
       <div class="panel panel-info">

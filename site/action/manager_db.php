@@ -38,11 +38,7 @@
 
 
   $dbc_user = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']); 
-  if (mysqli_connect_errno())
-  {
-  /*echo "Failed to connect to MySQL: " . mysqli_connect_error();*/
-  echo '<script>addAlert("danger","Failed to connect to MySQL");</script>';
-  }
+
 
   if (isset($_GET['selecteddatabase']))
     $selecteddatabase = @mysqli_escape_string($dbc_user, $_GET['selecteddatabase']);
@@ -152,7 +148,12 @@
       <?php
       require_once("admin/models/config.php");
       load_header();
-      
+        if (mysqli_connect_errno())
+  {
+   /* dong echo nay chay ma addAlert o duoi k chay????
+   echo "Failed to connect to MySQL: " . mysqli_connect_error();*/
+    echo '<script>addAlert("danger","Failed to connect to MySQL: '. mysqli_connect_error().'");</script>';
+  }
       ?>
     </div>
 
@@ -181,6 +182,7 @@
         echo '</ol>';
       }
       ?>
+      
 
       <div class="col-sm-12">
         <?php

@@ -1,4 +1,3 @@
-
 <?php
   global $result_lsb;
   global $type;
