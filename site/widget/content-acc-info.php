@@ -36,9 +36,6 @@ global $loggedInUser;
 			  <pre><?php echo $loggedInUser->displayname; ?></pre>
 			</div>
 		  </div>
-
-
-
 </div>
     </div>
 

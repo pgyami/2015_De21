@@ -319,10 +319,8 @@
                             
    ?>
   
-    <div id="myModal" class="modal fade" onload="getValue();">
-   
-        <div class="modal-dialog">
-            
+    <div id="myModal" class="modal fade" onload="getValue();">   
+        <div class="modal-dialog">            
             <div class="modal-content">
                 <div class="modal-header" >
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -457,8 +455,6 @@ function deleteQuery(clicked_id) {
     
     var c = deleterow.parentNode.parentNode;
 
-    //alert(c.nodeName);
-    
     var content = c.childNodes;
     
     var name_ = "";
@@ -472,9 +468,7 @@ function deleteQuery(clicked_id) {
          name_ = name_ + content_i.headers + " = " + "'" + content_i.innerHTML +"'" + " AND ";
          
     }
- //  alert(name_);
     c.querySelector("#query_delete").value = name_;
-  //  alert(name_);
 }
 
 function editQuery(clicked_id){
@@ -525,6 +519,5 @@ function getQuery(){
 
     document.getElementById("query_new").value = name_;
     
-  //  alert(name_);
 }
 </script>
