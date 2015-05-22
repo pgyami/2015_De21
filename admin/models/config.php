@@ -195,7 +195,6 @@ require_once("class.user.php");
 
 session_name(SESSION_NAME);
 session_start();
-
 //Global User Object Var
 //loggedInUser can be used globally if constructed
 if(isset($_SESSION["userCakeUser"]) && is_object($_SESSION["userCakeUser"]))
