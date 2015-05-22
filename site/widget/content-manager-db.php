@@ -205,7 +205,7 @@
                                 $result_des = @mysqli_query($dbc_user, $query_des);
                                 $add = true;
                            
-                                $query_insert = "INSERT INTO $selecteddatabase.$selectedtable VALUES (";
+                               
                                 $result_des = @mysqli_query($dbc_user, $query_des);
                                 $field = '(';
                                 $value = '(';
@@ -218,8 +218,13 @@
                                     }
                                     
                                 }
+
+                                
+                               
+
                                  $query_insert = "INSERT INTO $selecteddatabase.$selectedtable".$field.") VALUES ".$value.")";
                                 
+
                                 $query_insert = str_replace(",)",")",$query_insert);
                                 //echo $query_insert;
                                 $result = @mysqli_query($dbc_user, $query_insert);

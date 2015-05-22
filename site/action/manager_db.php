@@ -22,8 +22,16 @@
  </style>
 </head>
 <body>
+ <div id="wrapper" class="container">
+    <div id="header">
+      <?php
+      require_once("admin/models/config.php");
+      load_header();
+      
+      ?>
+    </div>
   <?php 
-  $dbc_local = @mysqli_connect('localhost','root','123456');
+  $dbc_local = @mysqli_connect('localhost','root','');
   
   if (!empty($_POST['id'])){
 
@@ -39,6 +47,11 @@
 
   $dbc_user = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']); 
 
+  if (mysqli_connect_errno())
+  {
+  //echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  echo "<script>addAlert(\"danger\",\"Failed to connect to MySQL: ".mysqli_connect_error()."\");</script>";
+  }
 
   if (isset($_GET['selecteddatabase']))
     $selecteddatabase = @mysqli_escape_string($dbc_user, $_GET['selecteddatabase']);
