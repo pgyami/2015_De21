@@ -15,7 +15,6 @@ $successes = 0;
     $successes = 1;
   }
   else $errors = 1;
-  echo $_SESSION["selecteddb"];
   echo '{"errors" : '.$errors.',"successes" : '.$successes.'}';
 
 ?>

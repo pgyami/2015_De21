@@ -16,7 +16,7 @@ if(isUserLoggedIn()) {
         echo '{"errors":1,"successes":0}';
         //echo 'No, form submitted.';
         }
-		echo $_SESSION['tsancut'];
+	
 		
-	echo $_SESSION["selecteddb"];
+
 ?>

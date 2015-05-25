@@ -7,11 +7,6 @@ $host=$_SESSION['hostname'];
 $user=$_SESSION['username'];
 $pass=$_SESSION['password'];
 $selecteddb=$_SESSION['selecteddb'];
-
-echo $host;
-echo $user;
-echo $pass;
-echo $selecteddb;
 $dsn = "mysql://".$user.":".$pass."@".$host."/".$selecteddb;
 $clients = [];
 
