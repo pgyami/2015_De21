@@ -48,7 +48,10 @@ if(isUserLoggedIn())
 
 // Forward to index root page
 
-
+unset($_SESSION['hostname']);
+unset($_SESSION['username']);
+unset($_SESSION['password']);
+unset($_SESSION['selecteddb']);
 header("Location: " . SITE_ROOT."../index.php?action=home");
 die();
 

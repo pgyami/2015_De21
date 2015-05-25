@@ -31,7 +31,7 @@
       ?>
     </div>
   <?php 
-  $dbc_local = @mysqli_connect('localhost','root','');
+  $dbc_local = @mysqli_connect('localhost','root','123456');
   
   if (!empty($_POST['id'])){
 
@@ -46,6 +46,7 @@
 
 
   $dbc_user = @mysqli_connect($_SESSION['hostname'],$_SESSION['username'],$_SESSION['password']); 
+
 
   if (mysqli_connect_errno())
   {
@@ -156,19 +157,7 @@
   }
 
   ?>
-  <div id="wrapper" class="container">
-    <div id="header">
-      <?php
-      require_once("admin/models/config.php");
-      load_header();
-        if (mysqli_connect_errno())
-  {
-   /* dong echo nay chay ma addAlert o duoi k chay????
-   echo "Failed to connect to MySQL: " . mysqli_connect_error();*/
-    echo '<script>addAlert("danger","Failed to connect to MySQL: '. mysqli_connect_error().'");</script>';
-  }
-      ?>
-    </div>
+
 
     <div id="content" class="row"> 
       <h1 class="page-header">Dashboard</h1>
