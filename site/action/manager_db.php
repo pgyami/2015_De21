@@ -55,7 +55,11 @@
   }
 
   if (isset($_GET['selecteddatabase']))
+  {
     $selecteddatabase = @mysqli_escape_string($dbc_user, $_GET['selecteddatabase']);
+    $_SESSION['selecteddb'] = $selecteddatabase;
+  }
+    
   if (isset($_GET['selectedtable']))
     $selectedtable = @mysqli_escape_string($dbc_user, $_GET['selectedtable']);
 
