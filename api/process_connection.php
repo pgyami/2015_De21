@@ -1,5 +1,6 @@
 <?php
 require_once("../admin/models/config.php");
+
 //session_start();
 $dbc_local = @mysqli_connect('localhost','root','123456');
 $errors = 0;
@@ -11,6 +12,7 @@ $successes = 0;
     $query = "SELECT * FROM userinfo.connection_info WHERE id=$id";
     $result = @mysqli_query($dbc_local, $query);
     $row = @mysqli_fetch_array($result);
+
     if ($row['user_userforst'] == $user_userforst)
     {
       $_SESSION['hostname'] = $row['host'];
