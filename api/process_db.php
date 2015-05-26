@@ -1,5 +1,4 @@
 <?php
-
 require_once("../admin/models/config.php");
 // Start the session
 //session_start();
@@ -12,10 +11,12 @@ if(isUserLoggedIn()) {
         $_SESSION["selecteddb"] = $_POST['selecteddb'];
         echo '{"errors":0,"successes":1}';
     }
-
 	}
     else{
         echo '{"errors":1,"successes":0}';
         //echo 'No, form submitted.';
         }
+	
+		
+
 ?>
