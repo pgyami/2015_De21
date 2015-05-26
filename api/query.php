@@ -2,12 +2,28 @@
 session_name("UserFrosting");
 session_start();
 
+if(isset($_SESSION['hostname'])) {
+    $host=$_SESSION['hostname'];
+    if(isset($_SESSION['username']))
+    {
+        $user=$_SESSION['username'];
+        if(isset($_SESSION['password']))
+        {
+                    $pass=$_SESSION['password'];
+                    if(isset($_SESSION['selecteddb']))
+                    {
+                        $selecteddb=$_SESSION['selecteddb'];
+                        $dsn = "mysql://".$user.":".$pass."@".$host."/".$selecteddb;
+                    }
+        }
 
-$host=$_SESSION['hostname'];
-$user=$_SESSION['username'];
-$pass=$_SESSION['password'];
-$selecteddb=$_SESSION['selecteddb'];
-$dsn = "mysql://".$user.":".$pass."@".$host."/".$selecteddb;
+    }
+
+}
+else
+{
+    $dsn="";
+}
 $clients = [];
 
 /**
