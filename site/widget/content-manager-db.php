@@ -10,8 +10,9 @@
 
   $create_database_button = '<button type="button" class="btn btn-info submit" value="Create Databases" onclick="location.href=\'index.php?action=create_database\';return false;">Create Databases</button><br/><br/>';
   $create_table_button = '<button type="button" class="btn btn-info submit" value="Create Table" onclick="location.href=\'index.php?action=create_table&selecteddatabase='.$selecteddatabase.'\';return false;">Create Table</button><br/><br/>';
-  $show_table_structure_button = '<button type="button" class="btn btn-info submit" value="Show Structure" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'&showstructure=yes\';return false;">Show Structure</button><br/><br/>';
-  $show_table_data_button = '<button type="button" class="btn btn-info submit" value="Show Data" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'\';return false;">Show Data</button><br/><br/>';
+  $show_table_structure_button = '<button type="button" class="btn btn-info submit" value="Show Structure" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'&showstructure=yes\';return false;">Show Structure</button>';
+  $show_table_data_button = '<button type="button" class="btn btn-info submit" value="Show Data" onclick="location.href=\'index.php?action=manager_db&selecteddatabase='.$selecteddatabase.'&selectedtable='.$selectedtable.'\';return false;">Show Data</button>';
+  $show_api_button = '<button type="button" class="btn btn-info submit" value="Show Data" onclick="showAPI()";return false;">Show API</button><br/><br/>'
 ?>
 <form id = "clgt">
   </form>
@@ -68,6 +69,8 @@
               }
               else
                 echo $show_table_data_button;
+              echo '&nbsp;';
+              echo $show_api_button;
               
             }
         ?>
@@ -520,4 +523,62 @@ function getQuery(){
     document.getElementById("query_new").value = name_;
     
 }
+
+function showAPI(){
+    $(document).ready(function(){
+      $("#myAPI").modal('show');        
+});
+}
 </script>
+  <div id="myAPI" class="modal fade" onload="getValue();">   
+      <div class="modal-dialog">            
+          <div class="modal-content">
+              <div class="modal-header" >
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">API</h4>
+              </div>
+              <div class="modal-body" id="model-body-content">
+                  <p>We produce some APIs for user:</p>
+
+                  <div class="row">             
+                    <div class="col-sm-4" class="label_content">
+                      <span class="label label-primary">GET</span> /table
+                    </div>
+                    <div class="col-sm-8" class="input_content">
+                        Get all rows from the table
+                    </div>                  
+                  </div>
+                  <br />
+
+                  <div class="row">
+                    <div class="col-sm-4" class="label_content">
+                         <span class="label label-primary">GET</span> /table[/id]
+                    </div>
+                    <div class="col-sm-8" class="input_content">
+                        Get a single row from the table
+                    </div>                  
+                  </div>
+                  <br />
+
+                  <div class="row">
+                    <div class="col-sm-4" class="label_content">
+                        <span class="label label-primary">GET</span> /table[/column/content]
+                    </div>
+                    <div class="col-sm-8" class="input_content">
+                        Get all rows from the table where the column match content
+                    </div>                  
+                  </div>
+                  </br>
+
+
+                  <!-- <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p> -->
+              </div>
+              <div class="modal-footer">
+                   <form method='POST'>               
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>

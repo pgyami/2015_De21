@@ -31,7 +31,7 @@
       ?>
     </div>
   <?php 
-  $dbc_local = @mysqli_connect('localhost','root','');
+  $dbc_local = @mysqli_connect('localhost','root','123456');
   
   if (!empty($_POST['id'])){
 
