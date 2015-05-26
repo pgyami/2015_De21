@@ -535,40 +535,111 @@ function showAPI(){
           <div class="modal-content">
               <div class="modal-header" >
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title">API</h4>
+                  <h4 class="modal-title">REST API</h4>
               </div>
               <div class="modal-body" id="model-body-content">
                   <p>We produce some APIs for user:</p>
 
                   <div class="row">             
-                    <div class="col-sm-4" class="label_content">
-                      <span class="label label-primary">GET</span> /table
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-success">POST</span> /api/process_login.php
+                      <br>
+                      parameter: username, password, ajaxMode
                     </div>
-                    <div class="col-sm-8" class="input_content">
+                    <div class="col-sm-5" class="input_content">
+                        Login to system
+                    </div>                  
+                  </div>
+                  <hr>
+                  
+
+                  <div class="row">             
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-success">POST</span> /api/process_connection.php
+                      <br>
+                      parameter: id
+                    </div>
+                    <div class="col-sm-5" class="input_content">
+                        Select connection with given id
+                    </div>                  
+                  </div>
+                  <hr>
+
+                  <div class="row">             
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-success">POST</span> /api/process_db.php
+                      <br>
+                      parameter: selecteddb
+                    </div>
+                    <div class="col-sm-5" class="input_content">
+                        Select database with given name
+                    </div>                  
+                  </div>
+                  <hr>
+
+                  <div class="row">             
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-primary">GET</span> /api/query.php/{table}
+                    </div>
+                    <div class="col-sm-5" class="input_content">
                         Get all rows from the table
                     </div>                  
                   </div>
-                  <br />
+                  <hr>
 
                   <div class="row">
-                    <div class="col-sm-4" class="label_content">
-                         <span class="label label-primary">GET</span> /table[/id]
+                    <div class="col-sm-7" class="label_content">
+                         <span class="label label-primary">GET</span> /api/query.php/{table}/{id}
                     </div>
-                    <div class="col-sm-8" class="input_content">
-                        Get a single row from the table
+                    <div class="col-sm-5" class="input_content">
+                        Get a single row from the table with given id
                     </div>                  
                   </div>
-                  <br />
+                  <hr>
 
                   <div class="row">
-                    <div class="col-sm-4" class="label_content">
-                        <span class="label label-primary">GET</span> /table[/column/content]
+                    <div class="col-sm-7" class="label_content">
+                        <span class="label label-primary">GET</span> /api/query.php/{table}/{column}/{content}
                     </div>
-                    <div class="col-sm-8" class="input_content">
+                    <div class="col-sm-5" class="input_content">
                         Get all rows from the table where the column match content
                     </div>                  
                   </div>
-                  </br>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-7" class="label_content">
+                         <span class="label label-danger">DELETE</span> /api/query.php/{table}/{id}
+                    </div>
+                    <div class="col-sm-5" class="input_content">
+                        Delete single row from the table with given id
+                    </div>                  
+                  </div>
+                  <hr>
+
+                  <div class="row">             
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-success">POST</span> /api/query.php/{table}
+                      <br>
+                      parameter: fields in this table
+                    </div>
+                    <div class="col-sm-5" class="input_content">
+                        Create a new row in the table where the POST data corresponds to the table fields
+                    </div>                  
+                  </div>
+                  <hr>
+
+                  <div class="row">             
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-warning">PUT</span> /api/query.php/{table}/{id}
+                      <br>
+                      parameter: fields in this table
+                    </div>
+                    <div class="col-sm-5" class="input_content">
+                        Edit a row in the table where the POST data corresponds to the table fields with given id
+                    </div>                  
+                  </div>
+
 
 
                   <!-- <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p> -->

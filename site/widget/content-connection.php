@@ -91,6 +91,7 @@
            <table class="table table-striped table-condensed table-hover">
               <thead>
                 <tr>
+                  <th>Id</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Username</th>
@@ -107,7 +108,7 @@
                 while ($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     echo "<tr>
-                    
+                      <td>" . $row['id'] . "</td>
                       <td>" . $row['first_name'] . "</td>
                       <td>" . $row['last_name']. "</td>
                       <td>" . $row['user_name'] . "</td>
@@ -215,7 +216,7 @@
                       <div class="col-sm-8">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-fw fa-edit"></i></span>
-                          <input type="text" class="form-control" placeholder="Port" aria-describedby="basic-addon1" name="port">
+                          <input type="text" class="form-control" placeholder="Port" aria-describedby="basic-addon1" name="port" autocomplete="off">
                           <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("port",$errors)) echo "Required" ?>
                         </div>
                       </div>                    
@@ -228,8 +229,8 @@
                       <label class="col-sm-4 control-label">Password</label>
                       <div class="col-sm-8">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-fw fa-key"></i></span>
-                          <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password">
+                          <span class="input-group-addon" ><i class="fa fa-fw fa-key"></i></span>
+                          <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="password" autocomplete="off">
                           <?if ($_SERVER['REQUEST_METHOD'] == 'POST' && in_array("password",$errors)) echo "Required" ?>
                         </div>
                       </div>                    
