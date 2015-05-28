@@ -607,6 +607,26 @@ function showAPI(){
                   </div>
                   <hr>
 
+                  <div class="row">             
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-primary">GET</span> /api/query.php/{table}/?limit={number}
+                    </div>
+                    <div class="col-sm-5" class="input_content">
+                        Get specified number of rows from the table
+                    </div>                  
+                  </div>
+                  <hr>
+
+                  <div class="row">             
+                    <div class="col-sm-7" class="label_content">
+                      <span class="label label-primary">GET</span> /api/query.php/{table}/?limit={number}&by={column}&order{type_filter}
+                    </div>
+                    <div class="col-sm-5" class="input_content">
+                        Get specified number of rows from the table with given column name and type of filter
+                    </div>                  
+                  </div>
+                  <hr>
+
                   <div class="row">
                     <div class="col-sm-7" class="label_content">
                          <span class="label label-danger">DELETE</span> /api/query.php/{table}/{id}
